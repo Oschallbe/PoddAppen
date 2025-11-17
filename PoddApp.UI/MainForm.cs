@@ -85,5 +85,20 @@ namespace PoddApp.UI
         {
 
         }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
