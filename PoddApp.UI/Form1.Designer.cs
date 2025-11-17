@@ -29,10 +29,10 @@
             // 
             // btnAddPodcast
             // 
-            btnAddPodcast.Location = new Point(26, 22);
-            btnAddPodcast.Margin = new Padding(3, 2, 3, 2);
+            btnAddPodcast.Location = new Point(37, 37);
+            btnAddPodcast.Margin = new Padding(4, 3, 4, 3);
             btnAddPodcast.Name = "btnAddPodcast";
-            btnAddPodcast.Size = new Size(175, 30);
+            btnAddPodcast.Size = new Size(250, 50);
             btnAddPodcast.TabIndex = 0;
             btnAddPodcast.Text = "Lägg till podcast";
             btnAddPodcast.UseVisualStyleBackColor = true;
@@ -40,9 +40,10 @@
             // 
             // btnTestConnection
             // 
-            btnTestConnection.Location = new Point(37, 77);
+            btnTestConnection.Location = new Point(53, 128);
+            btnTestConnection.Margin = new Padding(4, 5, 4, 5);
             btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new Size(135, 23);
+            btnTestConnection.Size = new Size(193, 38);
             btnTestConnection.TabIndex = 1;
             btnTestConnection.Text = "Testa anslutning\r\n";
             btnTestConnection.UseVisualStyleBackColor = true;
@@ -50,12 +51,12 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(350, 150);
+            ClientSize = new Size(773, 445);
             Controls.Add(btnTestConnection);
             Controls.Add(btnAddPodcast);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "PoddApp";
             ResumeLayout(false);
