@@ -2,6 +2,5 @@
   <Project Path="PoddApp.BL/PoddApp.BL.csproj" />
   <Project Path="PoddApp.DAL/PoddApp.DAL.csproj" />
   <Project Path="PoddApp.Models/PoddApp.Models.csproj" />
-  <Project Path="PoddApp.Services/PoddApp.Services.csproj" />
   <Project Path="PoddApp.UI/PoddApp.UI.csproj" />
 </Solution>
