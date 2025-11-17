@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using PoddApp.DAL;
 using System;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PoddApp.UI
@@ -84,6 +85,28 @@ namespace PoddApp.UI
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPod_Click(object sender, EventArgs e)
+        {
+            LoadPage(new UcAddPod());
+        }
+
+        private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void LoadPage(UserControl uc)
+        {
+            mainPanel.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(uc);
+            uc.BringToFront();
         }
     }
 }
