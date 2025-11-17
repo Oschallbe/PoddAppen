@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private readonly PodcastRepository _repo;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 

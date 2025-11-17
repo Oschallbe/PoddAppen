@@ -21,7 +21,7 @@ namespace PoddApp.UI
 
             // Standard WinForms-setup
             ApplicationConfiguration.Initialize();
-            Application.Run(new PoddApp());
+            Application.Run(new MainForm());
 
 
         }
