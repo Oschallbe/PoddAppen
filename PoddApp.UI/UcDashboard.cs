@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
-    public partial class UserControl1 : UserControl
+    public partial class UcDashboard : UserControl
     {
-        public UserControl1()
+        public UcDashboard()
         {
             InitializeComponent();
         }
