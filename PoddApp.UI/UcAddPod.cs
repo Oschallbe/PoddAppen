@@ -19,8 +19,8 @@ namespace PoddApp.UI
     public partial class UcAddPod : UserControl
     {
         private List<Episode> allEpisodes;
-        private PoddService aPodService;
-        private IPodcastRepo repoInterface;
+        private readonly PoddService aPodService;
+        private readonly IPodcastRepo repoInterface;
         public UcAddPod(PoddService aPodService, IPodcastRepo repo)
         {
             InitializeComponent();
@@ -120,15 +120,21 @@ namespace PoddApp.UI
         {
             try
             {
+                if (repoInterface == null)
+                {
+                    MessageBox.Show("repoInterface är null – kolla konstruktorn!");
+                    return;
+                }
                 var podName = new Podcast
                 {
-                    Id = Guid.NewGuid().ToString(),
                     Name = lblPodName.Text,
                     Description = rtbxDesc.Text,
                     RssUrl = tbRssUrl.Text,
-                    ImageUrl = picbxPicture.ImageLocation
+                    ImageUrl = picbxPicture.ImageLocation,
+                    Episodes = allEpisodes
                 };
                 await repoInterface.AddAsync(podName);
+
                 MessageBox.Show("Podcast saved successfully!");
             }
             catch (Exception ex)

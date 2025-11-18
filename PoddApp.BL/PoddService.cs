@@ -25,7 +25,6 @@ namespace PoddApp.BL
 
             foreach(var episode in episodes) {
                 episode.Link = aPodcast.RssUrl;
-                episode.Id = aPodcast.Id + "-->" + episode.Id;
             }
             return episodes;
         }

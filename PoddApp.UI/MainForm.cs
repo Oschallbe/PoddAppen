@@ -15,10 +15,11 @@ namespace PoddApp.UI
         private PoddService aPodService;
 
 
-        public MainForm(PoddService podService)
+        public MainForm(PoddService podService, IPodcastRepo repo)
         {
             InitializeComponent();
             aPodService = podService;
+            _Irepo = repo;
             LoadPage(new UcDashboard());
 
 

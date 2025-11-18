@@ -5,8 +5,6 @@ namespace PoddApp.Models
 {
     public class Episode
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }         // MongoDB ObjectId som string
         public string Title { get; set; }
         public string Description { get; set; }
