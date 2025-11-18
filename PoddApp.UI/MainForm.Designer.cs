@@ -27,28 +27,31 @@
             menuPanel = new Panel();
             cbUser = new ComboBox();
             btnMenu = new Button();
+            button1 = new Button();
             menuPanel.SuspendLayout();
             SuspendLayout();
             // 
             // mainPanel
             // 
             mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(0, 57);
+            mainPanel.Location = new Point(0, 53);
             mainPanel.Margin = new Padding(2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1258, 607);
+            mainPanel.Size = new Size(1258, 611);
             mainPanel.TabIndex = 2;
-            mainPanel.Paint += panel1_Paint;
+            //mainPanel.Paint += panel1_Paint;
             // 
             // menuPanel
             // 
+            menuPanel.Controls.Add(button1);
             menuPanel.Controls.Add(cbUser);
             menuPanel.Controls.Add(btnMenu);
+            menuPanel.Dock = DockStyle.Top;
+            menuPanel.Location = new Point(0, 0);
             menuPanel.Margin = new Padding(2);
             menuPanel.Name = "menuPanel";
+            menuPanel.Size = new Size(1258, 53);
             menuPanel.TabIndex = 3;
-            menuPanel.Dock = DockStyle.Top;
-            menuPanel.Height = 53;
             // 
             // cbUser
             // 
@@ -71,6 +74,16 @@
             btnMenu.UseVisualStyleBackColor = true;
             btnMenu.Click += btnMenu_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(402, 11);
+            button1.Name = "button1";
+            button1.Size = new Size(156, 40);
+            button1.TabIndex = 3;
+            button1.Text = "LaggTillPod";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -92,5 +105,6 @@
         private Panel menuPanel;
         private ComboBox cbUser;
         private Button btnMenu;
+        private Button button1;
     }
 }
