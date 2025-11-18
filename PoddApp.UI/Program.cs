@@ -26,13 +26,18 @@ namespace PoddApp.UI
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
+            IPodcastRepo repo = new PodcastRepository(
+            config["Mongo:ConnectionString"],
+            config["Mongo:Database"]
+            );
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
 
 
             // Standard WinForms-setup
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm(service));
+            Application.Run(new MainForm(service, repo));
 
 
         }
