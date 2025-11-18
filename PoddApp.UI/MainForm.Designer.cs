@@ -36,10 +36,10 @@
             // 
             // btnAddPodcast
             // 
-            btnAddPodcast.Location = new Point(722, 380);
-            btnAddPodcast.Margin = new Padding(3, 2, 3, 2);
+            btnAddPodcast.Location = new Point(902, 475);
+            btnAddPodcast.Margin = new Padding(4, 2, 4, 2);
             btnAddPodcast.Name = "btnAddPodcast";
-            btnAddPodcast.Size = new Size(200, 40);
+            btnAddPodcast.Size = new Size(250, 50);
             btnAddPodcast.TabIndex = 0;
             btnAddPodcast.Text = "Lägg till podcast";
             btnAddPodcast.UseVisualStyleBackColor = true;
@@ -47,10 +47,10 @@
             // 
             // btnTestConnection
             // 
-            btnTestConnection.Location = new Point(34, 380);
-            btnTestConnection.Margin = new Padding(3, 4, 3, 4);
+            btnTestConnection.Location = new Point(42, 475);
+            btnTestConnection.Margin = new Padding(4, 5, 4, 5);
             btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new Size(154, 30);
+            btnTestConnection.Size = new Size(192, 38);
             btnTestConnection.TabIndex = 1;
             btnTestConnection.Text = "Testa anslutning\r\n";
             btnTestConnection.UseVisualStyleBackColor = true;
@@ -61,10 +61,10 @@
             mainPanel.Controls.Add(btnAddPodcast);
             mainPanel.Controls.Add(btnTestConnection);
             mainPanel.Dock = DockStyle.Bottom;
-            mainPanel.Location = new Point(0, 66);
+            mainPanel.Location = new Point(0, 44);
             mainPanel.Margin = new Padding(2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(979, 496);
+            mainPanel.Size = new Size(1258, 620);
             mainPanel.TabIndex = 2;
             mainPanel.Paint += panel1_Paint;
             // 
@@ -76,23 +76,25 @@
             menuPanel.Location = new Point(0, 0);
             menuPanel.Margin = new Padding(2);
             menuPanel.Name = "menuPanel";
-            menuPanel.Size = new Size(979, 62);
+            menuPanel.Size = new Size(1224, 78);
             menuPanel.TabIndex = 3;
             // 
             // cbUser
             // 
             cbUser.FormattingEnabled = true;
-            cbUser.Location = new Point(816, 28);
+            cbUser.Location = new Point(1020, 35);
+            cbUser.Margin = new Padding(4, 4, 4, 4);
             cbUser.Name = "cbUser";
-            cbUser.Size = new Size(151, 28);
+            cbUser.Size = new Size(188, 33);
             cbUser.TabIndex = 2;
             cbUser.SelectedIndexChanged += cbUser_SelectedIndexChanged;
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(149, 23);
+            btnMenu.Location = new Point(186, 29);
+            btnMenu.Margin = new Padding(4, 4, 4, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(150, 29);
+            btnMenu.Size = new Size(188, 36);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Meny";
             btnMenu.UseVisualStyleBackColor = true;
@@ -100,9 +102,10 @@
             // 
             // btnAddPod
             // 
-            btnAddPod.Location = new Point(451, 23);
+            btnAddPod.Location = new Point(564, 29);
+            btnAddPod.Margin = new Padding(4, 4, 4, 4);
             btnAddPod.Name = "btnAddPod";
-            btnAddPod.Size = new Size(150, 29);
+            btnAddPod.Size = new Size(188, 36);
             btnAddPod.TabIndex = 0;
             btnAddPod.Text = "Lägg till ny podcast";
             btnAddPod.UseVisualStyleBackColor = true;
@@ -110,12 +113,13 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(979, 562);
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1258, 664);
             Controls.Add(menuPanel);
             Controls.Add(mainPanel);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 2, 4, 2);
+            MinimumSize = new Size(1024, 600);
             Name = "MainForm";
             Text = "PoddApp";
             mainPanel.ResumeLayout(false);
