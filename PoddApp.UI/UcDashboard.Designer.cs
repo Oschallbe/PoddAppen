@@ -299,7 +299,6 @@
             Controls.Add(panelMyPodEps);
             Controls.Add(panelMyPods);
             Name = "UcDashboard";
-            Size = new Size(1169, 768);
             panelMyPods.ResumeLayout(false);
             panelMyPods.PerformLayout();
             panelMyPodEps.ResumeLayout(false);
