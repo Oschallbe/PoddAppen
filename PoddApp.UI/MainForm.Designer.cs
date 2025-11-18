@@ -2,14 +2,8 @@
 {
     partial class MainForm
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
+        private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -25,9 +19,9 @@
         {
             mainPanel = new Panel();
             menuPanel = new Panel();
+            btnLaggTillPod = new Button();
             cbUser = new ComboBox();
             btnMenu = new Button();
-            button1 = new Button();
             menuPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -39,11 +33,10 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(1258, 611);
             mainPanel.TabIndex = 2;
-            //mainPanel.Paint += panel1_Paint;
             // 
             // menuPanel
             // 
-            menuPanel.Controls.Add(button1);
+            menuPanel.Controls.Add(btnLaggTillPod);
             menuPanel.Controls.Add(cbUser);
             menuPanel.Controls.Add(btnMenu);
             menuPanel.Dock = DockStyle.Top;
@@ -52,6 +45,18 @@
             menuPanel.Name = "menuPanel";
             menuPanel.Size = new Size(1258, 53);
             menuPanel.TabIndex = 3;
+            menuPanel.BackColor = Color.FromArgb(176, 196, 222);
+            // 
+            // btnLaggTillPod
+            // 
+            btnLaggTillPod.Location = new Point(402, 11);
+            btnLaggTillPod.Name = "btnLaggTillPod";
+            btnLaggTillPod.Size = new Size(188, 36);
+            btnLaggTillPod.TabIndex = 3;
+            btnLaggTillPod.Text = "LaggTillPod";
+            btnLaggTillPod.UseVisualStyleBackColor = true;
+            btnLaggTillPod.Click += button1_Click;
+            btnLaggTillPod.Margin = new Padding(4);
             // 
             // cbUser
             // 
@@ -73,16 +78,6 @@
             btnMenu.Text = "Meny";
             btnMenu.UseVisualStyleBackColor = true;
             btnMenu.Click += btnMenu_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(402, 11);
-            button1.Name = "button1";
-            button1.Size = new Size(156, 40);
-            button1.TabIndex = 3;
-            button1.Text = "LaggTillPod";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // MainForm
             // 
@@ -106,5 +101,6 @@
         private ComboBox cbUser;
         private Button btnMenu;
         private Button button1;
+        private Button btnLaggTillPod;
     }
 }
