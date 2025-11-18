@@ -65,5 +65,38 @@ namespace PoddApp.DAL
             }
             return imageUrl;
         }
+
+        public async Task<string?> GetPodcastTitle(string rssUrl)
+        {
+            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(dataStream);
+            var feed = SyndicationFeed.Load(reader);
+
+            return feed.Title?.Text;
+        }
+
+        public async Task<string?> GetPodcastDescription(string rssUrl)
+        {
+            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(dataStream);
+            var feed = SyndicationFeed.Load(reader);
+
+            string? desc = feed.Description?.Text;
+
+            if (string.IsNullOrEmpty(desc))
+            {
+                foreach (var ext in feed.ElementExtensions)
+                {
+                    if (ext.OuterName.Equals("summary", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var x = ext.GetObject<System.Xml.Linq.XElement>();
+                        desc = x.Value;
+                    }
+                }
+            }
+
+            return desc;
+        }
+
     }
 }

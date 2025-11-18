@@ -29,7 +29,7 @@ namespace PoddApp.BL.ValidationBL
 
             try
             {
-                using var reader = XmlReader.Create(rssUrl);
+                using var reader = XmlReader.Create(rssUrl); //kollar att det är en RSS podcast länk
                 var feed = SyndicationFeed.Load(reader);
 
                 if (feed == null)
