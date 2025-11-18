@@ -11,6 +11,7 @@ namespace PoddApp.UI
     public partial class MainForm : Form
     {
         private readonly PodcastRepository _repo;
+        private readonly IPodcastRepo _Irepo;
         private PoddService aPodService;
 
 
@@ -52,7 +53,7 @@ namespace PoddApp.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcAddPod(aPodService));
+            LoadPage(new UcAddPod(aPodService, _Irepo));
         }
     }
 }

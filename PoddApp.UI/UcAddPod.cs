@@ -1,4 +1,5 @@
 ﻿using PoddApp.BL;
+using PoddApp.DAL;
 using PoddApp.Models;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,12 @@ namespace PoddApp.UI
     {
         private List<Episode> allEpisodes;
         private PoddService aPodService;
-        public UcAddPod(PoddService aPodService)
+        private IPodcastRepo repoInterface;
+        public UcAddPod(PoddService aPodService, IPodcastRepo repo)
         {
             InitializeComponent();
             this.aPodService = aPodService;
+            this.repoInterface = repo;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -113,15 +116,25 @@ namespace PoddApp.UI
 
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            var podToSave = new Podcast
+            try
             {
-                Id = Guid.NewGuid().ToString(),
-                RssUrl = tbRssUrl.Text,
-                Name = lblPodName.Text,
-                Description = rtbxDesc.Text
-            };
+                var podName = new Podcast
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = lblPodName.Text,
+                    Description = rtbxDesc.Text,
+                    RssUrl = tbRssUrl.Text,
+                    ImageUrl = picbxPicture.ImageLocation
+                };
+                await repoInterface.AddAsync(podName);
+                MessageBox.Show("Podcast saved successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the podcast: {ex.Message}");
+            }
         }
     }
 }

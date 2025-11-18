@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PoddApp.DAL
 {
-    public class PodcastRepository
+    public class PodcastRepository: IPodcastRepo
     {
         private readonly IMongoCollection<Podcast> _collection;
 
