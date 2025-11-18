@@ -1,6 +1,6 @@
 ﻿namespace PoddApp.UI
 {
-    partial class PopUpYesNoForm
+    partial class PopUpYesNoFormEp
     {
         /// <summary>
         /// Required designer variable.
