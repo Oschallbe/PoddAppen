@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using PoddApp.BL;
 using PoddApp.DAL;
 using System;
 using System.Drawing.Text;
@@ -10,10 +11,13 @@ namespace PoddApp.UI
     public partial class MainForm : Form
     {
         private readonly PodcastRepository _repo;
+        private PoddService aPodService;
 
-        public MainForm()
+
+        public MainForm(PoddService podService)
         {
             InitializeComponent();
+            aPodService = podService;
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
@@ -102,7 +106,7 @@ namespace PoddApp.UI
 
         private void btnAddPod_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcAddPod());
+            LoadPage(new UcAddPod(aPodService));
         }
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)

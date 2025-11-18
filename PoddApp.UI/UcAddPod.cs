@@ -17,25 +17,35 @@ namespace PoddApp.UI
     {
         private List<Episode> allEpisodes;
         private PoddService aPodService;
-        public UcAddPod()
+        public UcAddPod(PoddService aPodService)
         {
             InitializeComponent();
+            this.aPodService = aPodService;
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                var podName = new Episode();
-                string podUrl = tbRssUrl.Text;
+                var podName = new Podcast();
+                podName.RssUrl = tbRssUrl.Text;
 
                 podName.Id = Guid.NewGuid().ToString();
 
                 allEpisodes = await aPodService.getEpisodes(podName);
 
+                lbxEpisodes.Items.Clear();
+
+                foreach (Episode anEpisode in allEpisodes)
+                {
+                    lbxEpisodes.Items.Add(anEpisode.Title);
+
+                }
+
+
                 // Here you would typically add code to save the podcast information
                 // For example, you might call a service method to add the podcast to a database
-                MessageBox.Show($"Podcast '{podName}' with URL '{podUrl}' added successfully!");
+                MessageBox.Show($"Podcast '{podName}' with URL '{tbRssUrl.Text}' added successfully!");
             }
             catch (Exception ex)
             {
