@@ -1,29 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="9.0.10" />
-    <PackageReference Include="MongoDB.Bson" Version="3.5.0" />
-    <PackageReference Include="MongoDB.Driver" Version="3.5.0" />
-    <PackageReference Include="System.ServiceModel.Syndication" Version="10.0.0" />
-  </ItemGroup>
+		<!-- DPI-inställningar -->
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PoddApp.BL\PoddApp.BL.csproj" />
-    <ProjectReference Include="..\PoddApp.DAL\PoddApp.DAL.csproj" />
-    <ProjectReference Include="..\PoddApp.Models\PoddApp.Models.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="9.0.10" />
+		<PackageReference Include="MongoDB.Bson" Version="3.5.0" />
+		<PackageReference Include="MongoDB.Driver" Version="3.5.0" />
+		<PackageReference Include="System.ServiceModel.Syndication" Version="10.0.0" />
+	</ItemGroup>
 
+<<<<<<< Updated upstream
   <ItemGroup>
 <<<<<<< Updated upstream
     <Compile Update="PopUpYesNoFormEp.cs">
@@ -52,5 +51,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+=======
+	<ItemGroup>
+		<ProjectReference Include="..\PoddApp.BL\PoddApp.BL.csproj" />
+		<ProjectReference Include="..\PoddApp.DAL\PoddApp.DAL.csproj" />
+		<ProjectReference Include="..\PoddApp.Models\PoddApp.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="PopUpYesNoFormEp.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
+>>>>>>> Stashed changes
+
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
