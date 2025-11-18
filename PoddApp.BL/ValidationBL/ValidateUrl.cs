@@ -15,7 +15,7 @@ namespace PoddApp.BL.ValidationBL
 
         public void AddError(String message)
         {
-          Errors.Add(message);
+          this.Errors.Add(message);
         }
         public async Task<ValidateUrl> ValidateUrlAsync(String url)
         {

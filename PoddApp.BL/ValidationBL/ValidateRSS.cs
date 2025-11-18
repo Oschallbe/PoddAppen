@@ -11,13 +11,13 @@ namespace PoddApp.BL.ValidationBL
 {
     public class ValidateRSS
     {
-        private readonly ValidateUrl _urlValidator = new ValidateUrl();
+        private readonly ValidateUrl urlValidator = new ValidateUrl();
 
         public async Task<ValidateUrl> ValidatePodcastRssAsync(String rssUrl)
         {
             var result = new ValidateUrl();
 
-            var urlCheck = await _urlValidator.ValidateUrlAsync(rssUrl); //testar att länken nås
+            var urlCheck = await this.urlValidator.ValidateUrlAsync(rssUrl); //testar att länken nås
 
             if (!urlCheck.IsValid)
             {

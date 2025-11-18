@@ -1,17 +1,22 @@
 ﻿using PoddApp.DAL;
 using PoddApp.Models;
-using System.ServiceModel.Syndication;
-using System.Xml;
+using PoddApp.BL.ValidationBL;
 
 namespace PoddApp.BL
 {
     public class PoddService
     {
         private RSSPodd aRssPodd;
+        private readonly ValidateRSS rssValidator = new ValidateRSS();
 
         public PoddService(RSSPodd rssPodd)
         {
             this.aRssPodd = rssPodd;
+        }
+
+        public async Task<ValidateUrl> ValidatePodcastRssAsync(Podcast podcast)
+        {
+            return await this.rssValidator.ValidatePodcastRssAsync(podcast.RssUrl);
         }
 
         public async Task<List<Models.Episode>> getEpisodes(Podcast aPodcast)
