@@ -23,6 +23,7 @@
 	</ItemGroup>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   <ItemGroup>
 <<<<<<< Updated upstream
     <Compile Update="PopUpYesNoFormEp.cs">
@@ -66,6 +67,21 @@
 >>>>>>> Stashed changes
 
 	<ItemGroup>
+=======
+	<ItemGroup>
+		<ProjectReference Include="..\PoddApp.BL\PoddApp.BL.csproj" />
+		<ProjectReference Include="..\PoddApp.DAL\PoddApp.DAL.csproj" />
+		<ProjectReference Include="..\PoddApp.Models\PoddApp.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="PopUpYesNoFormEp.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+>>>>>>> Stashed changes
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
