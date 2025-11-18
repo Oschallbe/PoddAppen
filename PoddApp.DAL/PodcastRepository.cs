@@ -25,5 +25,12 @@ namespace PoddApp.DAL
         {
             await _collection.InsertOneAsync(podcast);
         }
+
+        public async Task<Podcast?> GetByRssUrlAsync(String rssUrl)
+        {
+            return await this.podcasts
+                .Find(p => p.RssUrl == rssUrl)
+                .FirstOrDefaultAsync();
+        }
     }
 }
