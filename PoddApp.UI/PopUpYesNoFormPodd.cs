@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
-    public partial class PopUpYesNoForm : Form
+    public partial class PopUpYesNoFormPodd : Form
     {
-        public PopUpYesNoForm()
+        public PopUpYesNoFormPodd()
         {
             InitializeComponent();
         }

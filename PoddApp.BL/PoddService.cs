@@ -14,17 +14,24 @@ namespace PoddApp.BL
             this.aRssPodd = rssPodd;
         }
 
-        public async Task<List<Models.Episode>> getEpisodes(Episode anEpisode)
+        public async Task<List<Models.Episode>> getEpisodes(Podcast aPodcast)
         {
-            var episodes = await aRssPodd.GetRSSPod(anEpisode.Link);
+            var episodes = await aRssPodd.GetRSSPod(aPodcast.RssUrl);
 
             foreach(var episode in episodes) {
-                episode.Link = anEpisode.Link;
-                episode.Id = anEpisode.Id + "-->" + episode.Id;
+                episode.Link = aPodcast.RssUrl;
+                episode.Id = aPodcast.Id + "-->" + episode.Id;
             }
             return episodes;
         }
 
+        public async Task SetPodcastImageAsync(Podcast podcast)
+        {  
+            var imgUrl = await aRssPodd.GetPodcastImageUrl(podcast.RssUrl);
+            podcast.ImageUrl = imgUrl;
+        }
 
-    }
+
+
+}
 }

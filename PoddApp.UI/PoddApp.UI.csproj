@@ -6,9 +6,14 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- DPI-inställningar -->
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+    <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Nu endast EN version av varje package -->
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
@@ -22,6 +27,12 @@
     <ProjectReference Include="..\PoddApp.BL\PoddApp.BL.csproj" />
     <ProjectReference Include="..\PoddApp.DAL\PoddApp.DAL.csproj" />
     <ProjectReference Include="..\PoddApp.Models\PoddApp.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PopUpYesNoFormEp.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

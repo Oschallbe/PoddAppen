@@ -23,114 +23,88 @@
 
         private void InitializeComponent()
         {
-            btnAddPodcast = new Button();
-            btnTestConnection = new Button();
             mainPanel = new Panel();
             menuPanel = new Panel();
             cbUser = new ComboBox();
             btnMenu = new Button();
-            btnAddPod = new Button();
-            mainPanel.SuspendLayout();
+            button1 = new Button();
             menuPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // btnAddPodcast
-            // 
-            btnAddPodcast.Location = new Point(722, 380);
-            btnAddPodcast.Margin = new Padding(3, 2, 3, 2);
-            btnAddPodcast.Name = "btnAddPodcast";
-            btnAddPodcast.Size = new Size(200, 40);
-            btnAddPodcast.TabIndex = 0;
-            btnAddPodcast.Text = "Lägg till podcast";
-            btnAddPodcast.UseVisualStyleBackColor = true;
-            btnAddPodcast.Click += btnAddPodcast_Click;
-            // 
-            // btnTestConnection
-            // 
-            btnTestConnection.Location = new Point(34, 380);
-            btnTestConnection.Margin = new Padding(3, 4, 3, 4);
-            btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new Size(154, 30);
-            btnTestConnection.TabIndex = 1;
-            btnTestConnection.Text = "Testa anslutning\r\n";
-            btnTestConnection.UseVisualStyleBackColor = true;
-            btnTestConnection.Click += btnTestConnection_Click_1;
-            // 
             // mainPanel
             // 
-            mainPanel.Controls.Add(btnAddPodcast);
-            mainPanel.Controls.Add(btnTestConnection);
-            mainPanel.Dock = DockStyle.Bottom;
-            mainPanel.Location = new Point(0, 66);
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(0, 53);
             mainPanel.Margin = new Padding(2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(979, 496);
+            mainPanel.Size = new Size(1258, 611);
             mainPanel.TabIndex = 2;
-            mainPanel.Paint += panel1_Paint;
+            //mainPanel.Paint += panel1_Paint;
             // 
             // menuPanel
             // 
+            menuPanel.Controls.Add(button1);
             menuPanel.Controls.Add(cbUser);
             menuPanel.Controls.Add(btnMenu);
-            menuPanel.Controls.Add(btnAddPod);
+            menuPanel.Dock = DockStyle.Top;
             menuPanel.Location = new Point(0, 0);
             menuPanel.Margin = new Padding(2);
             menuPanel.Name = "menuPanel";
-            menuPanel.Size = new Size(979, 62);
+            menuPanel.Size = new Size(1258, 53);
             menuPanel.TabIndex = 3;
             // 
             // cbUser
             // 
             cbUser.FormattingEnabled = true;
-            cbUser.Location = new Point(816, 28);
+            cbUser.Location = new Point(1002, 15);
+            cbUser.Margin = new Padding(4);
             cbUser.Name = "cbUser";
-            cbUser.Size = new Size(151, 28);
+            cbUser.Size = new Size(188, 23);
             cbUser.TabIndex = 2;
             cbUser.SelectedIndexChanged += cbUser_SelectedIndexChanged;
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(149, 23);
+            btnMenu.Location = new Point(64, 15);
+            btnMenu.Margin = new Padding(4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(150, 29);
+            btnMenu.Size = new Size(188, 36);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Meny";
             btnMenu.UseVisualStyleBackColor = true;
             btnMenu.Click += btnMenu_Click;
             // 
-            // btnAddPod
+            // button1
             // 
-            btnAddPod.Location = new Point(451, 23);
-            btnAddPod.Name = "btnAddPod";
-            btnAddPod.Size = new Size(150, 29);
-            btnAddPod.TabIndex = 0;
-            btnAddPod.Text = "Lägg till ny podcast";
-            btnAddPod.UseVisualStyleBackColor = true;
-            btnAddPod.Click += btnAddPod_Click;
+            button1.Location = new Point(402, 11);
+            button1.Name = "button1";
+            button1.Size = new Size(156, 40);
+            button1.TabIndex = 3;
+            button1.Text = "LaggTillPod";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(979, 562);
-            Controls.Add(menuPanel);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1258, 664);
             Controls.Add(mainPanel);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(menuPanel);
+            Margin = new Padding(4, 2, 4, 2);
+            MinimumSize = new Size(1024, 600);
             Name = "MainForm";
             Text = "PoddApp";
-            mainPanel.ResumeLayout(false);
             menuPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnAddPodcast;
-        private Button btnTestConnection;
         private Panel mainPanel;
         private Panel menuPanel;
         private ComboBox cbUser;
         private Button btnMenu;
-        private Button btnAddPod;
+        private Button button1;
     }
 }

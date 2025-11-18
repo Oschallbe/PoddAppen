@@ -85,13 +85,14 @@
             picbxPicture.Size = new Size(265, 195);
             picbxPicture.TabIndex = 4;
             picbxPicture.TabStop = false;
+            picbxPicture.WaitOnLoad = true;
             // 
             // lbxEpisodes
             // 
             lbxEpisodes.FormattingEnabled = true;
-            lbxEpisodes.Location = new Point(28, 386);
+            lbxEpisodes.Location = new Point(28, 346);
             lbxEpisodes.Name = "lbxEpisodes";
-            lbxEpisodes.Size = new Size(309, 84);
+            lbxEpisodes.Size = new Size(309, 124);
             lbxEpisodes.TabIndex = 5;
             // 
             // rtbxDesc
@@ -132,7 +133,7 @@
             Controls.Add(btnFind);
             Controls.Add(lblRssUrl);
             Controls.Add(tbRssUrl);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "UcAddPod";
             Size = new Size(762, 525);
             ((System.ComponentModel.ISupportInitialize)picbxPicture).EndInit();

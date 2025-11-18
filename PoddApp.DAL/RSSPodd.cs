@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using PoddApp.Models;
+using System.Xml.Linq;
 
 namespace PoddApp.DAL
 {
@@ -30,7 +31,7 @@ namespace PoddApp.DAL
             dataStream.Dispose();
             List<Episode> episodes = new List<Episode>();
 
-            foreach(SyndicationItem item in dataFlow.Items)
+            foreach (SyndicationItem item in dataFlow.Items)
             {
                 Episode episode = new Episode();
                 episode.Title = item.Title.Text;
@@ -42,5 +43,27 @@ namespace PoddApp.DAL
             return episodes;
         }
 
+        public async Task<string?> GetPodcastImageUrl(string rssUrl)
+        {
+
+            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
+            using var myReader = XmlReader.Create(dataStream);
+            var feed = SyndicationFeed.Load(myReader);
+
+            string? imageUrl = feed.ImageUrl?.ToString();
+
+            if (string.IsNullOrEmpty(imageUrl))
+            {
+                XNamespace itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+                var itunesImage = feed.ElementExtensions
+                    .ReadElementExtensions<XElement>("image", itunesNs.NamespaceName)
+                    .FirstOrDefault();
+                if(itunesImage != null)
+                {
+                    imageUrl = (string?)itunesImage.Attribute("href");
+                }
+            }
+            return imageUrl;
+        }
     }
 }
