@@ -69,25 +69,30 @@
             panelMyPods.Controls.Add(cbPodCat);
             panelMyPods.Controls.Add(cbPodList);
             panelMyPods.Controls.Add(lblMyPod);
-            panelMyPods.Location = new Point(3, 3);
+            panelMyPods.Location = new Point(2, 2);
+            panelMyPods.Margin = new Padding(2);
             panelMyPods.Name = "panelMyPods";
-            panelMyPods.Size = new Size(365, 343);
+            panelMyPods.Size = new Size(388, 346);
             panelMyPods.TabIndex = 0;
             // 
             // btnEditNamePod
             // 
-            btnEditNamePod.Location = new Point(205, 281);
+            btnEditNamePod.Font = new Font("Segoe UI", 12F);
+            btnEditNamePod.Location = new Point(134, 268);
+            btnEditNamePod.Margin = new Padding(2);
             btnEditNamePod.Name = "btnEditNamePod";
-            btnEditNamePod.Size = new Size(140, 34);
+            btnEditNamePod.Size = new Size(140, 55);
             btnEditNamePod.TabIndex = 5;
             btnEditNamePod.Text = "Redigera namn";
             btnEditNamePod.UseVisualStyleBackColor = true;
             // 
             // btnDeletePod
             // 
-            btnDeletePod.Location = new Point(26, 281);
+            btnDeletePod.Font = new Font("Segoe UI", 12F);
+            btnDeletePod.Location = new Point(3, 268);
+            btnDeletePod.Margin = new Padding(2);
             btnDeletePod.Name = "btnDeletePod";
-            btnDeletePod.Size = new Size(128, 34);
+            btnDeletePod.Size = new Size(120, 54);
             btnDeletePod.TabIndex = 4;
             btnDeletePod.Text = "Ta bort podd";
             btnDeletePod.UseVisualStyleBackColor = true;
@@ -96,35 +101,42 @@
             // lbMyPod
             // 
             lbMyPod.FormattingEnabled = true;
-            lbMyPod.Location = new Point(26, 90);
+            lbMyPod.Location = new Point(3, 65);
+            lbMyPod.Margin = new Padding(2);
             lbMyPod.Name = "lbMyPod";
-            lbMyPod.Size = new Size(319, 154);
+            lbMyPod.Size = new Size(256, 199);
             lbMyPod.TabIndex = 3;
+            lbMyPod.SelectedIndexChanged += lbMyPod_SelectedIndexChanged;
             // 
             // cbPodCat
             // 
             cbPodCat.FormattingEnabled = true;
-            cbPodCat.Location = new Point(214, 51);
+            cbPodCat.Location = new Point(280, 47);
+            cbPodCat.Margin = new Padding(2);
             cbPodCat.Name = "cbPodCat";
-            cbPodCat.Size = new Size(148, 33);
+            cbPodCat.Size = new Size(105, 23);
             cbPodCat.TabIndex = 2;
             // 
             // cbPodList
             // 
             cbPodList.FormattingEnabled = true;
-            cbPodList.Location = new Point(214, 12);
+            cbPodList.Location = new Point(280, 9);
+            cbPodList.Margin = new Padding(2);
             cbPodList.Name = "cbPodList";
-            cbPodList.Size = new Size(148, 33);
+            cbPodList.Size = new Size(105, 23);
             cbPodList.TabIndex = 1;
             // 
             // lblMyPod
             // 
             lblMyPod.AutoSize = true;
-            lblMyPod.Location = new Point(35, 38);
+            lblMyPod.Font = new Font("Segoe UI", 14F);
+            lblMyPod.Location = new Point(68, 21);
+            lblMyPod.Margin = new Padding(2, 0, 2, 0);
             lblMyPod.Name = "lblMyPod";
-            lblMyPod.Size = new Size(115, 25);
+            lblMyPod.Size = new Size(121, 25);
             lblMyPod.TabIndex = 0;
             lblMyPod.Text = "Mina poddar";
+            lblMyPod.Click += lblMyPod_Click;
             // 
             // panelMyPodEps
             // 
@@ -134,25 +146,31 @@
             panelMyPodEps.Controls.Add(cbPodEpCat);
             panelMyPodEps.Controls.Add(cbPodEpList);
             panelMyPodEps.Controls.Add(lblMyPodEps);
-            panelMyPodEps.Location = new Point(3, 352);
+            panelMyPodEps.Location = new Point(2, 352);
+            panelMyPodEps.Margin = new Padding(2);
             panelMyPodEps.Name = "panelMyPodEps";
-            panelMyPodEps.Size = new Size(365, 413);
+            panelMyPodEps.Size = new Size(388, 348);
             panelMyPodEps.TabIndex = 1;
             // 
             // btnEditNameEp
             // 
-            btnEditNameEp.Location = new Point(205, 340);
+            btnEditNameEp.Font = new Font("Segoe UI", 12F);
+            btnEditNameEp.Location = new Point(150, 282);
+            btnEditNameEp.Margin = new Padding(2);
             btnEditNameEp.Name = "btnEditNameEp";
-            btnEditNameEp.Size = new Size(140, 34);
+            btnEditNameEp.Size = new Size(124, 42);
             btnEditNameEp.TabIndex = 5;
             btnEditNameEp.Text = "Redigera namn";
             btnEditNameEp.UseVisualStyleBackColor = true;
+            btnEditNameEp.Click += btnEditNameEp_Click;
             // 
             // btnDeletePodEp
             // 
-            btnDeletePodEp.Location = new Point(25, 340);
+            btnDeletePodEp.Font = new Font("Segoe UI", 12F);
+            btnDeletePodEp.Location = new Point(18, 282);
+            btnDeletePodEp.Margin = new Padding(2);
             btnDeletePodEp.Name = "btnDeletePodEp";
-            btnDeletePodEp.Size = new Size(143, 34);
+            btnDeletePodEp.Size = new Size(126, 42);
             btnDeletePodEp.TabIndex = 4;
             btnDeletePodEp.Text = "Ta bort avsnitt";
             btnDeletePodEp.UseVisualStyleBackColor = true;
@@ -161,33 +179,39 @@
             // lbMyEp
             // 
             lbMyEp.FormattingEnabled = true;
-            lbMyEp.Location = new Point(26, 97);
+            lbMyEp.Location = new Point(0, 48);
+            lbMyEp.Margin = new Padding(2);
             lbMyEp.Name = "lbMyEp";
-            lbMyEp.Size = new Size(319, 204);
+            lbMyEp.Size = new Size(268, 229);
             lbMyEp.TabIndex = 3;
             // 
             // cbPodEpCat
             // 
             cbPodEpCat.FormattingEnabled = true;
-            cbPodEpCat.Location = new Point(215, 58);
+            cbPodEpCat.Location = new Point(281, 57);
+            cbPodEpCat.Margin = new Padding(2);
             cbPodEpCat.Name = "cbPodEpCat";
-            cbPodEpCat.Size = new Size(147, 33);
+            cbPodEpCat.Size = new Size(104, 23);
             cbPodEpCat.TabIndex = 2;
             // 
             // cbPodEpList
             // 
             cbPodEpList.FormattingEnabled = true;
-            cbPodEpList.Location = new Point(214, 18);
+            cbPodEpList.Location = new Point(281, 19);
+            cbPodEpList.Margin = new Padding(2);
             cbPodEpList.Name = "cbPodEpList";
-            cbPodEpList.Size = new Size(148, 33);
+            cbPodEpList.Size = new Size(105, 23);
             cbPodEpList.TabIndex = 1;
+            cbPodEpList.SelectedIndexChanged += cbPodEpList_SelectedIndexChanged;
             // 
             // lblMyPodEps
             // 
             lblMyPodEps.AutoSize = true;
-            lblMyPodEps.Location = new Point(16, 26);
+            lblMyPodEps.Font = new Font("Segoe UI", 14F);
+            lblMyPodEps.Location = new Point(68, 14);
+            lblMyPodEps.Margin = new Padding(2, 0, 2, 0);
             lblMyPodEps.Name = "lblMyPodEps";
-            lblMyPodEps.Size = new Size(152, 25);
+            lblMyPodEps.Size = new Size(159, 25);
             lblMyPodEps.TabIndex = 0;
             lblMyPodEps.Text = "Mina poddavsnitt";
             // 
@@ -198,50 +222,58 @@
             panelChosenPod.Controls.Add(rtbDesc);
             panelChosenPod.Controls.Add(picPod);
             panelChosenPod.Controls.Add(lblPodName);
-            panelChosenPod.Location = new Point(374, 3);
+            panelChosenPod.Location = new Point(394, 2);
+            panelChosenPod.Margin = new Padding(2);
             panelChosenPod.Name = "panelChosenPod";
-            panelChosenPod.Size = new Size(432, 762);
+            panelChosenPod.Size = new Size(400, 696);
             panelChosenPod.TabIndex = 2;
             // 
             // lbEplist
             // 
             lbEplist.FormattingEnabled = true;
-            lbEplist.Location = new Point(68, 446);
+            lbEplist.Location = new Point(47, 470);
+            lbEplist.Margin = new Padding(2);
             lbEplist.Name = "lbEplist";
-            lbEplist.Size = new Size(331, 204);
+            lbEplist.Size = new Size(233, 124);
             lbEplist.TabIndex = 5;
             // 
             // lblMetadataPod
             // 
             lblMetadataPod.AutoSize = true;
-            lblMetadataPod.Location = new Point(184, 385);
+            lblMetadataPod.Location = new Point(123, 441);
+            lblMetadataPod.Margin = new Padding(2, 0, 2, 0);
             lblMetadataPod.Name = "lblMetadataPod";
-            lblMetadataPod.Size = new Size(129, 25);
+            lblMetadataPod.Size = new Size(85, 15);
             lblMetadataPod.TabIndex = 3;
             lblMetadataPod.Text = "MetadataPodd";
+            lblMetadataPod.Click += lblMetadataPod_Click;
             // 
             // rtbDesc
             // 
-            rtbDesc.Location = new Point(68, 283);
+            rtbDesc.Location = new Point(48, 240);
+            rtbDesc.Margin = new Padding(2);
             rtbDesc.Name = "rtbDesc";
-            rtbDesc.Size = new Size(331, 86);
+            rtbDesc.Size = new Size(275, 152);
             rtbDesc.TabIndex = 4;
             rtbDesc.Text = "";
             // 
             // picPod
             // 
-            picPod.Location = new Point(68, 64);
+            picPod.Location = new Point(48, 51);
+            picPod.Margin = new Padding(2);
             picPod.Name = "picPod";
-            picPod.Size = new Size(331, 213);
+            picPod.Size = new Size(275, 185);
             picPod.TabIndex = 1;
             picPod.TabStop = false;
             // 
             // lblPodName
             // 
             lblPodName.AutoSize = true;
-            lblPodName.Location = new Point(161, 20);
+            lblPodName.Font = new Font("Segoe UI", 14F);
+            lblPodName.Location = new Point(113, 12);
+            lblPodName.Margin = new Padding(2, 0, 2, 0);
             lblPodName.Name = "lblPodName";
-            lblPodName.Size = new Size(120, 25);
+            lblPodName.Size = new Size(126, 25);
             lblPodName.TabIndex = 0;
             lblPodName.Text = "NamnPåPodd";
             // 
@@ -251,54 +283,62 @@
             panelChosenEp.Controls.Add(rtbDescEp);
             panelChosenEp.Controls.Add(picPodEp);
             panelChosenEp.Controls.Add(lblPodNameEp);
-            panelChosenEp.Location = new Point(812, 3);
+            panelChosenEp.Location = new Point(798, 2);
+            panelChosenEp.Margin = new Padding(2);
             panelChosenEp.Name = "panelChosenEp";
-            panelChosenEp.Size = new Size(354, 762);
+            panelChosenEp.Size = new Size(400, 696);
             panelChosenEp.TabIndex = 3;
             // 
             // lblMetadataPodEp
             // 
             lblMetadataPodEp.AutoSize = true;
-            lblMetadataPodEp.Location = new Point(102, 385);
+            lblMetadataPodEp.Location = new Point(71, 231);
+            lblMetadataPodEp.Margin = new Padding(2, 0, 2, 0);
             lblMetadataPodEp.Name = "lblMetadataPodEp";
-            lblMetadataPodEp.Size = new Size(184, 25);
+            lblMetadataPodEp.Size = new Size(122, 15);
             lblMetadataPodEp.TabIndex = 3;
             lblMetadataPodEp.Text = "MetadataPoddAvsnitt";
+            lblMetadataPodEp.Click += lblMetadataPodEp_Click;
             // 
             // rtbDescEp
             // 
-            rtbDescEp.Location = new Point(54, 283);
+            rtbDescEp.Location = new Point(38, 170);
+            rtbDescEp.Margin = new Padding(2);
             rtbDescEp.Name = "rtbDescEp";
-            rtbDescEp.Size = new Size(267, 86);
+            rtbDescEp.Size = new Size(362, 53);
             rtbDescEp.TabIndex = 2;
             rtbDescEp.Text = "";
             // 
             // picPodEp
             // 
-            picPodEp.Location = new Point(54, 64);
+            picPodEp.Location = new Point(38, 38);
+            picPodEp.Margin = new Padding(2);
             picPodEp.Name = "picPodEp";
-            picPodEp.Size = new Size(266, 213);
+            picPodEp.Size = new Size(186, 128);
             picPodEp.TabIndex = 1;
             picPodEp.TabStop = false;
             // 
             // lblPodNameEp
             // 
             lblPodNameEp.AutoSize = true;
-            lblPodNameEp.Location = new Point(111, 20);
+            lblPodNameEp.Location = new Point(78, 12);
+            lblPodNameEp.Margin = new Padding(2, 0, 2, 0);
             lblPodNameEp.Name = "lblPodNameEp";
-            lblPodNameEp.Size = new Size(175, 25);
+            lblPodNameEp.Size = new Size(118, 15);
             lblPodNameEp.TabIndex = 0;
             lblPodNameEp.Text = "NamnPåPoddAvsnitt";
             // 
             // UcDashboard
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panelChosenEp);
             Controls.Add(panelChosenPod);
             Controls.Add(panelMyPodEps);
             Controls.Add(panelMyPods);
+            Margin = new Padding(2);
             Name = "UcDashboard";
+            Size = new Size(1200, 700);
             panelMyPods.ResumeLayout(false);
             panelMyPods.PerformLayout();
             panelMyPodEps.ResumeLayout(false);

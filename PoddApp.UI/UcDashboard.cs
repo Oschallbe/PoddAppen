@@ -29,5 +29,40 @@ namespace PoddApp.UI
             var form = new PopUpYesNoFormEp();
             form.ShowDialog();   // visar popupen modalt
         }
+
+        private void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMyPod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMyPodEps_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditNameEp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMetadataPod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMetadataPodEp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
