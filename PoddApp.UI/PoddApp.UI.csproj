@@ -25,12 +25,29 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Update="PopUpYesNoFormEp.cs">
       <SubType>Form</SubType>
+=======
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< Updated upstream
+=======
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+>>>>>>> Stashed changes
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

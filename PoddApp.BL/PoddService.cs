@@ -25,6 +25,13 @@ namespace PoddApp.BL
             return episodes;
         }
 
+        public async Task SetPodcastImageAsync(Podcast podcast)
+        {  
+            var imgUrl = await aRssPodd.GetPodcastImageUrl(podcast.RssUrl);
+            podcast.ImageUrl = imgUrl;
+        }
 
-    }
+
+
+}
 }

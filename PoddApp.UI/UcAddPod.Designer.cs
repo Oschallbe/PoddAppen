@@ -85,6 +85,7 @@
             picbxPicture.Size = new Size(265, 195);
             picbxPicture.TabIndex = 4;
             picbxPicture.TabStop = false;
+            picbxPicture.WaitOnLoad = true;
             // 
             // lbxEpisodes
             // 

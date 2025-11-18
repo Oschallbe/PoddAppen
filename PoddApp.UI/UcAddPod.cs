@@ -32,6 +32,8 @@ namespace PoddApp.UI
 
                 podName.Id = Guid.NewGuid().ToString();
 
+                await aPodService.SetPodcastImageAsync(podName);
+
                 allEpisodes = await aPodService.getEpisodes(podName);
 
                 lbxEpisodes.Items.Clear();
@@ -42,10 +44,17 @@ namespace PoddApp.UI
 
                 }
 
+                if (!string.IsNullOrEmpty(podName.ImageUrl))
+                {
+                    picbxPicture.SizeMode = PictureBoxSizeMode.Zoom; // viktigt så den skalar in bilden
+                    picbxPicture.LoadAsync(podName.ImageUrl);
 
-                // Here you would typically add code to save the podcast information
-                // For example, you might call a service method to add the podcast to a database
-                MessageBox.Show($"Podcast '{podName}' with URL '{tbRssUrl.Text}' added successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Bild hittas inte.");
+                }
+
             }
             catch (Exception ex)
             {
