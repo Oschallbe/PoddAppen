@@ -35,8 +35,8 @@
             picbxPicture = new PictureBox();
             lbxEpisodes = new ListBox();
             rtbxDesc = new RichTextBox();
-            rtbxMeta = new RichTextBox();
-            btnSave = new Button();
+            rtbxEpDesc = new RichTextBox();
+            btnSavePod = new Button();
             ((System.ComponentModel.ISupportInitialize)picbxPicture).BeginInit();
             SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             tbRssUrl.Name = "tbRssUrl";
             tbRssUrl.Size = new Size(335, 27);
             tbRssUrl.TabIndex = 0;
-            tbRssUrl.Text = "Skriv in RSS länken här";
+            tbRssUrl.TextChanged += tbRssUrl_TextChanged;
             // 
             // lblRssUrl
             // 
@@ -71,11 +71,11 @@
             // lblPodName
             // 
             lblPodName.AutoSize = true;
-            lblPodName.Location = new Point(134, 101);
+            lblPodName.Location = new Point(144, 89);
             lblPodName.Name = "lblPodName";
-            lblPodName.Size = new Size(50, 20);
+            lblPodName.Size = new Size(29, 20);
             lblPodName.TabIndex = 3;
-            lblPodName.Text = "label2";
+            lblPodName.Text = "XD";
             lblPodName.Click += lblPodName_Click;
             // 
             // picbxPicture
@@ -94,38 +94,40 @@
             lbxEpisodes.Name = "lbxEpisodes";
             lbxEpisodes.Size = new Size(309, 124);
             lbxEpisodes.TabIndex = 5;
+            lbxEpisodes.SelectedIndexChanged += lbxEpisodes_SelectedIndexChanged;
             // 
             // rtbxDesc
             // 
             rtbxDesc.Location = new Point(344, 124);
             rtbxDesc.Name = "rtbxDesc";
-            rtbxDesc.Size = new Size(178, 195);
+            rtbxDesc.Size = new Size(267, 195);
             rtbxDesc.TabIndex = 6;
             rtbxDesc.Text = "";
             // 
-            // rtbxMeta
+            // rtbxEpDesc
             // 
-            rtbxMeta.Location = new Point(556, 124);
-            rtbxMeta.Name = "rtbxMeta";
-            rtbxMeta.Size = new Size(169, 195);
-            rtbxMeta.TabIndex = 7;
-            rtbxMeta.Text = "";
+            rtbxEpDesc.Location = new Point(353, 346);
+            rtbxEpDesc.Name = "rtbxEpDesc";
+            rtbxEpDesc.Size = new Size(258, 124);
+            rtbxEpDesc.TabIndex = 7;
+            rtbxEpDesc.Text = "";
             // 
-            // btnSave
+            // btnSavePod
             // 
-            btnSave.Location = new Point(626, 441);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(99, 29);
-            btnSave.TabIndex = 8;
-            btnSave.Text = "button2";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSavePod.Location = new Point(626, 441);
+            btnSavePod.Name = "btnSavePod";
+            btnSavePod.Size = new Size(99, 29);
+            btnSavePod.TabIndex = 8;
+            btnSavePod.Text = "Spara podd";
+            btnSavePod.UseVisualStyleBackColor = true;
+            btnSavePod.Click += btnSave_Click;
             // 
             // UcAddPod
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnSave);
-            Controls.Add(rtbxMeta);
+            Controls.Add(btnSavePod);
+            Controls.Add(rtbxEpDesc);
             Controls.Add(rtbxDesc);
             Controls.Add(lbxEpisodes);
             Controls.Add(picbxPicture);
@@ -135,7 +137,8 @@
             Controls.Add(tbRssUrl);
             Margin = new Padding(2);
             Name = "UcAddPod";
-            Size = new Size(762, 525);
+            Size = new Size(844, 539);
+            Load += UcAddPod_Load;
             ((System.ComponentModel.ISupportInitialize)picbxPicture).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -150,7 +153,7 @@
         private PictureBox picbxPicture;
         private ListBox lbxEpisodes;
         private RichTextBox rtbxDesc;
-        private RichTextBox rtbxMeta;
-        private Button btnSave;
+        private RichTextBox rtbxEpDesc;
+        private Button btnSavePod;
     }
 }

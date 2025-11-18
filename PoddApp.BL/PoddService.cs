@@ -31,7 +31,22 @@ namespace PoddApp.BL
             podcast.ImageUrl = imgUrl;
         }
 
+        public async Task SetPodcastTitleAsync(Podcast podcast)
+        {
+            var podcastTitle = await aRssPodd.GetPodcastTitle(podcast.RssUrl);
+            podcast.Name = podcastTitle;
+        }
 
+        public async Task SetPodcastDescriptionAsync(Podcast podcast)
+        {
+            var podcastDescription = await aRssPodd.GetPodcastDescription(podcast.RssUrl);
+            podcast.Description = podcastDescription;
+        }
 
-}
+        public async Task SetEpisodeDescriptionAsync(Episode episode)
+        {
+            var episodeDescription = await aRssPodd.GetPodcastDescription(episode.Link);
+            episode.Description = episodeDescription;
+        }
+    }
 }

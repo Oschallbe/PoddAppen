@@ -13,6 +13,7 @@ namespace PoddApp.Models
         public string Category { get; set; }   // Kategori (t.ex. "Teknik")
         public List<Episode> Episodes { get; set; } = new(); // Lista av avsnitt
         public string ImageUrl { get; set; }
+        public string Description { get; set; }
 
     }
 }
