@@ -26,6 +26,14 @@ namespace PoddApp.UI
             );
         }
 
+        private void LoadPage(UserControl uc)
+        {
+            mainPanel.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(uc);
+            uc.BringToFront();
+        }
+
         private async void btnAddPodcast_Click(object sender, EventArgs e)
         {
             await _repo.AddAsync(new PoddApp.Models.Podcast
@@ -89,7 +97,7 @@ namespace PoddApp.UI
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-
+            LoadPage(new UcDashboard());
         }
 
         private void btnAddPod_Click(object sender, EventArgs e)
@@ -101,12 +109,6 @@ namespace PoddApp.UI
         {
 
         }
-        private void LoadPage(UserControl uc)
-        {
-            mainPanel.Controls.Clear();
-            uc.Dock = DockStyle.Fill;
-            mainPanel.Controls.Add(uc);
-            uc.BringToFront();
-        }
+        
     }
 }
