@@ -16,8 +16,7 @@ namespace PoddApp.UI
         static void Main()
         {
             HttpClient http = new HttpClient();
-            var client = new RSSPodd(http);
-            var service = new PoddService(client);
+            var rssReader = new RSSPodd(http);
 
 
 
@@ -33,6 +32,8 @@ namespace PoddApp.UI
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
+
+            var service = new PoddService(rssReader, repo);
 
 
             // Standard WinForms-setup

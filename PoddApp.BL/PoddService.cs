@@ -1,13 +1,20 @@
 ﻿using PoddApp.DAL;
 using PoddApp.Models;
+using System.Runtime.CompilerServices;
+
+//Alla metoder som gör någonting med databasen ska ligga här. tex spara lägga till
+//T.ex Add new pod(UI) - > Metoden i PoddService(Här i ligger en metod som går till interface ->
+//repository (DAL) som sparar podden i databasen
 
 public class PoddService
 {
     private readonly RSSPodd aRssPodd;
+    private readonly IPodcastRepo _podcastRepo;
 
-    public PoddService(RSSPodd rssPodd)
+    public PoddService(RSSPodd rssPodd, IPodcastRepo podcastRepo)
     {
         aRssPodd = rssPodd;
+        _podcastRepo = podcastRepo;
     }
 
     public async Task SetPodcastImageAsync(Podcast podcast)
@@ -36,5 +43,15 @@ public class PoddService
         }
 
         return episodes;
+    }
+
+    public async Task SavePodcastAsync(Podcast podcast)
+    {
+        await _podcastRepo.AddAsync(podcast);
+    }
+
+    public async Task<List<Podcast>> GetAllPodcastsAsync()
+    {
+        return await _podcastRepo.GetAllAsync();
     }
 }

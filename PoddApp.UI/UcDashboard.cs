@@ -14,29 +14,25 @@ namespace PoddApp.UI
 {
     public partial class UcDashboard : UserControl
     {
-        private readonly IPodcastRepo _repo;
+        //private readonly IPodcastRepo _repo;
         private List<Podcast> _podcasts = new();
+        private readonly PoddService aPodService;
 
-        public UcDashboard(IPodcastRepo repo)
+        public UcDashboard(PoddService poddService)
         {
             InitializeComponent();
-            _repo = repo;
-
-            _ = LoadPodcastsAsync();
+            this.aPodService = poddService;
+            LoadPods();
         }
 
-        private async Task LoadPodcastsAsync()
+        private async Task LoadPods()
         {
             try
             {   
-                _podcasts = await _repo.GetAllAsync() ?? new List<Podcast>();
-
-                lbMyPod.Items.Clear();
-
-                foreach (var p in _podcasts)
+            var allPods = await aPodService.GetAllPodcastsAsync();
+                foreach (var pod in allPods)
                 {
-                    string title = string.IsNullOrEmpty(p.Name) ? p.RssUrl : p.Name;
-                    lbMyPod.Items.Add(title);
+                    lbMyPod.Items.Add(pod.Name);
                 }
             }
             catch (Exception ex)
