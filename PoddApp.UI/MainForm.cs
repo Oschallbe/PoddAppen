@@ -1,29 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
-using PoddApp.BL;
-using PoddApp.DAL;
+﻿using PoddApp.BL;
 using System;
-using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
     public partial class MainForm : Form
     {
+        private readonly IPoddService _service;
 
-        private PoddService aPodService;
-
-
-        public MainForm(PoddService podService)
+        public MainForm(IPoddService service)
         {
             InitializeComponent();
-            aPodService = podService;
-
-
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
+            _service = service;
         }
 
         private void LoadPage(UserControl uc)
@@ -36,17 +24,17 @@ namespace PoddApp.UI
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcDashboard(aPodService));
-        }
-
-        private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            LoadPage(new UcDashboard(_service));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcAddPod(aPodService));
+            LoadPage(new UcAddPod(_service));
+        }
+
+        private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Om du vill lägga till användarbyte här senare
         }
     }
 }
