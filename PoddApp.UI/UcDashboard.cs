@@ -1,38 +1,35 @@
-﻿using PoddApp.DAL;
+﻿using PoddApp.BL;
 using PoddApp.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
     public partial class UcDashboard : UserControl
     {
-        //private readonly IPodcastRepo _repo;
         private List<Podcast> _podcasts = new();
-        private readonly PoddService aPodService;
+        private readonly IPoddService _service;
 
-        public UcDashboard(PoddService poddService)
+        public UcDashboard(IPoddService service)
         {
             InitializeComponent();
-            this.aPodService = poddService;
-            _ = LoadPods(); // Fire-and-forget, explicitly discard the Task to silence CS4014
+            _service = service;
+
+            _ = LoadPods();  // fire & forget
         }
 
         private async Task LoadPods()
         {
             try
-            {   
-            var allPods = await aPodService.GetAllPodcastsAsync();
-                foreach (var pod in allPods)
+            {
+                _podcasts = await _service.GetAllPodcastsAsync() ?? new List<Podcast>();
+
+                lbMyPod.Items.Clear();
+
+                foreach (var pod in _podcasts)
                 {
-                    lbMyPod.Items.Add(pod.Name);
+                    lbMyPod.Items.Add(string.IsNullOrEmpty(pod.Name) ? pod.RssUrl : pod.Name);
                 }
             }
             catch (Exception ex)
@@ -41,52 +38,58 @@ namespace PoddApp.UI
             }
         }
 
-        private void btnDeletePod_Click(object sender, EventArgs e)
+        private async void btnDeletePod_Click(object sender, EventArgs e)
         {
-            var form = new PopUpYesNoFormPodd();
-            form.ShowDialog();   // visar popupen modalt
+            int index = lbMyPod.SelectedIndex;
 
+            if (index < 0 || index >= _podcasts.Count)
+            {
+                MessageBox.Show("Välj en podd att ta bort.");
+                return;
+            }
+
+            var popup = new PopUpYesNoFormPodd();
+            var result = popup.ShowDialog();
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    var selectedPod = _podcasts[index];
+
+                    await _service.DeletePodcastAsync(selectedPod.Id);
+
+                    // Ta bort från UI-lista
+                    lbMyPod.Items.RemoveAt(index);
+                    _podcasts.RemoveAt(index);
+
+                    lblMetadataPod.Text = "";
+                    lblMetadataPodEp.Text = "";
+                    cbPodEpList.Items.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kunde inte ta bort podden: " + ex.Message);
+                }
+            }
         }
 
         private void btnDeletePodEp_Click(object sender, EventArgs e)
         {
             var form = new PopUpYesNoFormEp();
-            form.ShowDialog();   // visar popupen modalt
+            form.ShowDialog();
         }
 
         private void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Här kan vi senare lägga logik för att visa metadata + episoder
         }
 
-        private void lblMyPod_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMyPodEps_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEditNameEp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMetadataPod_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMetadataPodEp_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void lblMyPod_Click(object sender, EventArgs e) { }
+        private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void lblMyPodEps_Click(object sender, EventArgs e) { }
+        private void btnEditNameEp_Click(object sender, EventArgs e) { }
+        private void lblMetadataPod_Click(object sender, EventArgs e) { }
+        private void lblMetadataPodEp_Click(object sender, EventArgs e) { }
     }
 }

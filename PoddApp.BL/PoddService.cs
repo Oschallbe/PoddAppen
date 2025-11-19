@@ -1,4 +1,5 @@
-﻿using PoddApp.DAL;
+﻿using PoddApp.BL;
+using PoddApp.DAL;
 using PoddApp.Models;
 using System.Runtime.CompilerServices;
 
@@ -6,11 +7,10 @@ using System.Runtime.CompilerServices;
 //T.ex Add new pod(UI) - > Metoden i PoddService(Här i ligger en metod som går till interface ->
 //repository (DAL) som sparar podden i databasen
 
-public class PoddService
+public class PoddService : IPoddService
 {
     private readonly IRssReader _rss;
     private readonly IPodcastRepo _podcastRepo;
-
 
     public PoddService(IRssReader rssReader, IPodcastRepo podcastRepo)
     {
@@ -54,5 +54,10 @@ public class PoddService
     public async Task<List<Podcast>> GetAllPodcastsAsync()
     {
         return await _podcastRepo.GetAllAsync();
+    }
+
+    public async Task DeletePodcastAsync(string id)
+    {
+        await _podcastRepo.DeleteAsync(id);
     }
 }

@@ -20,9 +20,9 @@ namespace PoddApp.UI
     public partial class UcAddPod : UserControl
     {
         private List<Episode> allEpisodes;
-        private readonly PoddService aPodService;
+        private readonly IPoddService aPodService;
 
-        public UcAddPod(PoddService aPodService)
+        public UcAddPod(IPoddService aPodService)
         {
             InitializeComponent();
             this.aPodService = aPodService;
