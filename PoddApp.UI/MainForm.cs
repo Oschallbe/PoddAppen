@@ -20,18 +20,14 @@ namespace PoddApp.UI
             InitializeComponent();
             aPodService = podService;
             _Irepo = repo;
-            LoadPage(new UcDashboard());
+            _repo = repo as PodcastRepository; // Ensure _repo is initialized
 
+            LoadPage(new UcDashboard(_Irepo));
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
-
-            _repo = new PodcastRepository(
-                config["Mongo:ConnectionString"],
-                config["Mongo:Database"]
-            );
         }
 
         private void LoadPage(UserControl uc)
@@ -44,7 +40,7 @@ namespace PoddApp.UI
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcDashboard());
+            LoadPage(new UcDashboard(_Irepo));
         }
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
