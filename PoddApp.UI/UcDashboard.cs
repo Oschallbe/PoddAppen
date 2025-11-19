@@ -1,4 +1,5 @@
-﻿using PoddApp.BL;
+﻿using MongoDB.Driver;
+using PoddApp.BL;
 using PoddApp.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace PoddApp.UI
     {
         private List<Podcast> _podcasts = new();
         private readonly IPoddService _service;
+        private List<Episode> allEpisodes;
 
         public UcDashboard(IPoddService service)
         {
@@ -80,9 +82,41 @@ namespace PoddApp.UI
             form.ShowDialog();
         }
 
-        private void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
+        public static string StripHtml(string input)
         {
-            // Här kan vi senare lägga logik för att visa metadata + episoder
+            if (string.IsNullOrEmpty(input)) return input;
+
+            return System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", string.Empty);
+        }
+
+        public Podcast GetPodcasts(string name)
+        {
+            return _podcasts.FirstOrDefault(podcast => podcast.Name == name);
+            
+        }
+
+        private async void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lbMyPod.SelectedIndex;
+
+            if (index < 0 || index >= _podcasts.Count)
+                return;
+
+            var selectedPodcast = _podcasts[index];
+
+            if (selectedPodcast == null)
+                return;
+
+            //Podcast pod = new Podcast();
+            //var myEpisodes = pod.Episodes;
+
+            allEpisodes = selectedPodcast.Episodes?.ToList() ?? new List<Episode>();
+
+            cbPodEpList.Items.Clear();
+            foreach (var ep in allEpisodes)
+            {
+                cbPodEpList.Items.Add(ep.Title);
+            }
         }
 
         private void lblMyPod_Click(object sender, EventArgs e) { }
