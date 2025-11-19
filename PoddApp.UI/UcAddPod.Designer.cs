@@ -128,7 +128,7 @@
             btnSavePod.Text = "Spara podd";
             btnSavePod.UseVisualStyleBackColor = true;
             btnSavePod.Click += btnSave_Click;
-            // 
+            //// 
             // UcAddPod
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);

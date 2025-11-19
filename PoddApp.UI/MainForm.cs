@@ -10,8 +10,7 @@ namespace PoddApp.UI
 {
     public partial class MainForm : Form
     {
-        //private readonly PodcastRepository _repo;
-        //private readonly IPodcastRepo _Irepo;
+
         private PoddService aPodService;
 
 
@@ -19,10 +18,7 @@ namespace PoddApp.UI
         {
             InitializeComponent();
             aPodService = podService;
-            //_Irepo = repo;
-            //_repo = repo as PodcastRepository; // Ensure _repo is initialized
 
-            //LoadPage(new UcDashboard(_Irepo));
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
