@@ -13,6 +13,8 @@ namespace PoddApp.DAL
         Task AddAsync(Podcast podcast);
         Task<Podcast?> GetByRssUrlAsync(string rssUrl);
         Task UpdateAsync(Podcast podcast);
+        Task DeleteAsync(string id);
+
 
     }
 }
