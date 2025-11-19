@@ -42,27 +42,29 @@
             // 
             // tbRssUrl
             // 
-            tbRssUrl.Location = new Point(187, 52);
+            tbRssUrl.Location = new Point(164, 39);
+            tbRssUrl.Margin = new Padding(3, 2, 3, 2);
             tbRssUrl.Name = "tbRssUrl";
-            tbRssUrl.Size = new Size(335, 27);
+            tbRssUrl.Size = new Size(294, 23);
             tbRssUrl.TabIndex = 0;
             tbRssUrl.TextChanged += tbRssUrl_TextChanged;
             // 
             // lblRssUrl
             // 
             lblRssUrl.AutoSize = true;
-            lblRssUrl.Location = new Point(117, 55);
+            lblRssUrl.Location = new Point(102, 41);
             lblRssUrl.Name = "lblRssUrl";
-            lblRssUrl.Size = new Size(67, 20);
+            lblRssUrl.Size = new Size(53, 15);
             lblRssUrl.TabIndex = 1;
             lblRssUrl.Text = "RSS URL:";
             lblRssUrl.Click += label1_Click;
             // 
             // btnFind
             // 
-            btnFind.Location = new Point(528, 52);
+            btnFind.Location = new Point(462, 39);
+            btnFind.Margin = new Padding(3, 2, 3, 2);
             btnFind.Name = "btnFind";
-            btnFind.Size = new Size(83, 27);
+            btnFind.Size = new Size(73, 20);
             btnFind.TabIndex = 2;
             btnFind.Text = "Sök";
             btnFind.UseVisualStyleBackColor = true;
@@ -71,18 +73,19 @@
             // lblPodName
             // 
             lblPodName.AutoSize = true;
-            lblPodName.Location = new Point(144, 89);
+            lblPodName.Location = new Point(102, 66);
             lblPodName.Name = "lblPodName";
-            lblPodName.Size = new Size(29, 20);
+            lblPodName.Size = new Size(22, 15);
             lblPodName.TabIndex = 3;
             lblPodName.Text = "XD";
             lblPodName.Click += lblPodName_Click;
             // 
             // picbxPicture
             // 
-            picbxPicture.Location = new Point(28, 124);
+            picbxPicture.Location = new Point(24, 93);
+            picbxPicture.Margin = new Padding(3, 2, 3, 2);
             picbxPicture.Name = "picbxPicture";
-            picbxPicture.Size = new Size(265, 195);
+            picbxPicture.Size = new Size(232, 146);
             picbxPicture.TabIndex = 4;
             picbxPicture.TabStop = false;
             picbxPicture.WaitOnLoad = true;
@@ -90,33 +93,37 @@
             // lbxEpisodes
             // 
             lbxEpisodes.FormattingEnabled = true;
-            lbxEpisodes.Location = new Point(28, 346);
+            lbxEpisodes.Location = new Point(24, 260);
+            lbxEpisodes.Margin = new Padding(3, 2, 3, 2);
             lbxEpisodes.Name = "lbxEpisodes";
-            lbxEpisodes.Size = new Size(309, 124);
+            lbxEpisodes.Size = new Size(271, 94);
             lbxEpisodes.TabIndex = 5;
             lbxEpisodes.SelectedIndexChanged += lbxEpisodes_SelectedIndexChanged;
             // 
             // rtbxDesc
             // 
-            rtbxDesc.Location = new Point(344, 124);
+            rtbxDesc.Location = new Point(301, 93);
+            rtbxDesc.Margin = new Padding(3, 2, 3, 2);
             rtbxDesc.Name = "rtbxDesc";
-            rtbxDesc.Size = new Size(267, 195);
+            rtbxDesc.Size = new Size(234, 147);
             rtbxDesc.TabIndex = 6;
             rtbxDesc.Text = "";
             // 
             // rtbxEpDesc
             // 
-            rtbxEpDesc.Location = new Point(353, 346);
+            rtbxEpDesc.Location = new Point(309, 260);
+            rtbxEpDesc.Margin = new Padding(3, 2, 3, 2);
             rtbxEpDesc.Name = "rtbxEpDesc";
-            rtbxEpDesc.Size = new Size(258, 124);
+            rtbxEpDesc.Size = new Size(226, 94);
             rtbxEpDesc.TabIndex = 7;
             rtbxEpDesc.Text = "";
             // 
             // btnSavePod
             // 
-            btnSavePod.Location = new Point(626, 441);
+            btnSavePod.Location = new Point(548, 331);
+            btnSavePod.Margin = new Padding(3, 2, 3, 2);
             btnSavePod.Name = "btnSavePod";
-            btnSavePod.Size = new Size(99, 29);
+            btnSavePod.Size = new Size(87, 22);
             btnSavePod.TabIndex = 8;
             btnSavePod.Text = "Spara podd";
             btnSavePod.UseVisualStyleBackColor = true;
@@ -124,7 +131,7 @@
             // 
             // UcAddPod
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btnSavePod);
             Controls.Add(rtbxEpDesc);
@@ -137,7 +144,7 @@
             Controls.Add(tbRssUrl);
             Margin = new Padding(2);
             Name = "UcAddPod";
-            Size = new Size(844, 539);
+            Size = new Size(738, 404);
             Load += UcAddPod_Load;
             ((System.ComponentModel.ISupportInitialize)picbxPicture).EndInit();
             ResumeLayout(false);
