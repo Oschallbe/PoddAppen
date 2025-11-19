@@ -38,23 +38,13 @@ namespace PoddApp.UI
 
                 podName.Id = Guid.NewGuid().ToString();
 
-                //var validation = await this.aPodService.ValidatePodcastRssAsync(podName);     ///*del*/
-
-                //if (!validation.IsValid)
-                //{
-                //    var message = string.Join("\n", validation.Errors);
-                //    MessageBox.Show(message, "Link not valid",
-                //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}  
-
                 await aPodService.SetPodcastTitleAsync(podName);
 
                 await aPodService.SetPodcastImageAsync(podName);
 
                 await aPodService.SetPodcastDescriptionAsync(podName);
 
-                allEpisodes = await aPodService.getEpisodes(podName);
+                allEpisodes = await aPodService.GetEpisodesAsync(podName);
 
                 lblPodName.Text = podName.Name;
 
@@ -139,15 +129,6 @@ namespace PoddApp.UI
                     Episodes = allEpisodes
                 };
 
-                //var duplicateValidator = new ValidateDuplicate(this.repoInterface); //del
-                //var duplicateResult = await duplicateValidator.ValidateDuplicateAsync(.RssUrl);
-
-                //if (!duplicateResult.IsValid)
-                //{
-                //    var message = string.Join("\n", duplicateResult.Errors);
-                //    MessageBox.Show(message, "Podcast already saved!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //} //del
                 await aPodService.SavePodcastAsync(pod);
 
                 MessageBox.Show("Podcast saved successfully!");

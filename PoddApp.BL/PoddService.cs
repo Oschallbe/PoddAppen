@@ -8,39 +8,39 @@ using System.Runtime.CompilerServices;
 
 public class PoddService
 {
-    private readonly RSSPodd aRssPodd;
+    private readonly IRssReader _rss;
     private readonly IPodcastRepo _podcastRepo;
 
 
-    public PoddService(RSSPodd rssPodd, IPodcastRepo podcastRepo)
+    public PoddService(IRssReader rssReader, IPodcastRepo podcastRepo)
     {
-        aRssPodd = rssPodd;
+        _rss = rssReader;
         _podcastRepo = podcastRepo;
     }
 
     public async Task SetPodcastImageAsync(Podcast podcast)
     {
-        podcast.ImageUrl = await aRssPodd.GetPodcastImageUrl(podcast.RssUrl);
+        podcast.ImageUrl = await _rss.GetPodcastImageUrl(podcast.RssUrl);
     }
 
     public async Task SetPodcastTitleAsync(Podcast podcast)
     {
-        podcast.Name = await aRssPodd.GetPodcastTitle(podcast.RssUrl);
+        podcast.Name = await _rss.GetPodcastTitle(podcast.RssUrl);
     }
 
     public async Task SetPodcastDescriptionAsync(Podcast podcast)
     {
-        podcast.Description = await aRssPodd.GetPodcastDescription(podcast.RssUrl);
+        podcast.Description = await _rss.GetPodcastDescription(podcast.RssUrl);
     }
 
-    public async Task<List<Episode>> getEpisodes(Podcast aPodcast)
+    public async Task<List<Episode>> GetEpisodesAsync(Podcast podcast)
     {
-        var episodes = await aRssPodd.GetRSSPod(aPodcast.RssUrl);
+        var episodes = await _rss.GetRSSPod(podcast.RssUrl);
 
         foreach (var episode in episodes)
         {
-            episode.Link = aPodcast.RssUrl;
-            episode.Id = aPodcast.Id + "-->" + episode.Id;
+            episode.Link = podcast.RssUrl;
+            episode.Id = podcast.Id + "-->" + episode.Id;
         }
 
         return episodes;

@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace PoddApp.DAL
 {
-    public class RSSPodd
+    public class RSSPodd : IRssReader
     {
         private HttpClient aHttpClient;
 
