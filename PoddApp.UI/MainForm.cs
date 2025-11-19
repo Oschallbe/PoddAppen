@@ -15,7 +15,7 @@ namespace PoddApp.UI
         private PoddService aPodService;
 
 
-        public MainForm(PoddService podService, IPodcastRepo repo)
+        public MainForm(PoddService podService)
         {
             InitializeComponent();
             aPodService = podService;
@@ -40,7 +40,7 @@ namespace PoddApp.UI
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcDashboard(_Irepo));
+            LoadPage(new UcDashboard(aPodService));
         }
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace PoddApp.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcAddPod(aPodService, _Irepo));
+            LoadPage(new UcAddPod(aPodService));
         }
     }
 }
