@@ -16,6 +16,11 @@ namespace PoddApp.DAL
             _collection = database.GetCollection<Podcast>("Podcasts");
         }
 
+        public async Task UpdateASync(Podcast podcast)
+        {
+            await _collection.ReplaceOneAsync(p => p.Id == podcast.Id, podcast);
+        }
+
         public async Task<List<Podcast>> GetAllAsync()
         {
             return await _collection.Find(_ => true).ToListAsync();

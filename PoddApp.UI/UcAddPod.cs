@@ -21,12 +21,11 @@ namespace PoddApp.UI
     {
         private List<Episode> allEpisodes;
         private readonly PoddService aPodService;
-        //private readonly IPodcastRepo repoInterface;
+
         public UcAddPod(PoddService aPodService)
         {
             InitializeComponent();
             this.aPodService = aPodService;
-            //this.repoInterface = repo;
         }
 
         private async void button1_Click(object sender, EventArgs e)
