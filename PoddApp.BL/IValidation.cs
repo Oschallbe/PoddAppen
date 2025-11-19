@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PoddApp.BL
 {
-    internal interface Interface1
+    public interface IValidation
     {
+        Task<string?> ValidateUrlAsync(string url);
+        Task<string?> ValidateRssAsync(string rssurl);
+        Task<string?> ValidateDuplicateAsync(string rssurl);
     }
 }
