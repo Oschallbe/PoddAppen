@@ -10,9 +10,9 @@ namespace PoddApp.BL.ValidationBL
 {
     public class ValidateDuplicate
     {
-        private readonly PodcastRepository podcastRepository;
+        private readonly IPodcastRepo podcastRepository;
 
-        public ValidateDuplicate(PodcastRepository podcastRepository)
+        public ValidateDuplicate(IPodcastRepo podcastRepository)
         {
             this.podcastRepository = podcastRepository;
         }
