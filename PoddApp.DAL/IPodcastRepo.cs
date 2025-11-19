@@ -9,8 +9,9 @@ namespace PoddApp.DAL
 {
     public interface IPodcastRepo
     {
-        Task AddAsync(Podcast podcast);
         Task<List<Podcast>> GetAllAsync();
+        Task AddAsync(Podcast podcast);
+        Task<Podcast?> GetByRssUrlAsync(string rssUrl);
 
     }
 }
