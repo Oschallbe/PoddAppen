@@ -38,7 +38,7 @@ namespace PoddApp.UI
 
             // Standard WinForms-setup
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm(service, repo));
+            Application.Run(new MainForm(service));
 
 
         }

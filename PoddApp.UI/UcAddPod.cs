@@ -21,12 +21,12 @@ namespace PoddApp.UI
     {
         private List<Episode> allEpisodes;
         private readonly PoddService aPodService;
-        private readonly IPodcastRepo repoInterface;
-        public UcAddPod(PoddService aPodService, IPodcastRepo repo)
+        //private readonly IPodcastRepo repoInterface;
+        public UcAddPod(PoddService aPodService)
         {
             InitializeComponent();
             this.aPodService = aPodService;
-            this.repoInterface = repo;
+            //this.repoInterface = repo;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -131,12 +131,7 @@ namespace PoddApp.UI
         {
             try
             {
-                if (repoInterface == null)
-                {
-                    MessageBox.Show("repoInterface är null – kolla konstruktorn!");
-                    return;
-                }
-                var podName = new Podcast
+                var pod = new Podcast
                 {
                     Name = lblPodName.Text,
                     Description = rtbxDesc.Text,
@@ -146,7 +141,7 @@ namespace PoddApp.UI
                 };
 
                 var duplicateValidator = new ValidateDuplicate(this.repoInterface); //del
-                var duplicateResult = await duplicateValidator.ValidateDuplicateAsync(podName.RssUrl);
+                var duplicateResult = await duplicateValidator.ValidateDuplicateAsync(.RssUrl);
 
                 if (!duplicateResult.IsValid)
                 {
@@ -154,7 +149,7 @@ namespace PoddApp.UI
                     MessageBox.Show(message, "Podcast already saved!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 } //del
-                await repoInterface.AddAsync(podName);
+                await aPodService.SavePodcastAsync(pod);
 
                 MessageBox.Show("Podcast saved successfully!");
             }

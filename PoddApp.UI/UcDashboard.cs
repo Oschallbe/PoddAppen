@@ -22,7 +22,7 @@ namespace PoddApp.UI
         {
             InitializeComponent();
             this.aPodService = poddService;
-            LoadPods();
+            _ = LoadPods(); // Fire-and-forget, explicitly discard the Task to silence CS4014
         }
 
         private async Task LoadPods()
