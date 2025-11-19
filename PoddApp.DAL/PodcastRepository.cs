@@ -28,7 +28,7 @@ namespace PoddApp.DAL
 
         public async Task<Podcast?> GetByRssUrlAsync(String rssUrl)
         {
-            return await this.podcasts
+            return await _collection
                 .Find(p => p.RssUrl == rssUrl)
                 .FirstOrDefaultAsync();
         }
