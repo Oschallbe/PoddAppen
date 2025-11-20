@@ -19,5 +19,7 @@ namespace PoddApp.BL
         Task<List<Podcast>> GetAllPodcastsAsync();
         Task DeletePodcastAsync(int id);
 
+        //Task addCategory(string category);
+
     }
 }

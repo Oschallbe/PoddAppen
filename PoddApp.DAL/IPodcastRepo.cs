@@ -15,6 +15,8 @@ namespace PoddApp.DAL
         Task UpdateAsync(Podcast podcast);
         Task DeleteAsync(int id);
 
+        Task addCategory(string categoryName);
+
 
     }
 }
