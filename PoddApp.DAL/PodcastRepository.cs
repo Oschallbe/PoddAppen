@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PoddApp.DAL
 {
-    public class PodcastRepository: IPodcastRepo
+    public class PodcastRepository : IPodcastRepo
     {
         private readonly IMongoCollection<Podcast> _collection;
 
@@ -26,13 +26,22 @@ namespace PoddApp.DAL
             return await _collection.Find(_ => true).ToListAsync();
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(int id)
         {
             await _collection.DeleteOneAsync(p => p.Id == id);
         }
 
         public async Task AddAsync(Podcast podcast)
         {
+            var maxId = await _collection.Find(_ => true)
+                        .SortByDescending(p => p.Id)
+                        .Limit(1)
+                        .FirstOrDefaultAsync();
+
+            int nextId = maxId?.Id + 1 ?? 0;
+
+            podcast.Id = nextId;
+
             await _collection.InsertOneAsync(podcast);
         }
 
@@ -41,6 +50,13 @@ namespace PoddApp.DAL
             return await _collection
                 .Find(p => p.RssUrl == rssUrl)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task addCategory(string categoryName)
+        {
+            var category = new Podcast { Name = categoryName };
+            var categoriesCollection = _collection.Database.GetCollection<Podcast>("Categories");
+            await categoriesCollection.InsertOneAsync(category);
         }
     }
 }

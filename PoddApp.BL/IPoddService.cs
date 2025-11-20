@@ -17,7 +17,7 @@ namespace PoddApp.BL
 
         Task SavePodcastAsync(Podcast podcast);
         Task<List<Podcast>> GetAllPodcastsAsync();
-        Task DeletePodcastAsync(string id);
+        Task DeletePodcastAsync(int id);
 
     }
 }

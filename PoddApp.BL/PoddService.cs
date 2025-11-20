@@ -57,7 +57,7 @@ public class PoddService : IPoddService
         return await _podcastRepo.GetAllAsync();
     }
 
-    public async Task DeletePodcastAsync(string id)
+    public async Task DeletePodcastAsync(int id)
     {
         await _podcastRepo.DeleteAsync(id);
     }

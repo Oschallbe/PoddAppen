@@ -37,6 +37,7 @@
             rtbxDesc = new RichTextBox();
             rtbxEpDesc = new RichTextBox();
             btnSavePod = new Button();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)picbxPicture).BeginInit();
             SuspendLayout();
             // 
@@ -128,11 +129,21 @@
             btnSavePod.Text = "Spara podd";
             btnSavePod.UseVisualStyleBackColor = true;
             btnSavePod.Click += btnSave_Click;
-            //// 
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Mina Poddar" });
+            comboBox1.Location = new Point(551, 270);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(80, 23);
+            comboBox1.TabIndex = 9;
+            // 
             // UcAddPod
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(comboBox1);
             Controls.Add(btnSavePod);
             Controls.Add(rtbxEpDesc);
             Controls.Add(rtbxDesc);
@@ -162,5 +173,6 @@
         private RichTextBox rtbxDesc;
         private RichTextBox rtbxEpDesc;
         private Button btnSavePod;
+        private ComboBox comboBox1;
     }
 }

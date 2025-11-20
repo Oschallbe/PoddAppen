@@ -6,8 +6,7 @@ namespace PoddApp.Models
     public class Podcast
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }         // MongoDB ObjectId som string
+        public int Id { get; set; }         // MongoDB ObjectId som string
 
         [BsonElement("Name")]
         public string Name { get; set; }       // Namn på podden
@@ -16,7 +15,7 @@ namespace PoddApp.Models
         public string RssUrl { get; set; }     // URL till RSS-flödet
 
         [BsonElement("Category")]
-        public string Category { get; set; }   // Kategori (t.ex. "Teknik")
+        public List<Category> Categorys { get; set; }   // Kategori (t.ex. "Teknik")
 
         [BsonElement("ImageUrl")]
         public string ImageUrl { get; set; }

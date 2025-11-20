@@ -35,7 +35,7 @@ namespace PoddApp.UI
 
                 podName.RssUrl = tbRssUrl.Text;
 
-                podName.Id = Guid.NewGuid().ToString();
+                podName.Id = podName.Id++;
 
                 await aPodService.SetPodcastTitleAsync(podName);
 
