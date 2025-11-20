@@ -12,6 +12,7 @@ namespace PoddApp.UI
         {
             InitializeComponent();
             _service = service;
+            LoadPage(new UcDashboard(_service));
         }
 
         private void LoadPage(UserControl uc)

@@ -31,11 +31,12 @@
             mainPanel.Location = new Point(0, 53);
             mainPanel.Margin = new Padding(2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1258, 611);
+            mainPanel.Size = new Size(1264, 727);
             mainPanel.TabIndex = 2;
             // 
             // menuPanel
             // 
+            menuPanel.BackColor = Color.FromArgb(176, 196, 222);
             menuPanel.Controls.Add(btnLaggTillPod);
             menuPanel.Controls.Add(cbUser);
             menuPanel.Controls.Add(btnMenu);
@@ -43,20 +44,19 @@
             menuPanel.Location = new Point(0, 0);
             menuPanel.Margin = new Padding(2);
             menuPanel.Name = "menuPanel";
-            menuPanel.Size = new Size(1258, 53);
+            menuPanel.Size = new Size(1264, 53);
             menuPanel.TabIndex = 3;
-            menuPanel.BackColor = Color.FromArgb(176, 196, 222);
             // 
             // btnLaggTillPod
             // 
             btnLaggTillPod.Location = new Point(402, 11);
+            btnLaggTillPod.Margin = new Padding(4);
             btnLaggTillPod.Name = "btnLaggTillPod";
             btnLaggTillPod.Size = new Size(188, 36);
             btnLaggTillPod.TabIndex = 3;
             btnLaggTillPod.Text = "LaggTillPod";
             btnLaggTillPod.UseVisualStyleBackColor = true;
             btnLaggTillPod.Click += button1_Click;
-            btnLaggTillPod.Margin = new Padding(4);
             // 
             // cbUser
             // 
@@ -83,7 +83,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1258, 664);
+            ClientSize = new Size(1264, 780);
             Controls.Add(mainPanel);
             Controls.Add(menuPanel);
             Margin = new Padding(4, 2, 4, 2);
