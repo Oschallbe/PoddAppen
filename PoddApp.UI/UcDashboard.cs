@@ -92,7 +92,7 @@ namespace PoddApp.UI
         public Podcast GetPodcasts(string name)
         {
             return _podcasts.FirstOrDefault(podcast => podcast.Name == name);
-            
+
         }
 
         private async void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,15 +107,43 @@ namespace PoddApp.UI
             if (selectedPodcast == null)
                 return;
 
-            //Podcast pod = new Podcast();
-            //var myEpisodes = pod.Episodes;
 
+            if (!string.IsNullOrEmpty(selectedPodcast.Name))
+            {
+                lblPodName.Text = selectedPodcast.Name;
+            }
+            else
+            {
+                lblPodName.Text = "Namnlös Podd";
+            }
+
+            if (!string.IsNullOrEmpty(selectedPodcast.Description))
+            {
+                rtbDesc.Text = selectedPodcast.Description;
+            }
+            else
+            {
+                rtbDesc.Text = "Beskrivning saknas";
+            }
+
+            if (!string.IsNullOrEmpty(selectedPodcast.ImageUrl))
+            {
+                try
+                {
+                    picPod.SizeMode = PictureBoxSizeMode.Zoom; // viktigt så den skalar in bilden
+                    picPod.Load(selectedPodcast.ImageUrl);   // WinForms klarar URL automatiskt!
+                }
+                catch
+                {
+                    picPod.Image = null; // eller en fallback-bild
+                }
+            }
             allEpisodes = selectedPodcast.Episodes?.ToList() ?? new List<Episode>();
 
-            cbPodEpList.Items.Clear();
+            lbEplist.Items.Clear();
             foreach (var ep in allEpisodes)
             {
-                cbPodEpList.Items.Add(ep.Title);
+                lbEplist.Items.Add(ep.Title);
             }
         }
 
@@ -125,5 +153,46 @@ namespace PoddApp.UI
         private void btnEditNameEp_Click(object sender, EventArgs e) { }
         private void lblMetadataPod_Click(object sender, EventArgs e) { }
         private void lblMetadataPodEp_Click(object sender, EventArgs e) { }
+
+        private void lblPodName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picPod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbEplist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lbEplist.SelectedIndex;
+
+            if (index < 0 || index >= allEpisodes.Count)
+                return;
+
+            var selectedEpisode = allEpisodes[index];
+
+            if (selectedEpisode == null)
+                return;
+
+            if (!string.IsNullOrEmpty(selectedEpisode.Title))
+            {
+                lblPodNameEp.Text = selectedEpisode.Title;
+            }
+            else
+            {
+                lblPodNameEp.Text = "Namnlös episode";
+            }
+            if (!string.IsNullOrEmpty(selectedEpisode.Description))
+            {
+                rtbDescEp.Text = StripHtml(selectedEpisode.Description);
+                
+            }
+            else
+            {
+                rtbDescEp.Text = "Beskrivning saknas";
+            }
+        }
     }
 }
