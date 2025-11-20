@@ -61,4 +61,9 @@ public class PoddService : IPoddService
     {
         await _podcastRepo.DeleteAsync(id);
     }
+
+    public async Task AddCategoryAsync(string categoryName)
+    {
+        await _podcastRepo.addCategory(categoryName);
+    }
 }
