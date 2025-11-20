@@ -43,18 +43,26 @@ namespace PoddApp.BL
 
             try
             {
-                using var reader = XmlReader.Create(rssUrl);
+                using var myStream = await http.GetStreamAsync(rssUrl);
+
+                var settings = new XmlReaderSettings
+                {
+                    DtdProcessing = DtdProcessing.Ignore,
+                    XmlResolver = null
+                };
+
+                using var reader = XmlReader.Create(rssUrl, settings);
                 var feed = SyndicationFeed.Load(reader);
 
                 if (feed == null)
-                    return "Använde RSS länk";
+                    return "Länk är inte ett RSS-flöde";
 
                 if (feed.Items == null)
-                    return "Ej podcast länk";
+                    return "Länken är ej ett podcast RSS-flöde";
             }
             catch (Exception)
             {
-                return "Felaktig länk";
+                return "Felaktig RSS-länk";
             }
 
             return null;
