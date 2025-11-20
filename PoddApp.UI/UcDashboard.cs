@@ -177,6 +177,7 @@ namespace PoddApp.UI
             if (selectedEpisode == null)
                 return;
 
+            // Titel
             if (!string.IsNullOrEmpty(selectedEpisode.Title))
             {
                 lblPodNameEp.Text = selectedEpisode.Title;
@@ -185,22 +186,31 @@ namespace PoddApp.UI
             {
                 lblPodNameEp.Text = "Namnlös episode";
             }
+
+            // Beskrivning
             if (!string.IsNullOrEmpty(selectedEpisode.Description))
             {
                 rtbDescEp.Text = StripHtml(selectedEpisode.Description);
-                
             }
             else
             {
                 rtbDescEp.Text = "Beskrivning saknas";
             }
 
-            if (!string.IsNullOrEmpty(selectedEpisode.ImageUrl))
+            // 🔥 Bild
+            var episodeImage = selectedEpisode.ImageUrl;
+            var podcastImage = _podcasts[lbMyPod.SelectedIndex].ImageUrl;
+
+            // 🔥 Visa inte episodbild om:
+            // - den är null/empty
+            // - den är samma som podcastens bild
+            if (!string.IsNullOrEmpty(episodeImage) &&
+                !string.Equals(episodeImage, podcastImage, StringComparison.OrdinalIgnoreCase))
             {
                 try
                 {
                     picPodEp.SizeMode = PictureBoxSizeMode.Zoom;
-                    picPodEp.Load(selectedEpisode.ImageUrl);
+                    picPodEp.Load(episodeImage);
                 }
                 catch
                 {
