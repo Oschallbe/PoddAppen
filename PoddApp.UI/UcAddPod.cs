@@ -20,17 +20,34 @@ namespace PoddApp.UI
     {
         private List<Episode> allEpisodes;
         private readonly IPoddService aPodService;
+        private readonly IValidation validation;
 
-        public UcAddPod(IPoddService aPodService)
+        public UcAddPod(IPoddService aPodService, IValidation validation)
         {
             InitializeComponent();
             this.aPodService = aPodService;
+            this.validation = validation;
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
             try
             {
+                var rssUrl = tbRssUrl.Text.Trim();
+
+                var emptyError = validation.ValidateEmpty(rssUrl);
+                if (emptyError != null)
+                {
+                    MessageBox.Show(emptyError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var rssError = await validation.ValidateRssAsync(rssUrl);
+                if (rssError != null)
+                {
+                    MessageBox.Show(rssError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var podName = new Podcast();
 
                 podName.RssUrl = tbRssUrl.Text;
@@ -119,6 +136,21 @@ namespace PoddApp.UI
         {
             try
             {
+                var rssUrl = tbRssUrl.Text.Trim();
+
+                var EmptyError = validation.ValidateEmpty(rssUrl);
+                if (EmptyError != null)
+                {
+                    MessageBox.Show(EmptyError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var duplicateError = await validation.ValidateDuplicateAsync(rssUrl);
+                if (duplicateError != null)
+                {
+                    MessageBox.Show(duplicateError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var pod = new Podcast
                 {
                     Name = lblPodName.Text,
