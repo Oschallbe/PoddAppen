@@ -16,6 +16,9 @@ namespace PoddApp.Models
         [BsonElement("PublishedDate")]
         public DateTime PublishedDate { get; set; }
 
+        [BsonElement("ImageUrl")]
+        public string ImageUrl { get; set; }
+
         [BsonElement("Link")]
         public string Link { get; set; }
     }
