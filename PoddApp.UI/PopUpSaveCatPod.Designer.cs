@@ -31,6 +31,7 @@
             lblText = new Label();
             cbChooseCat = new ComboBox();
             btnSave = new Button();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // lblText
@@ -63,11 +64,22 @@
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Tillbaka";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // PopUpSaveCatPod
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 270);
+            Controls.Add(btnBack);
             Controls.Add(lblText);
             Controls.Add(cbChooseCat);
             Controls.Add(btnSave);
@@ -83,5 +95,6 @@
         private Label lblText;
         private ComboBox cbChooseCat;
         private Button btnSave;
+        private Button btnBack;
     }
 }

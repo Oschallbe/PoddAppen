@@ -31,6 +31,7 @@
             btnSave = new Button();
             cbChooseList = new ComboBox();
             label1 = new Label();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // btnSave
@@ -64,11 +65,22 @@
             label1.TabIndex = 2;
             label1.Text = "Vänligen välj vilken lista du vill spara avsnittet i: ";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 3;
+            btnBack.Text = "Tillbaka";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // PopUpChooseList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 270);
+            Controls.Add(btnBack);
             Controls.Add(label1);
             Controls.Add(cbChooseList);
             Controls.Add(btnSave);
@@ -84,5 +96,6 @@
         private Button btnSave;
         private ComboBox cbChooseList;
         private Label label1;
+        private Button btnBack;
     }
 }

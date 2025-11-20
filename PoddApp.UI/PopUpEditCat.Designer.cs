@@ -32,52 +32,69 @@
             lblCurrentName = new Label();
             btnSave = new Button();
             tbNewName = new TextBox();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(294, 60);
+            label1.Location = new Point(206, 36);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(226, 25);
+            label1.Size = new Size(149, 15);
             label1.TabIndex = 0;
             label1.Text = "Redigera namn på kategori";
             // 
             // lblCurrentName
             // 
             lblCurrentName.AutoSize = true;
-            lblCurrentName.Location = new Point(277, 131);
+            lblCurrentName.Location = new Point(194, 79);
+            lblCurrentName.Margin = new Padding(2, 0, 2, 0);
             lblCurrentName.Name = "lblCurrentName";
-            lblCurrentName.Size = new Size(243, 25);
+            lblCurrentName.Size = new Size(161, 15);
             lblCurrentName.TabIndex = 1;
             lblCurrentName.Text = "Nuvarande namn på kategori";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(338, 271);
+            btnSave.Location = new Point(237, 163);
+            btnSave.Margin = new Padding(2, 2, 2, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
+            btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 2;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
             // 
             // tbNewName
             // 
-            tbNewName.Location = new Point(277, 200);
+            tbNewName.Location = new Point(194, 120);
+            tbNewName.Margin = new Padding(2, 2, 2, 2);
             tbNewName.Name = "tbNewName";
-            tbNewName.Size = new Size(243, 31);
+            tbNewName.Size = new Size(171, 23);
             tbNewName.TabIndex = 3;
             tbNewName.Text = "Nytt namn";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 4;
+            btnBack.Text = "Tillbaka";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // PopUpEditCat
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(btnBack);
             Controls.Add(tbNewName);
             Controls.Add(btnSave);
             Controls.Add(lblCurrentName);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "PopUpEditCat";
             Text = "Form1";
             ResumeLayout(false);
@@ -90,5 +107,6 @@
         private Label lblCurrentName;
         private Button btnSave;
         private TextBox tbNewName;
+        private Button btnBack;
     }
 }

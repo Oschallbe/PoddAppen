@@ -32,52 +32,69 @@
             cbCat = new ComboBox();
             tbNameCat = new TextBox();
             btnSave = new Button();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(345, 67);
+            label1.Location = new Point(242, 40);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(130, 25);
+            label1.Size = new Size(84, 15);
             label1.TabIndex = 0;
             label1.Text = "Skapa kategori";
             // 
             // cbCat
             // 
             cbCat.FormattingEnabled = true;
-            cbCat.Location = new Point(290, 151);
+            cbCat.Location = new Point(203, 91);
+            cbCat.Margin = new Padding(2, 2, 2, 2);
             cbCat.Name = "cbCat";
-            cbCat.Size = new Size(252, 33);
+            cbCat.Size = new Size(178, 23);
             cbCat.TabIndex = 1;
             cbCat.Text = "Välj avsnitt eller podd";
             // 
             // tbNameCat
             // 
-            tbNameCat.Location = new Point(288, 246);
+            tbNameCat.Location = new Point(202, 148);
+            tbNameCat.Margin = new Padding(2, 2, 2, 2);
             tbNameCat.Name = "tbNameCat";
-            tbNameCat.Size = new Size(254, 31);
+            tbNameCat.Size = new Size(179, 23);
             tbNameCat.TabIndex = 2;
             tbNameCat.Text = "Namn på kategorin";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(345, 348);
+            btnSave.Location = new Point(242, 209);
+            btnSave.Margin = new Padding(2, 2, 2, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
+            btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 3;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 4;
+            btnBack.Text = "Tillbaka";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // PopUpMakeCat
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(btnBack);
             Controls.Add(btnSave);
             Controls.Add(tbNameCat);
             Controls.Add(cbCat);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "PopUpMakeCat";
             Text = "Form1";
             ResumeLayout(false);
@@ -90,5 +107,6 @@
         private ComboBox cbCat;
         private TextBox tbNameCat;
         private Button btnSave;
+        private Button btnBack;
     }
 }
