@@ -119,7 +119,7 @@ namespace PoddApp.UI
 
             if (!string.IsNullOrEmpty(selectedPodcast.Description))
             {
-                rtbDesc.Text = selectedPodcast.Description;
+                rtbDesc.Text = StripHtml(selectedPodcast.Description);
             }
             else
             {
