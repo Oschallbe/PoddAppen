@@ -53,6 +53,7 @@
             rtbDescEp = new RichTextBox();
             picPodEp = new PictureBox();
             lblPodNameEp = new Label();
+            label1 = new Label();
             panelMyPods.SuspendLayout();
             panelMyPodEps.SuspendLayout();
             panelChosenPod.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // panelChosenPod
             // 
+            panelChosenPod.Controls.Add(label1);
             panelChosenPod.Controls.Add(lbEplist);
             panelChosenPod.Controls.Add(lblMetadataPod);
             panelChosenPod.Controls.Add(rtbDesc);
@@ -241,12 +243,12 @@
             // lblMetadataPod
             // 
             lblMetadataPod.AutoSize = true;
-            lblMetadataPod.Location = new Point(161, 441);
+            lblMetadataPod.Location = new Point(166, 438);
             lblMetadataPod.Margin = new Padding(2, 0, 2, 0);
             lblMetadataPod.Name = "lblMetadataPod";
-            lblMetadataPod.Size = new Size(85, 15);
+            lblMetadataPod.Size = new Size(47, 15);
             lblMetadataPod.TabIndex = 3;
-            lblMetadataPod.Text = "MetadataPodd";
+            lblMetadataPod.Text = "Avsnitt:";
             lblMetadataPod.Click += lblMetadataPod_Click;
             // 
             // rtbDesc
@@ -295,26 +297,26 @@
             // lblMetadataPodEp
             // 
             lblMetadataPodEp.AutoSize = true;
-            lblMetadataPodEp.Location = new Point(155, 271);
+            lblMetadataPodEp.Location = new Point(161, 350);
             lblMetadataPodEp.Margin = new Padding(2, 0, 2, 0);
             lblMetadataPodEp.Name = "lblMetadataPodEp";
-            lblMetadataPodEp.Size = new Size(122, 15);
+            lblMetadataPodEp.Size = new Size(110, 15);
             lblMetadataPodEp.TabIndex = 3;
-            lblMetadataPodEp.Text = "MetadataPoddAvsnitt";
+            lblMetadataPodEp.Text = "Avsnittsbeskrivning";
             lblMetadataPodEp.Click += lblMetadataPodEp_Click;
             // 
             // rtbDescEp
             // 
-            rtbDescEp.Location = new Point(27, 313);
+            rtbDescEp.Location = new Point(27, 386);
             rtbDescEp.Margin = new Padding(2);
             rtbDescEp.Name = "rtbDescEp";
-            rtbDescEp.Size = new Size(362, 343);
+            rtbDescEp.Size = new Size(362, 270);
             rtbDescEp.TabIndex = 2;
             rtbDescEp.Text = "";
             // 
             // picPodEp
             // 
-            picPodEp.Location = new Point(89, 47);
+            picPodEp.Location = new Point(103, 101);
             picPodEp.Margin = new Padding(2);
             picPodEp.Name = "picPodEp";
             picPodEp.Size = new Size(233, 170);
@@ -324,12 +326,21 @@
             // lblPodNameEp
             // 
             lblPodNameEp.AutoSize = true;
-            lblPodNameEp.Location = new Point(78, 12);
+            lblPodNameEp.Location = new Point(153, 47);
             lblPodNameEp.Margin = new Padding(2, 0, 2, 0);
             lblPodNameEp.Name = "lblPodNameEp";
             lblPodNameEp.Size = new Size(118, 15);
             lblPodNameEp.TabIndex = 0;
             lblPodNameEp.Text = "NamnPåPoddAvsnitt";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(156, 241);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Poddbeskrivning";
             // 
             // UcDashboard
             // 
@@ -382,5 +393,6 @@
         private Button btnEditNamePod;
         private Button btnDeletePodEp;
         private Button btnEditNameEp;
+        private Label label1;
     }
 }
