@@ -1,103 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.ServiceModel.Syndication;
+﻿using System.ServiceModel.Syndication;
 using System.Xml;
-using PoddApp.Models;
 using System.Xml.Linq;
+using PoddApp.Models;
 
 namespace PoddApp.DAL
 {
     public class RSSPodd : IRssReader
     {
-        private HttpClient aHttpClient;
-
+        private readonly HttpClient _http;
 
         public RSSPodd(HttpClient httpClient)
         {
-            this.aHttpClient = httpClient;
+            _http = httpClient;
         }
 
         public async Task<List<Episode>> GetRSSPod(string rssUrl)
         {
-            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
-            
-            using var myReader = XmlReader.Create(dataStream);
-            SyndicationFeed dataFlow = SyndicationFeed.Load(myReader);
+            using var data = await _http.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(data);
 
-            myReader.Dispose();
-            dataStream.Dispose();
-            List<Episode> episodes = new List<Episode>();
+            var feed = SyndicationFeed.Load(reader);
+            var episodes = new List<Episode>();
 
-            foreach (SyndicationItem item in dataFlow.Items)
+            foreach (var item in feed.Items)
             {
-                Episode episode = new Episode();
-                episode.Title = item.Title.Text;
-                episode.Description = item.Summary.Text;
-                episode.PublishedDate = item.PublishDate.DateTime;
-                episode.Link = item.Links[0].Uri.ToString();
-                episodes.Add(episode);
+                var ep = new Episode
+                {
+                    Id = item.Id,
+                    Title = item.Title?.Text ?? "",
+                    Description = item.Summary?.Text ?? "",
+                    PublishedDate = item.PublishDate.DateTime,
+                    Link = item.Links.FirstOrDefault()?.Uri.ToString() ?? ""
+                };
+
+                episodes.Add(ep);
             }
+
             return episodes;
         }
 
         public async Task<string?> GetPodcastImageUrl(string rssUrl)
         {
+            using var data = await _http.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(data);
 
-            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
-            using var myReader = XmlReader.Create(dataStream);
-            var feed = SyndicationFeed.Load(myReader);
+            var feed = SyndicationFeed.Load(reader);
 
-            string? imageUrl = feed.ImageUrl?.ToString();
+            var url = feed.ImageUrl?.ToString();
+            if (!string.IsNullOrEmpty(url))
+                return url;
 
-            if (string.IsNullOrEmpty(imageUrl))
-            {
-                XNamespace itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-                var itunesImage = feed.ElementExtensions
-                    .ReadElementExtensions<XElement>("image", itunesNs.NamespaceName)
-                    .FirstOrDefault();
-                if(itunesImage != null)
-                {
-                    imageUrl = (string?)itunesImage.Attribute("href");
-                }
-            }
-            return imageUrl;
+            XNamespace itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+            var img = feed.ElementExtensions.ReadElementExtensions<XElement>("image", itunes.NamespaceName).FirstOrDefault();
+
+            return img?.Attribute("href")?.Value;
         }
 
         public async Task<string?> GetPodcastTitle(string rssUrl)
         {
-            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
-            using var reader = XmlReader.Create(dataStream);
-            var feed = SyndicationFeed.Load(reader);
+            using var data = await _http.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(data);
 
+            var feed = SyndicationFeed.Load(reader);
             return feed.Title?.Text;
         }
 
         public async Task<string?> GetPodcastDescription(string rssUrl)
         {
-            Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
-            using var reader = XmlReader.Create(dataStream);
+            using var data = await _http.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(data);
+
             var feed = SyndicationFeed.Load(reader);
 
-            string? desc = feed.Description?.Text;
+            var desc = feed.Description?.Text;
+            if (!string.IsNullOrEmpty(desc))
+                return desc;
 
-            if (string.IsNullOrEmpty(desc))
+            foreach (var ext in feed.ElementExtensions)
             {
-                foreach (var ext in feed.ElementExtensions)
+                if (ext.OuterName == "summary")
                 {
-                    if (ext.OuterName.Equals("summary", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var x = ext.GetObject<System.Xml.Linq.XElement>();
-                        desc = x.Value;
-                    }
+                    var el = ext.GetObject<XElement>();
+                    return el.Value;
                 }
             }
 
-            return desc;
+            return null;
         }
 
+        public async Task<string?> GetEpisodeImageUrl(string rssUrl, string episodeId)
+        {
+            using var data = await _http.GetStreamAsync(rssUrl);
+            using var reader = XmlReader.Create(data);
+
+            var feed = SyndicationFeed.Load(reader);
+
+            var ep = feed.Items.FirstOrDefault(i => i.Id == episodeId);
+            if (ep == null)
+                return null;
+
+            XNamespace itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+            var img = ep.ElementExtensions.ReadElementExtensions<XElement>("image", itunes.NamespaceName).FirstOrDefault();
+
+            return img?.Attribute("href")?.Value;
+        }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using PoddApp.BL;
 using PoddApp.DAL;
 using PoddApp.Models;
-using System.Runtime.CompilerServices;
-
-//Alla metoder som gör någonting med databasen ska ligga här. tex spara lägga till
-//T.ex Add new pod(UI) - > Metoden i PoddService(Här i ligger en metod som går till interface ->
-//repository (DAL) som sparar podden i databasen
 
 public class PoddService : IPoddService
 {
@@ -39,8 +34,14 @@ public class PoddService : IPoddService
 
         foreach (var episode in episodes)
         {
+            var originalId = episode.Id;
+
+            var episodeImage = await _rss.GetEpisodeImageUrl(podcast.RssUrl, originalId);
+
+            episode.ImageUrl = episodeImage ?? podcast.ImageUrl;
+
+            episode.Id = podcast.Id + "-->" + originalId;
             episode.Link = podcast.RssUrl;
-            episode.Id = podcast.Id + "-->" + episode.Id;
         }
 
         return episodes;

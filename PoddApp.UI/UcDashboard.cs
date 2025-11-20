@@ -138,7 +138,8 @@ namespace PoddApp.UI
                     picPod.Image = null; // eller en fallback-bild
                 }
             }
-            allEpisodes = selectedPodcast.Episodes?.ToList() ?? new List<Episode>();
+            allEpisodes = await _service.GetEpisodesAsync(selectedPodcast);
+            selectedPodcast.Episodes = allEpisodes; // valfritt men bra
 
             lbEplist.Items.Clear();
             foreach (var ep in allEpisodes)
@@ -192,6 +193,23 @@ namespace PoddApp.UI
             else
             {
                 rtbDescEp.Text = "Beskrivning saknas";
+            }
+
+            if (!string.IsNullOrEmpty(selectedEpisode.ImageUrl))
+            {
+                try
+                {
+                    picPodEp.SizeMode = PictureBoxSizeMode.Zoom;
+                    picPodEp.Load(selectedEpisode.ImageUrl);
+                }
+                catch
+                {
+                    picPodEp.Image = null;
+                }
+            }
+            else
+            {
+                picPodEp.Image = null;
             }
         }
     }
