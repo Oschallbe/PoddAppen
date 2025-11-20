@@ -31,7 +31,7 @@
             lblText = new Label();
             cbChooseCat = new ComboBox();
             btnSave = new Button();
-            btnTillbaka = new Button();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // lblText
@@ -48,7 +48,7 @@
             // 
             cbChooseCat.FormattingEnabled = true;
             cbChooseCat.Location = new Point(185, 101);
-            cbChooseCat.Margin = new Padding(2, 2, 2, 2);
+            cbChooseCat.Margin = new Padding(2);
             cbChooseCat.Name = "cbChooseCat";
             cbChooseCat.Size = new Size(180, 23);
             cbChooseCat.TabIndex = 4;
@@ -57,33 +57,33 @@
             // btnSave
             // 
             btnSave.Location = new Point(228, 163);
-            btnSave.Margin = new Padding(2, 2, 2, 2);
+            btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 3;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
             // 
-            // btnTillbaka
+            // btnBack
             // 
-            btnTillbaka.Location = new Point(12, 12);
-            btnTillbaka.Name = "btnTillbaka";
-            btnTillbaka.Size = new Size(75, 23);
-            btnTillbaka.TabIndex = 6;
-            btnTillbaka.Text = "Tillbaka";
-            btnTillbaka.UseVisualStyleBackColor = true;
-            btnTillbaka.Click += btnTillbaka_Click;
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Tillbaka";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // PopUpSaveCatPod
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 270);
-            Controls.Add(btnTillbaka);
+            Controls.Add(btnBack);
             Controls.Add(lblText);
             Controls.Add(cbChooseCat);
             Controls.Add(btnSave);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PopUpSaveCatPod";
             Text = "Form1";
             ResumeLayout(false);
@@ -95,6 +95,6 @@
         private Label lblText;
         private ComboBox cbChooseCat;
         private Button btnSave;
-        private Button btnTillbaka;
+        private Button btnBack;
     }
 }
