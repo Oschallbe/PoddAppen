@@ -197,6 +197,16 @@ namespace PoddApp.UI
                 rtbDescEp.Text = "Beskrivning saknas";
             }
 
+            // Datum
+            if (selectedEpisode.PublishedDate != DateTime.MinValue)
+            {
+                lblDate.Text = selectedEpisode.PublishedDate.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                lblDate.Text = "Datum saknas";
+            }
+
             // 🔥 Bild
             var episodeImage = selectedEpisode.ImageUrl;
             var podcastImage = _podcasts[lbMyPod.SelectedIndex].ImageUrl;
