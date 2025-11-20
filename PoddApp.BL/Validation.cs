@@ -25,11 +25,11 @@ namespace PoddApp.BL
             {
                 var response = await http.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
-                    return $"Server response error: {response.StatusCode}";
+                    return $"Server error: {response.StatusCode}";
             }
             catch (Exception)
             {
-                return "Wrong adress";
+                return "Fel adress";
             }
 
             return null;
@@ -47,14 +47,14 @@ namespace PoddApp.BL
                 var feed = SyndicationFeed.Load(reader);
 
                 if (feed == null)
-                    return "Use RSS link";
+                    return "Använde RSS länk";
 
                 if (feed.Items == null)
-                    return "Not a podcast link";
+                    return "Ej podcast länk";
             }
             catch (Exception)
             {
-                return "Faulty link";
+                return "Felaktig länk";
             }
 
             return null;
@@ -65,7 +65,7 @@ namespace PoddApp.BL
             var existing = await podcastRepo.GetByRssUrlAsync(rssUrl);
 
             if (existing != null)
-                return "Podcast already saved";
+                return "Podcast är redan sparad";
 
             return null;
         }
@@ -74,7 +74,7 @@ namespace PoddApp.BL
         public string? ValidateEmpty(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                return "Obligatory field";
+                return "Obligatoriskt fält";
 
             return null;
         }

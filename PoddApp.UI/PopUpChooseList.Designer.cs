@@ -31,42 +31,60 @@
             btnSave = new Button();
             cbChooseList = new ComboBox();
             label1 = new Label();
+            btnTillbaka = new Button();
             SuspendLayout();
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(341, 280);
+            btnSave.Location = new Point(239, 168);
+            btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
+            btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 0;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // cbChooseList
             // 
             cbChooseList.FormattingEnabled = true;
-            cbChooseList.Location = new Point(219, 172);
+            cbChooseList.Location = new Point(153, 103);
+            cbChooseList.Margin = new Padding(2);
             cbChooseList.Name = "cbChooseList";
-            cbChooseList.Size = new Size(382, 33);
+            cbChooseList.Size = new Size(269, 23);
             cbChooseList.TabIndex = 1;
+            cbChooseList.SelectedIndexChanged += cbChooseList_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(219, 62);
+            label1.Location = new Point(153, 37);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(386, 25);
+            label1.Size = new Size(257, 15);
             label1.TabIndex = 2;
             label1.Text = "Vänligen välj vilken lista du vill spara avsnittet i: ";
             // 
+            // btnTillbaka
+            // 
+            btnTillbaka.Location = new Point(12, 12);
+            btnTillbaka.Name = "btnTillbaka";
+            btnTillbaka.Size = new Size(75, 23);
+            btnTillbaka.TabIndex = 3;
+            btnTillbaka.Text = "Tillbaka";
+            btnTillbaka.UseVisualStyleBackColor = true;
+            btnTillbaka.Click += btnTillbaka_Click;
+            // 
             // PopUpChooseList
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(btnTillbaka);
             Controls.Add(label1);
             Controls.Add(cbChooseList);
             Controls.Add(btnSave);
+            Margin = new Padding(2);
             Name = "PopUpChooseList";
             Text = "PopUpChooseList";
             ResumeLayout(false);
@@ -78,5 +96,6 @@
         private Button btnSave;
         private ComboBox cbChooseList;
         private Label label1;
+        private Button btnTillbaka;
     }
 }

@@ -31,44 +31,59 @@
             lblText = new Label();
             cbChooseCat = new ComboBox();
             btnSave = new Button();
+            btnTillbaka = new Button();
             SuspendLayout();
             // 
             // lblText
             // 
             lblText.AutoSize = true;
-            lblText.Location = new Point(273, 86);
+            lblText.Location = new Point(191, 52);
+            lblText.Margin = new Padding(2, 0, 2, 0);
             lblText.Name = "lblText";
-            lblText.Size = new Size(246, 25);
+            lblText.Size = new Size(162, 15);
             lblText.TabIndex = 5;
             lblText.Text = "Vilken kategori vill du spara i?";
-            //lblText.Click += this.lblText_Click;
             // 
             // cbChooseCat
             // 
             cbChooseCat.FormattingEnabled = true;
-            cbChooseCat.Location = new Point(264, 168);
+            cbChooseCat.Location = new Point(185, 101);
+            cbChooseCat.Margin = new Padding(2, 2, 2, 2);
             cbChooseCat.Name = "cbChooseCat";
-            cbChooseCat.Size = new Size(255, 33);
+            cbChooseCat.Size = new Size(180, 23);
             cbChooseCat.TabIndex = 4;
             cbChooseCat.Text = "Välj kategori";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(326, 271);
+            btnSave.Location = new Point(228, 163);
+            btnSave.Margin = new Padding(2, 2, 2, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
+            btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 3;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
             // 
+            // btnTillbaka
+            // 
+            btnTillbaka.Location = new Point(12, 12);
+            btnTillbaka.Name = "btnTillbaka";
+            btnTillbaka.Size = new Size(75, 23);
+            btnTillbaka.TabIndex = 6;
+            btnTillbaka.Text = "Tillbaka";
+            btnTillbaka.UseVisualStyleBackColor = true;
+            btnTillbaka.Click += btnTillbaka_Click;
+            // 
             // PopUpSaveCatPod
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(btnTillbaka);
             Controls.Add(lblText);
             Controls.Add(cbChooseCat);
             Controls.Add(btnSave);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "PopUpSaveCatPod";
             Text = "Form1";
             ResumeLayout(false);
@@ -80,5 +95,6 @@
         private Label lblText;
         private ComboBox cbChooseCat;
         private Button btnSave;
+        private Button btnTillbaka;
     }
 }

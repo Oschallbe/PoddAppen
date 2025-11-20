@@ -16,5 +16,20 @@ namespace PoddApp.UI
         {
             InitializeComponent();
         }
+
+        private void btnTillbaka_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbChooseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
