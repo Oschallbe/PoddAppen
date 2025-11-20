@@ -69,6 +69,15 @@ namespace PoddApp.BL
 
             return null;
         }
+
+
+        public string? ValidateEmpty(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return "Obligatory field";
+
+            return null;
+        }
     }
 }
 

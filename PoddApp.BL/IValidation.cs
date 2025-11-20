@@ -11,5 +11,6 @@ namespace PoddApp.BL
         Task<string?> ValidateUrlAsync(string url);
         Task<string?> ValidateRssAsync(string rssurl);
         Task<string?> ValidateDuplicateAsync(string rssurl);
+        string? ValidateEmpty(string value);
     }
 }
