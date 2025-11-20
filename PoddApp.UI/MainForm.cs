@@ -1,4 +1,5 @@
 ﻿using PoddApp.BL;
+using PoddApp.DAL;
 using System;
 using System.Windows.Forms;
 
@@ -7,12 +8,16 @@ namespace PoddApp.UI
     public partial class MainForm : Form
     {
         private readonly IPoddService _service;
+        private readonly IValidation validation;
+        private readonly IPodcastRepo repo;
 
-        public MainForm(IPoddService service)
+        public MainForm(IPoddService service, IValidation validation, IPodcastRepo repo)
         {
             InitializeComponent();
             _service = service;
             LoadPage(new UcDashboard(_service));
+            this.validation = validation;
+            this.repo = repo;
         }
 
         private void LoadPage(UserControl uc)
