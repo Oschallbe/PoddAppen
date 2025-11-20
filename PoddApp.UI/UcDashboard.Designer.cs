@@ -236,6 +236,7 @@
             lbEplist.Name = "lbEplist";
             lbEplist.Size = new Size(233, 124);
             lbEplist.TabIndex = 5;
+            lbEplist.SelectedIndexChanged += lbEplist_SelectedIndexChanged;
             // 
             // lblMetadataPod
             // 
@@ -265,6 +266,7 @@
             picPod.Size = new Size(275, 185);
             picPod.TabIndex = 1;
             picPod.TabStop = false;
+            picPod.Click += picPod_Click;
             // 
             // lblPodName
             // 
@@ -276,6 +278,7 @@
             lblPodName.Size = new Size(126, 25);
             lblPodName.TabIndex = 0;
             lblPodName.Text = "NamnPåPodd";
+            lblPodName.Click += lblPodName_Click;
             // 
             // panelChosenEp
             // 
