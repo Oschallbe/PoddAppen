@@ -24,7 +24,12 @@ namespace PoddApp.DAL
         public async Task<List<Episode>> GetRSSPod(string rssUrl)
         {
             Stream dataStream = await aHttpClient.GetStreamAsync(rssUrl);
-            XmlReader myReader = XmlReader.Create(dataStream);
+            var settings = new XmlReaderSettings
+            {
+                DtdProcessing = DtdProcessing.Ignore,
+                XmlResolver = null
+            };
+            using var myReader = XmlReader.Create(dataStream, settings);
             SyndicationFeed dataFlow = SyndicationFeed.Load(myReader);
 
             myReader.Dispose();
