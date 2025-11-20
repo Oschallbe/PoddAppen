@@ -49,16 +49,17 @@
             // 
             cbCat.FormattingEnabled = true;
             cbCat.Location = new Point(203, 91);
-            cbCat.Margin = new Padding(2, 2, 2, 2);
+            cbCat.Margin = new Padding(2);
             cbCat.Name = "cbCat";
             cbCat.Size = new Size(178, 23);
             cbCat.TabIndex = 1;
             cbCat.Text = "Välj avsnitt eller podd";
+            cbCat.SelectedIndexChanged += cbCat_SelectedIndexChanged;
             // 
             // tbNameCat
             // 
             tbNameCat.Location = new Point(202, 148);
-            tbNameCat.Margin = new Padding(2, 2, 2, 2);
+            tbNameCat.Margin = new Padding(2);
             tbNameCat.Name = "tbNameCat";
             tbNameCat.Size = new Size(179, 23);
             tbNameCat.TabIndex = 2;
@@ -67,12 +68,13 @@
             // btnSave
             // 
             btnSave.Location = new Point(242, 209);
-            btnSave.Margin = new Padding(2, 2, 2, 2);
+            btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 3;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnBack
             // 
@@ -94,7 +96,7 @@
             Controls.Add(tbNameCat);
             Controls.Add(cbCat);
             Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PopUpMakeCat";
             Text = "Form1";
             ResumeLayout(false);

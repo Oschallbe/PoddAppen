@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            lblCurrentName = new Label();
             btnSave = new Button();
             tbNewName = new TextBox();
             btnBack = new Button();
+            ComboBoxCat = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -45,20 +45,10 @@
             label1.TabIndex = 0;
             label1.Text = "Redigera namn på kategori";
             // 
-            // lblCurrentName
-            // 
-            lblCurrentName.AutoSize = true;
-            lblCurrentName.Location = new Point(194, 79);
-            lblCurrentName.Margin = new Padding(2, 0, 2, 0);
-            lblCurrentName.Name = "lblCurrentName";
-            lblCurrentName.Size = new Size(161, 15);
-            lblCurrentName.TabIndex = 1;
-            lblCurrentName.Text = "Nuvarande namn på kategori";
-            // 
             // btnSave
             // 
             btnSave.Location = new Point(237, 163);
-            btnSave.Margin = new Padding(2, 2, 2, 2);
+            btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(78, 20);
             btnSave.TabIndex = 2;
@@ -68,7 +58,7 @@
             // tbNewName
             // 
             tbNewName.Location = new Point(194, 120);
-            tbNewName.Margin = new Padding(2, 2, 2, 2);
+            tbNewName.Margin = new Padding(2);
             tbNewName.Name = "tbNewName";
             tbNewName.Size = new Size(171, 23);
             tbNewName.TabIndex = 3;
@@ -84,17 +74,26 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // ComboBoxCat
+            // 
+            ComboBoxCat.FormattingEnabled = true;
+            ComboBoxCat.Location = new Point(194, 72);
+            ComboBoxCat.Name = "ComboBoxCat";
+            ComboBoxCat.Size = new Size(171, 23);
+            ComboBoxCat.TabIndex = 5;
+            ComboBoxCat.Text = "Nuvarande namn på kategori";
+            // 
             // PopUpEditCat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 270);
+            Controls.Add(ComboBoxCat);
             Controls.Add(btnBack);
             Controls.Add(tbNewName);
             Controls.Add(btnSave);
-            Controls.Add(lblCurrentName);
             Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PopUpEditCat";
             Text = "Form1";
             ResumeLayout(false);
@@ -104,9 +103,9 @@
         #endregion
 
         private Label label1;
-        private Label lblCurrentName;
         private Button btnSave;
         private TextBox tbNewName;
         private Button btnBack;
+        private ComboBox ComboBoxCat;
     }
 }
