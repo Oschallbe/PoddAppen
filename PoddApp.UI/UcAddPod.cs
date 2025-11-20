@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
@@ -35,10 +36,11 @@ namespace PoddApp.UI
             {
                 var rssUrl = tbRssUrl.Text.Trim();
 
+
                 var emptyError = validation.ValidateEmpty(rssUrl);
                 if (emptyError != null)
                 {
-                    MessageBox.Show(emptyError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowRssTextBoxError(emptyError);
                     return;
                 }
 
@@ -129,7 +131,7 @@ namespace PoddApp.UI
 
         private void tbRssUrl_TextChanged(object sender, EventArgs e)
         {
-
+            ResetRssTextBoxError();
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -141,7 +143,7 @@ namespace PoddApp.UI
                 var EmptyError = validation.ValidateEmpty(rssUrl);
                 if (EmptyError != null)
                 {
-                    MessageBox.Show(EmptyError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowRssTextBoxError(EmptyError);
                     return;
                 }
 
@@ -151,6 +153,14 @@ namespace PoddApp.UI
                     MessageBox.Show(duplicateError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                var rssError = await validation.ValidateRssAsync(rssUrl);
+                if (rssError != null)
+                {
+                    MessageBox.Show(rssError, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var pod = new Podcast
                 {
                     Name = lblPodName.Text,
@@ -167,6 +177,20 @@ namespace PoddApp.UI
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while saving the podcast: {ex.Message}");
+            }
+        }
+        private void ShowRssTextBoxError(string message)
+        {
+            tbRssUrl.Text = message;
+            tbRssUrl.ForeColor = Color.Red;
+        }
+
+        private void ResetRssTextBoxError()
+        {
+            if (tbRssUrl.ForeColor == Color.Red)
+            {
+                tbRssUrl.Text = "";
+                tbRssUrl.ForeColor = Color.Black;
             }
         }
     }
