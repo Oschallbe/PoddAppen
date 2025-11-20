@@ -35,7 +35,7 @@ namespace PoddApp.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcAddPod(_service));
+            LoadPage(new UcAddPod(_service, validation));
         }
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)

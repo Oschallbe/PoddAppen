@@ -4,6 +4,8 @@ using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
 using PoddApp.DAL;
+using PoddApp.BL;
+using PoddApp.Models;
 
 namespace PoddApp.BL
 {

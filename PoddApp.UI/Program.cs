@@ -35,10 +35,12 @@ namespace PoddApp.UI
 
             // Skapa service via interface
             IPoddService service = new PoddService(rssReader, repo);
+            IValidation validation = new Validation(repo);
+
 
             // Starta appen och skicka in service (Interface!!)
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm(service));
+            Application.Run(new MainForm(service, validation, repo));
         }
     }
 }
