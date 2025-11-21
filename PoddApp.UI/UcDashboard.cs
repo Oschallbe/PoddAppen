@@ -13,6 +13,7 @@ namespace PoddApp.UI
         private readonly IPoddService _service;
         private List<Episode> allEpisodes;
         private readonly IValidation validate;
+        private List<Category> _categories = new();
 
         public UcDashboard(IPoddService service, IValidation validation)
         {
@@ -22,6 +23,7 @@ namespace PoddApp.UI
 
 
             _ = LoadPods();  // fire & forget
+            _ = LoadCategories();
         }
 
         private async Task LoadPods()
@@ -30,17 +32,45 @@ namespace PoddApp.UI
             {
                 _podcasts = await _service.GetAllPodcastsAsync() ?? new List<Podcast>();
 
-                lbMyPod.Items.Clear();
-
-                foreach (var pod in _podcasts)
-                {
-                    lbMyPod.Items.Add(string.IsNullOrEmpty(pod.Name) ? pod.RssUrl : pod.Name);
-                }
+                UpdatePodcastList(_podcasts);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Kunde inte ladda poddar: " + ex.Message);
             }
+        }
+
+        private async Task LoadCategories()
+        {
+            _categories = await _service.GetAllCategoriesAsync();
+
+            cbPodCat.Items.Clear();
+
+            // Första valet = Alla kategorier
+            cbPodCat.Items.Add(new ComboBoxItem
+            {
+                Text = "Alla",
+                Value = null
+            });
+
+            // Lägg in varje kategori
+            foreach (var cat in _categories)
+            {
+                cbPodCat.Items.Add(new ComboBoxItem
+                {
+                    Text = cat.Name,
+                    Value = cat.Id
+                });
+            }
+
+            cbPodCat.SelectedIndex = 0;
+        }
+
+        public class ComboBoxItem
+        {
+            public string Text { get; set; }
+            public string Value { get; set; } // categoryId
+            public override string ToString() => Text;
         }
 
         private async void btnDeletePod_Click(object sender, EventArgs e)
@@ -246,9 +276,41 @@ namespace PoddApp.UI
             }
         }
 
+        private void UpdatePodcastList(List<Podcast> list)
+        {
+            lbMyPod.Items.Clear();
+
+            foreach (var p in list)
+            {
+                lbMyPod.Items.Add(string.IsNullOrEmpty(p.Name) ? p.RssUrl : p.Name);
+            }
+        }
+
         private void cbPodCat_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_podcasts == null || _podcasts.Count == 0)
+                return;
 
+            var selected = cbPodCat.SelectedItem as ComboBoxItem;
+            if (selected == null)
+                return;
+
+            // 🟦 Visa alla poddar när "Alla" är vald
+            if (selected.Value == null)
+            {
+                UpdatePodcastList(_podcasts);
+                return;
+            }
+
+            string selectedCategoryId = selected.Value;
+
+            // 🟩 Filtra poddar som innehåller denna kategori
+            var filtered = _podcasts
+                .Where(p => p.CategoryIds != null &&
+                            p.CategoryIds.Contains(selectedCategoryId))
+                .ToList();
+
+            UpdatePodcastList(filtered);
         }
     }
 }
