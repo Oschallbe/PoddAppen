@@ -38,6 +38,7 @@
             rtbxEpDesc = new RichTextBox();
             btnSavePod = new Button();
             comboBox1 = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)picbxPicture).BeginInit();
             SuspendLayout();
             // 
@@ -140,10 +141,20 @@
             comboBox1.TabIndex = 9;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(551, 240);
+            label1.Name = "label1";
+            label1.Size = new Size(71, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Välj kategori";
+            // 
             // UcAddPod
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(btnSavePod);
             Controls.Add(rtbxEpDesc);
@@ -175,5 +186,6 @@
         private RichTextBox rtbxEpDesc;
         private Button btnSavePod;
         private ComboBox comboBox1;
+        private Label label1;
     }
 }

@@ -23,12 +23,16 @@ namespace PoddApp.UI
         private List<Category> allCategories;
         private readonly IPoddService aPodService;
         private readonly IValidation validation;
+        private string selectedCategoryId;
+        private Category selectedCategory;
+
 
         public UcAddPod(IPoddService aPodService, IValidation validation)
         {
             InitializeComponent();
             this.aPodService = aPodService;
             this.validation = validation;
+            LoadCategories();
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -75,13 +79,6 @@ namespace PoddApp.UI
                     lbxEpisodes.Items.Add(anEpisode.Title);
 
                 }
-                foreach (Category aCategory in await aPodService.GetAllCategoriesAsync())
-                {
-                    allCategories ??= new List<Category>();
-                    allCategories.Add(aCategory);
-                    comboBox1.Items.Add(aCategory.Name);
-                }
-
 
                 if (!string.IsNullOrEmpty(podName.ImageUrl))
                 {
@@ -169,6 +166,11 @@ namespace PoddApp.UI
                     return;
                 }
 
+                var categories = new List<Category>();
+
+                if (comboBox1.SelectedIndex != -1)
+                    categories.Add(selectedCategory);
+
                 var pod = new Podcast
                 {
                     Name = lblPodName.Text,
@@ -176,7 +178,7 @@ namespace PoddApp.UI
                     RssUrl = tbRssUrl.Text,
                     ImageUrl = picbxPicture.ImageLocation,
                     Episodes = allEpisodes,
-                    Categories = allCategories
+                    Categories = categories
                 };
 
                 await aPodService.SavePodcastAsync(pod);
@@ -184,6 +186,7 @@ namespace PoddApp.UI
                 MessageBox.Show("Podcast Sparad", "klart", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Clear();
+                comboBox1.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -205,6 +208,16 @@ namespace PoddApp.UI
             }
         }
 
+        private async Task LoadCategories()
+        {
+            comboBox1.DataSource = await aPodService.GetAllCategoriesAsync();
+            comboBox1.DisplayMember = "Name";   // vad som syns
+            comboBox1.ValueMember = "Id";       // det riktiga värdet
+
+            comboBox1.SelectedIndex = -1;
+        }
+
+
         private void Clear()
         {
             tbRssUrl.Text = "";
@@ -220,6 +233,8 @@ namespace PoddApp.UI
             picbxPicture.ImageLocation = null;
 
             allEpisodes = new List<Episode>();
+
+
         }
 
         private void ClearRss()
@@ -237,7 +252,12 @@ namespace PoddApp.UI
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            selectedCategory = comboBox1.SelectedItem as Category;
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

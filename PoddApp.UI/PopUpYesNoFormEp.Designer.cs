@@ -42,7 +42,7 @@
             btnYes.TabIndex = 0;
             btnYes.Text = "Ja";
             btnYes.UseVisualStyleBackColor = true;
-            btnYes.Click += btnYes_Click;
+            //btnYes.Click += btnYes_Click;
             // 
             // btnNo
             // 
