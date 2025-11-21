@@ -18,7 +18,7 @@
             {
                 this.podcastRepo = podcastRepo;
                 this.http = new HttpClient();
-                this.http.Timeout = TimeSpan.FromSeconds(2);
+                this.http.Timeout = TimeSpan.FromSeconds(5);
             }
 
             public async Task<string?> ValidateUrlAsync(string url)
