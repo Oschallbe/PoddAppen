@@ -132,6 +132,7 @@ namespace PoddApp.UI
         private void tbRssUrl_TextChanged(object sender, EventArgs e)
         {
             ResetRssTextBoxError();
+            ClearRss();
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -205,6 +206,19 @@ namespace PoddApp.UI
             rtbxDesc.Clear();
             rtbxEpDesc.Clear();
 
+            lbxEpisodes.Items.Clear();
+
+            picbxPicture.Image = null;
+            picbxPicture.ImageLocation = null;
+
+            allEpisodes = new List<Episode>();
+        }
+
+        private void ClearRss()
+        {
+            lblPodName.Text = "";
+            rtbxDesc.Clear();
+            rtbxEpDesc.Clear();
             lbxEpisodes.Items.Clear();
 
             picbxPicture.Image = null;
