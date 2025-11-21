@@ -101,7 +101,6 @@ namespace PoddApp.UI
 
                     lblMetadataPod.Text = "";
                     lblMetadataPodEp.Text = "";
-                    cbPodEpList.Items.Clear();
                 }
                 catch (Exception ex)
                 {
@@ -273,7 +272,10 @@ namespace PoddApp.UI
             }
             else
             {
-                picPodEp.Image = null;
+                picPodEp.Image = Image.FromFile("Resources/Dummy_Bild.png");
+                picPodEp.SizeMode = PictureBoxSizeMode.Zoom;
+
+
             }
         }
 
@@ -295,6 +297,11 @@ namespace PoddApp.UI
             ComboBoxItem? selected = cbPodCat.SelectedItem as ComboBoxItem;
             if (selected == null)
                 return;
+
+            // 🟦 UPPDATERA LABEL MED KATEGORIN
+            lblMyPod.Text = selected.Value == null
+                ? "Alla kategorier"
+                : selected.Text;
 
             // 🟦 Visa alla poddar när "Alla" är vald
             if (selected.Value == null)
