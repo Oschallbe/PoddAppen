@@ -15,7 +15,7 @@ namespace PoddApp.UI
         {
             InitializeComponent();
             _service = service;
-            LoadPage(new UcDashboard(_service));
+            LoadPage(new UcDashboard(_service, validation));
             this.validation = validation;
             this.repo = repo;
         }
@@ -30,7 +30,7 @@ namespace PoddApp.UI
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            LoadPage(new UcDashboard(_service));
+            LoadPage(new UcDashboard(_service, validation));
         }
 
         private void button1_Click(object sender, EventArgs e)

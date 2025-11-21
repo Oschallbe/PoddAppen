@@ -12,11 +12,14 @@ namespace PoddApp.UI
         private List<Podcast> _podcasts = new();
         private readonly IPoddService _service;
         private List<Episode> allEpisodes;
+        private readonly IValidation validate;
 
-        public UcDashboard(IPoddService service)
+        public UcDashboard(IPoddService service, IValidation validation)
         {
             InitializeComponent();
             _service = service;
+            validate = validation;
+
 
             _ = LoadPods();  // fire & forget
         }
@@ -151,7 +154,11 @@ namespace PoddApp.UI
         private void lblMyPod_Click(object sender, EventArgs e) { }
         private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e) { }
         private void lblMyPodEps_Click(object sender, EventArgs e) { }
-        private void btnEditNameEp_Click(object sender, EventArgs e) { }
+        private void btnEditNameEp_Click(object sender, EventArgs e)
+        {
+            var popup = new PopUpMakeCat(validate);
+            var result = popup.ShowDialog();
+        }
         private void lblMetadataPod_Click(object sender, EventArgs e) { }
         private void lblMetadataPodEp_Click(object sender, EventArgs e) { }
 
@@ -231,6 +238,11 @@ namespace PoddApp.UI
             {
                 picPodEp.Image = null;
             }
+        }
+
+        private void cbPodCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

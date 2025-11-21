@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            cbCat = new ComboBox();
             tbNameCat = new TextBox();
             btnSave = new Button();
             btnBack = new Button();
@@ -45,20 +44,9 @@
             label1.TabIndex = 0;
             label1.Text = "Skapa kategori";
             // 
-            // cbCat
-            // 
-            cbCat.FormattingEnabled = true;
-            cbCat.Location = new Point(203, 91);
-            cbCat.Margin = new Padding(2);
-            cbCat.Name = "cbCat";
-            cbCat.Size = new Size(178, 23);
-            cbCat.TabIndex = 1;
-            cbCat.Text = "Välj avsnitt eller podd";
-            cbCat.SelectedIndexChanged += cbCat_SelectedIndexChanged;
-            // 
             // tbNameCat
             // 
-            tbNameCat.Location = new Point(202, 148);
+            tbNameCat.Location = new Point(195, 109);
             tbNameCat.Margin = new Padding(2);
             tbNameCat.Name = "tbNameCat";
             tbNameCat.Size = new Size(179, 23);
@@ -70,7 +58,7 @@
             btnSave.Location = new Point(242, 209);
             btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(78, 20);
+            btnSave.Size = new Size(78, 26);
             btnSave.TabIndex = 3;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
@@ -94,7 +82,6 @@
             Controls.Add(btnBack);
             Controls.Add(btnSave);
             Controls.Add(tbNameCat);
-            Controls.Add(cbCat);
             Controls.Add(label1);
             Margin = new Padding(2);
             Name = "PopUpMakeCat";
@@ -106,7 +93,6 @@
         #endregion
 
         private Label label1;
-        private ComboBox cbCat;
         private TextBox tbNameCat;
         private Button btnSave;
         private Button btnBack;

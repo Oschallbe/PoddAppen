@@ -33,15 +33,14 @@
             btnDeletePod = new Button();
             lbMyPod = new ListBox();
             cbPodCat = new ComboBox();
-            cbPodList = new ComboBox();
+            cbPodSort = new ComboBox();
             lblMyPod = new Label();
             panelMyPodEps = new Panel();
-            btnEditNameEp = new Button();
+            btnAddCat = new Button();
             btnDeletePodEp = new Button();
             lbMyEp = new ListBox();
             cbPodEpCat = new ComboBox();
             cbPodEpList = new ComboBox();
-            lblMyPodEps = new Label();
             panelChosenPod = new Panel();
             label1 = new Label();
             lbEplist = new ListBox();
@@ -50,13 +49,13 @@
             picPod = new PictureBox();
             lblPodName = new Label();
             panelChosenEp = new Panel();
+            label3 = new Label();
             label2 = new Label();
             lblDate = new Label();
             lblMetadataPodEp = new Label();
             rtbDescEp = new RichTextBox();
             picPodEp = new PictureBox();
             lblPodNameEp = new Label();
-            label3 = new Label();
             panelMyPods.SuspendLayout();
             panelMyPodEps.SuspendLayout();
             panelChosenPod.SuspendLayout();
@@ -71,7 +70,7 @@
             panelMyPods.Controls.Add(btnDeletePod);
             panelMyPods.Controls.Add(lbMyPod);
             panelMyPods.Controls.Add(cbPodCat);
-            panelMyPods.Controls.Add(cbPodList);
+            panelMyPods.Controls.Add(cbPodSort);
             panelMyPods.Controls.Add(lblMyPod);
             panelMyPods.Location = new Point(2, 2);
             panelMyPods.Margin = new Padding(2);
@@ -120,15 +119,18 @@
             cbPodCat.Name = "cbPodCat";
             cbPodCat.Size = new Size(105, 23);
             cbPodCat.TabIndex = 2;
+            cbPodCat.Text = "Välj kategori";
+            cbPodCat.SelectedIndexChanged += cbPodCat_SelectedIndexChanged;
             // 
-            // cbPodList
+            // cbPodSort
             // 
-            cbPodList.FormattingEnabled = true;
-            cbPodList.Location = new Point(280, 9);
-            cbPodList.Margin = new Padding(2);
-            cbPodList.Name = "cbPodList";
-            cbPodList.Size = new Size(105, 23);
-            cbPodList.TabIndex = 1;
+            cbPodSort.FormattingEnabled = true;
+            cbPodSort.Location = new Point(280, 9);
+            cbPodSort.Margin = new Padding(2);
+            cbPodSort.Name = "cbPodSort";
+            cbPodSort.Size = new Size(105, 23);
+            cbPodSort.TabIndex = 1;
+            cbPodSort.Text = "Sortera";
             // 
             // lblMyPod
             // 
@@ -144,29 +146,28 @@
             // 
             // panelMyPodEps
             // 
-            panelMyPodEps.Controls.Add(btnEditNameEp);
+            panelMyPodEps.Controls.Add(btnAddCat);
             panelMyPodEps.Controls.Add(btnDeletePodEp);
             panelMyPodEps.Controls.Add(lbMyEp);
             panelMyPodEps.Controls.Add(cbPodEpCat);
             panelMyPodEps.Controls.Add(cbPodEpList);
-            panelMyPodEps.Controls.Add(lblMyPodEps);
             panelMyPodEps.Location = new Point(2, 352);
             panelMyPodEps.Margin = new Padding(2);
             panelMyPodEps.Name = "panelMyPodEps";
             panelMyPodEps.Size = new Size(388, 348);
             panelMyPodEps.TabIndex = 1;
             // 
-            // btnEditNameEp
+            // btnAddCat
             // 
-            btnEditNameEp.Font = new Font("Segoe UI", 12F);
-            btnEditNameEp.Location = new Point(219, 281);
-            btnEditNameEp.Margin = new Padding(2);
-            btnEditNameEp.Name = "btnEditNameEp";
-            btnEditNameEp.Size = new Size(124, 42);
-            btnEditNameEp.TabIndex = 5;
-            btnEditNameEp.Text = "Redigera namn";
-            btnEditNameEp.UseVisualStyleBackColor = true;
-            btnEditNameEp.Click += btnEditNameEp_Click;
+            btnAddCat.Font = new Font("Segoe UI", 12F);
+            btnAddCat.Location = new Point(49, 19);
+            btnAddCat.Margin = new Padding(2);
+            btnAddCat.Name = "btnAddCat";
+            btnAddCat.Size = new Size(154, 42);
+            btnAddCat.TabIndex = 5;
+            btnAddCat.Text = "Lägg till kategori";
+            btnAddCat.UseVisualStyleBackColor = true;
+            btnAddCat.Click += btnEditNameEp_Click;
             // 
             // btnDeletePodEp
             // 
@@ -207,17 +208,6 @@
             cbPodEpList.Size = new Size(105, 23);
             cbPodEpList.TabIndex = 1;
             cbPodEpList.SelectedIndexChanged += cbPodEpList_SelectedIndexChanged;
-            // 
-            // lblMyPodEps
-            // 
-            lblMyPodEps.AutoSize = true;
-            lblMyPodEps.Font = new Font("Segoe UI", 14F);
-            lblMyPodEps.Location = new Point(86, 36);
-            lblMyPodEps.Margin = new Padding(2, 0, 2, 0);
-            lblMyPodEps.Name = "lblMyPodEps";
-            lblMyPodEps.Size = new Size(159, 25);
-            lblMyPodEps.TabIndex = 0;
-            lblMyPodEps.Text = "Mina poddavsnitt";
             // 
             // panelChosenPod
             // 
@@ -311,6 +301,16 @@
             panelChosenEp.Size = new Size(400, 696);
             panelChosenEp.TabIndex = 3;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(153, 16);
+            label3.Name = "label3";
+            label3.Size = new Size(108, 21);
+            label3.TabIndex = 6;
+            label3.Text = "Avsnittsnamn:";
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -368,16 +368,6 @@
             lblPodNameEp.TabIndex = 0;
             lblPodNameEp.Text = "NamnPåPoddAvsnitt";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(153, 16);
-            label3.Name = "label3";
-            label3.Size = new Size(108, 21);
-            label3.TabIndex = 6;
-            label3.Text = "Avsnittsnamn:";
-            // 
             // UcDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -392,7 +382,6 @@
             panelMyPods.ResumeLayout(false);
             panelMyPods.PerformLayout();
             panelMyPodEps.ResumeLayout(false);
-            panelMyPodEps.PerformLayout();
             panelChosenPod.ResumeLayout(false);
             panelChosenPod.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPod).EndInit();
@@ -408,10 +397,9 @@
         private Label lblMyPod;
         private Panel panelMyPodEps;
         private Panel panelChosenPod;
-        private Label lblMyPodEps;
         private Label lblPodName;
         private ComboBox cbPodCat;
-        private ComboBox cbPodList;
+        private ComboBox cbPodSort;
         private ComboBox cbPodEpCat;
         private ComboBox cbPodEpList;
         private PictureBox picPod;
@@ -428,7 +416,7 @@
         private ListBox lbMyEp;
         private Button btnEditNamePod;
         private Button btnDeletePodEp;
-        private Button btnEditNameEp;
+        private Button btnAddCat;
         private Label label1;
         private Label lblDate;
         private Label label2;
