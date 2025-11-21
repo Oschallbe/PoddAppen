@@ -78,8 +78,17 @@ namespace PoddApp.DAL
             return _collection.UpdateOneAsync(filter, update);
         }
 
+        public Task DeleteEpisodeAsync(string podcastId, string episodeId)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
 
+            var update = Builders<Podcast>.Update.PullFilter(
+                p => p.Episodes,
+                e => e.Id == episodeId
+                );
 
+            return _collection.UpdateOneAsync(filter, update);
+        }
 
     }
 }
