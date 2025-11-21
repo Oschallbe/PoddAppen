@@ -36,7 +36,7 @@
             // btnYes
             // 
             btnYes.Location = new Point(103, 197);
-            btnYes.Margin = new Padding(2, 2, 2, 2);
+            btnYes.Margin = new Padding(2);
             btnYes.Name = "btnYes";
             btnYes.Size = new Size(78, 20);
             btnYes.TabIndex = 0;
@@ -46,12 +46,13 @@
             // btnNo
             // 
             btnNo.Location = new Point(362, 197);
-            btnNo.Margin = new Padding(2, 2, 2, 2);
+            btnNo.Margin = new Padding(2);
             btnNo.Name = "btnNo";
             btnNo.Size = new Size(78, 20);
             btnNo.TabIndex = 1;
             btnNo.Text = "Nej";
             btnNo.UseVisualStyleBackColor = true;
+            btnNo.Click += btnNo_Click;
             // 
             // lblText
             // 
@@ -71,7 +72,7 @@
             Controls.Add(lblText);
             Controls.Add(btnNo);
             Controls.Add(btnYes);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PopUpYesNoFormEp";
             Text = "Form1";
             ResumeLayout(false);
