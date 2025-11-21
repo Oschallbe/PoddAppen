@@ -9,6 +9,7 @@ namespace PoddApp.DAL
     {
         private readonly IMongoCollection<Podcast> _collection;
         private readonly IMongoCollection<Category> _categoriesCollection;
+
         public PodcastRepository(string connectionString, string databaseName)
         {
             var client = new MongoClient(connectionString);
@@ -27,26 +28,17 @@ namespace PoddApp.DAL
             return await _collection.Find(_ => true).ToListAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             await _collection.DeleteOneAsync(p => p.Id == id);
         }
 
         public async Task AddAsync(Podcast podcast)
         {
-            var maxId = await _collection.Find(_ => true)
-                        .SortByDescending(p => p.Id)
-                        .Limit(1)
-                        .FirstOrDefaultAsync();
-
-            int nextId = maxId?.Id + 1 ?? 0;
-
-            podcast.Id = nextId;
-
-            await _collection.InsertOneAsync(podcast);
+            await _collection.InsertOneAsync(podcast);  // Mongo generates ObjectId automatically
         }
 
-        public async Task<Podcast?> GetByRssUrlAsync(String rssUrl)
+        public async Task<Podcast?> GetByRssUrlAsync(string rssUrl)
         {
             return await _collection
                 .Find(p => p.RssUrl == rssUrl)
@@ -58,5 +50,28 @@ namespace PoddApp.DAL
             var category = new Category { Name = categoryName };
             await _categoriesCollection.InsertOneAsync(category);
         }
+
+        public async Task<List<Category>> GetAllCategoriesAsync()
+        {
+            return await _categoriesCollection.Find(_ => true).ToListAsync();
+        }
+
+        public Task AddCategoryToPodcastAsync(string podcastId, string categoryId)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
+            var update = Builders<Podcast>.Update.AddToSet(p => p.CategoryIds, categoryId);
+            return _collection.UpdateOneAsync(filter, update);
+        }
+
+        public Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
+            var update = Builders<Podcast>.Update.Pull(p => p.CategoryIds, categoryId);
+            return _collection.UpdateOneAsync(filter, update);
+        }
+
+
+
+
     }
 }

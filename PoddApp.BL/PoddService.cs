@@ -1,6 +1,8 @@
 ﻿using PoddApp.BL;
 using PoddApp.DAL;
 using PoddApp.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class PoddService : IPoddService
 {
@@ -57,13 +59,30 @@ public class PoddService : IPoddService
         return await _podcastRepo.GetAllAsync();
     }
 
-    public async Task DeletePodcastAsync(int id)
+    public async Task DeletePodcastAsync(string id)
     {
         await _podcastRepo.DeleteAsync(id);
     }
 
-    public async Task AddCategoryAsync(string categoryName)
+    public async Task AddCategoryAsync(string name)
     {
-        await _podcastRepo.AddCategoryAsync(categoryName);
+        await _podcastRepo.AddCategoryAsync(name);
+    }
+
+    // 🔥 NYA METODER — dem du saknar
+
+    public async Task<List<Category>> GetAllCategoriesAsync()
+    {
+        return await _podcastRepo.GetAllCategoriesAsync();
+    }
+
+    public async Task AddCategoryToPodcastAsync(string podcastId, string categoryId)
+    {
+        await _podcastRepo.AddCategoryToPodcastAsync(podcastId, categoryId);
+    }
+
+    public async Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId)
+    {
+        await _podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, categoryId);
     }
 }

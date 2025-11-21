@@ -1,30 +1,21 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using PoddApp.Models;
 
-namespace PoddApp.Models
+public class Podcast
 {
-    public class Podcast
-    {
-        [BsonId]
-        public int Id { get; set; }         // MongoDB ObjectId som string
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
 
-        [BsonElement("Name")]
-        public string Name { get; set; }       // Namn på podden
+    public string Name { get; set; }
+    public string RssUrl { get; set; }
 
-        [BsonElement("RssUrl")]
-        public string RssUrl { get; set; }     // URL till RSS-flödet
+    // 🔥 Flera kategorier → LISTA MED STRINGS (ObjectId)
+    public List<string> CategoryIds { get; set; } = new();
 
-        [BsonElement("Category")]
-        public List<Category> Categorys { get; set; }   // Kategori (t.ex. "Teknik")
+    public string ImageUrl { get; set; }
+    public string Description { get; set; }
 
-        [BsonElement("ImageUrl")]
-        public string ImageUrl { get; set; }
-
-        [BsonElement("Description")]
-        public string Description { get; set; }
-
-        [BsonElement("Episodes")]
-        public List<Episode> Episodes { get; set; } = new(); // Lista av avsnitt
-
-    }
+    public List<Episode> Episodes { get; set; } = new();
 }
