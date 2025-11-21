@@ -109,11 +109,6 @@ namespace PoddApp.UI
             }
         }
 
-        private void btnDeletePodEp_Click(object sender, EventArgs e)
-        {
-            var form = new PopUpYesNoFormEp();
-            form.ShowDialog();
-        }
 
         public static string StripHtml(string input)
         {
