@@ -154,10 +154,16 @@ namespace PoddApp.UI
         private void lblMyPod_Click(object sender, EventArgs e) { }
         private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e) { }
         private void lblMyPodEps_Click(object sender, EventArgs e) { }
-        private void btnEditNameEp_Click(object sender, EventArgs e)
+        private async void btnEditNameEp_Click(object sender, EventArgs e)
         {
             var popup = new PopUpMakeCat(validate);
             var result = popup.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                await _service.AddCategoryAsync(popup.CatName);
+                MessageBox.Show("Kategori sparad!");
+            }
         }
         private void lblMetadataPod_Click(object sender, EventArgs e) { }
         private void lblMetadataPodEp_Click(object sender, EventArgs e) { }

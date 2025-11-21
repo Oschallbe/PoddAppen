@@ -64,6 +64,6 @@ public class PoddService : IPoddService
 
     public async Task AddCategoryAsync(string categoryName)
     {
-        await _podcastRepo.addCategory(categoryName);
+        await _podcastRepo.AddCategoryAsync(categoryName);
     }
 }

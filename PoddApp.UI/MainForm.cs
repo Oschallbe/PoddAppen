@@ -15,7 +15,7 @@ namespace PoddApp.UI
         {
             InitializeComponent();
             _service = service;
-            LoadPage(new UcDashboard(_service, validation));
+            LoadPage(new UcDashboard(_service, validation));    
             this.validation = validation;
             this.repo = repo;
         }

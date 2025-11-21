@@ -8,12 +8,13 @@ namespace PoddApp.DAL
     public class PodcastRepository : IPodcastRepo
     {
         private readonly IMongoCollection<Podcast> _collection;
-
+        private readonly IMongoCollection<Category> _categoriesCollection;
         public PodcastRepository(string connectionString, string databaseName)
         {
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(databaseName);
             _collection = database.GetCollection<Podcast>("Podcasts");
+            _categoriesCollection = database.GetCollection<Category>("Category");
         }
 
         public async Task UpdateAsync(Podcast podcast)
@@ -52,11 +53,10 @@ namespace PoddApp.DAL
                 .FirstOrDefaultAsync();
         }
 
-        public async Task addCategory(string categoryName)
+        public async Task AddCategoryAsync(string categoryName)
         {
-            var category = new Podcast { Name = categoryName };
-            var categoriesCollection = _collection.Database.GetCollection<Podcast>("Categories");
-            await categoriesCollection.InsertOneAsync(category);
+            var category = new Category { Name = categoryName };
+            await _categoriesCollection.InsertOneAsync(category);
         }
     }
 }
