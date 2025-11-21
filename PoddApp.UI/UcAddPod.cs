@@ -172,11 +172,13 @@ namespace PoddApp.UI
 
                 await aPodService.SavePodcastAsync(pod);
 
-                MessageBox.Show("Podcast saved successfully!");
+                MessageBox.Show("Podcast Sparad", "klart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Clear();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while saving the podcast: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
         private void ShowRssTextBoxError(string message)
@@ -192,6 +194,23 @@ namespace PoddApp.UI
                 tbRssUrl.Text = "";
                 tbRssUrl.ForeColor = Color.Black;
             }
+        }
+
+        private void Clear()
+        {
+            tbRssUrl.Text = "";
+            tbRssUrl.ForeColor = Color.Black;
+
+            lblPodName.Text = "";
+            rtbxDesc.Clear();
+            rtbxEpDesc.Clear();
+
+            lbxEpisodes.Items.Clear();
+
+            picbxPicture.Image = null;
+            picbxPicture.ImageLocation = null;
+
+            allEpisodes = new List<Episode>();
         }
     }
 }
