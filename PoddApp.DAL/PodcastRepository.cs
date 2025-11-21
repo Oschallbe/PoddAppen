@@ -59,14 +59,22 @@ namespace PoddApp.DAL
         public Task AddCategoryToPodcastAsync(string podcastId, string categoryId)
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
-            var update = Builders<Podcast>.Update.AddToSet(p => p.CategoryIds, categoryId);
+            var categoryObj = new Category
+            {
+                Id = categoryId
+            };
+            var update = Builders<Podcast>.Update.AddToSet(p => p.Categories, categoryObj);
             return _collection.UpdateOneAsync(filter, update);
         }
 
         public Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId)
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
-            var update = Builders<Podcast>.Update.Pull(p => p.CategoryIds, categoryId);
+            var categoryObj = new Category
+            {
+                Id = categoryId
+            };
+            var update = Builders<Podcast>.Update.Pull(p => p.Categories, categoryObj);
             return _collection.UpdateOneAsync(filter, update);
         }
 

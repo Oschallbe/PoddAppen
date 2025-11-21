@@ -3,6 +3,7 @@ using PoddApp.BL;
 using PoddApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PoddApp.UI
@@ -291,7 +292,7 @@ namespace PoddApp.UI
             if (_podcasts == null || _podcasts.Count == 0)
                 return;
 
-            var selected = cbPodCat.SelectedItem as ComboBoxItem;
+            ComboBoxItem? selected = cbPodCat.SelectedItem as ComboBoxItem;
             if (selected == null)
                 return;
 
@@ -306,8 +307,8 @@ namespace PoddApp.UI
 
             // 🟩 Filtra poddar som innehåller denna kategori
             var filtered = _podcasts
-                .Where(p => p.CategoryIds != null &&
-                            p.CategoryIds.Contains(selectedCategoryId))
+                .Where(p => p.Categories != null &&
+                            p.Categories.Any(c => c.Id == selectedCategoryId))
                 .ToList();
 
             UpdatePodcastList(filtered);

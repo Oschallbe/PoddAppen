@@ -20,6 +20,7 @@ namespace PoddApp.UI
     public partial class UcAddPod : UserControl
     {
         private List<Episode> allEpisodes;
+        private List<Category> allCategories;
         private readonly IPoddService aPodService;
         private readonly IValidation validation;
 
@@ -61,6 +62,7 @@ namespace PoddApp.UI
                 await aPodService.SetPodcastDescriptionAsync(podName);
 
                 allEpisodes = await aPodService.GetEpisodesAsync(podName);
+                allCategories = await aPodService.GetAllCategoriesAsync();
 
                 lblPodName.Text = podName.Name;
 
@@ -73,6 +75,13 @@ namespace PoddApp.UI
                     lbxEpisodes.Items.Add(anEpisode.Title);
 
                 }
+                foreach (Category aCategory in await aPodService.GetAllCategoriesAsync())
+                {
+                    allCategories ??= new List<Category>();
+                    allCategories.Add(aCategory);
+                    comboBox1.Items.Add(aCategory.Name);
+                }
+
 
                 if (!string.IsNullOrEmpty(podName.ImageUrl))
                 {
@@ -166,7 +175,8 @@ namespace PoddApp.UI
                     Description = rtbxDesc.Text,
                     RssUrl = tbRssUrl.Text,
                     ImageUrl = picbxPicture.ImageLocation,
-                    Episodes = allEpisodes
+                    Episodes = allEpisodes,
+                    Categories = allCategories
                 };
 
                 await aPodService.SavePodcastAsync(pod);
@@ -223,6 +233,11 @@ namespace PoddApp.UI
             picbxPicture.ImageLocation = null;
 
             allEpisodes = new List<Episode>();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
