@@ -90,5 +90,12 @@ namespace PoddApp.DAL
             return _collection.UpdateOneAsync(filter, update);
         }
 
+        public Task ChangeNamePodcastAsync(string podcastId, string newName)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
+            var update = Builders<Podcast>.Update.Set(p => p.Name, newName);
+            return _collection.UpdateOneAsync(filter, update);
+        }
+
     }
 }

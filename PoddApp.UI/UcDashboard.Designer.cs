@@ -96,6 +96,7 @@
             btnEditNamePod.TabIndex = 5;
             btnEditNamePod.Text = "Redigera namn";
             btnEditNamePod.UseVisualStyleBackColor = true;
+            btnEditNamePod.Click += btnEditNamePod_Click;
             // 
             // btnDeletePod
             // 

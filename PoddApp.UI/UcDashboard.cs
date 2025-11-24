@@ -135,6 +135,10 @@ namespace PoddApp.UI
             if (selectedPodcast == null)
                 return;
 
+            lblPodNameEp.Text = "";
+            picPodEp.Image = null;
+            lblDate.Text = "";
+            rtbDescEp.Clear();
 
             if (!string.IsNullOrEmpty(selectedPodcast.Name))
             {
@@ -315,5 +319,33 @@ namespace PoddApp.UI
 
             UpdatePodcastList(filtered);
         }
+
+        private void btnEditNamePod_Click(object sender, EventArgs e)
+        {
+            int index = lbMyPod.SelectedIndex;
+            if (index < 0) return;
+
+            var selectedPodcast = _podcasts[index];
+
+            //var popup = new PopUpEditName(_service, selectedPodcast);
+            //var result = popup.ShowDialog();
+
+            //if (result == DialogResult.Yes)
+            {
+                try
+                {
+                   // await _service.ChangeNamePodcastAsync(selectedPodcast);
+
+                    lbMyPod.Items[index] = selectedPodcast.Name;
+                    lblPodName.Text = selectedPodcast.Name;
+                    MessageBox.Show("Poddens namn uppdaterades!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kunde inte uppdatera podden: " + ex.Message);
+                }
+            }
+        }
     }
 }
+

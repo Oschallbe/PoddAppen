@@ -90,4 +90,8 @@ public class PoddService : IPoddService
     {
         await _podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, categoryId);
     }
+    public async Task ChangeNamePodcastAsync(string podcastId, string newName)
+    {
+        await _podcastRepo.ChangeNamePodcastAsync(podcastId, newName);
+    }
 }
