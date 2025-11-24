@@ -77,10 +77,10 @@
             // btnAddCat
             // 
             btnAddCat.Font = new Font("Segoe UI", 12F);
-            btnAddCat.Location = new Point(17, 528);
+            btnAddCat.Location = new Point(2, 604);
             btnAddCat.Margin = new Padding(2);
             btnAddCat.Name = "btnAddCat";
-            btnAddCat.Size = new Size(80, 57);
+            btnAddCat.Size = new Size(117, 57);
             btnAddCat.TabIndex = 5;
             btnAddCat.Text = "Lägg till kategori";
             btnAddCat.UseVisualStyleBackColor = true;
@@ -89,10 +89,10 @@
             // btnEditNamePod
             // 
             btnEditNamePod.Font = new Font("Segoe UI", 12F);
-            btnEditNamePod.Location = new Point(138, 528);
+            btnEditNamePod.Location = new Point(138, 604);
             btnEditNamePod.Margin = new Padding(2);
             btnEditNamePod.Name = "btnEditNamePod";
-            btnEditNamePod.Size = new Size(80, 57);
+            btnEditNamePod.Size = new Size(117, 57);
             btnEditNamePod.TabIndex = 5;
             btnEditNamePod.Text = "Redigera namn";
             btnEditNamePod.UseVisualStyleBackColor = true;
@@ -101,10 +101,10 @@
             // btnDeletePod
             // 
             btnDeletePod.Font = new Font("Segoe UI", 12F);
-            btnDeletePod.Location = new Point(251, 528);
+            btnDeletePod.Location = new Point(268, 604);
             btnDeletePod.Margin = new Padding(2);
             btnDeletePod.Name = "btnDeletePod";
-            btnDeletePod.Size = new Size(80, 57);
+            btnDeletePod.Size = new Size(117, 57);
             btnDeletePod.TabIndex = 4;
             btnDeletePod.Text = "Ta bort podd";
             btnDeletePod.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             lbMyPod.Location = new Point(2, 89);
             lbMyPod.Margin = new Padding(2);
             lbMyPod.Name = "lbMyPod";
-            lbMyPod.Size = new Size(386, 424);
+            lbMyPod.Size = new Size(386, 484);
             lbMyPod.TabIndex = 3;
             lbMyPod.SelectedIndexChanged += lbMyPod_SelectedIndexChanged;
             // 
@@ -178,50 +178,50 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(141, 245);
+            label1.Font = new Font("Segoe UI", 14F);
+            label1.Location = new Point(97, 235);
             label1.Name = "label1";
-            label1.Size = new Size(126, 21);
+            label1.Size = new Size(152, 25);
             label1.TabIndex = 6;
             label1.Text = "Poddbeskrivning";
             // 
             // lbEplist
             // 
             lbEplist.FormattingEnabled = true;
-            lbEplist.Location = new Point(29, 472);
+            lbEplist.Location = new Point(29, 502);
             lbEplist.Margin = new Padding(2);
             lbEplist.Name = "lbEplist";
-            lbEplist.Size = new Size(355, 184);
+            lbEplist.Size = new Size(355, 154);
             lbEplist.TabIndex = 5;
             lbEplist.SelectedIndexChanged += lbEplist_SelectedIndexChanged;
             // 
             // lblMetadataPod
             // 
             lblMetadataPod.AutoSize = true;
-            lblMetadataPod.Font = new Font("Segoe UI", 12F);
-            lblMetadataPod.Location = new Point(141, 440);
+            lblMetadataPod.Font = new Font("Segoe UI", 14F);
+            lblMetadataPod.Location = new Point(97, 450);
             lblMetadataPod.Margin = new Padding(2, 0, 2, 0);
             lblMetadataPod.Name = "lblMetadataPod";
-            lblMetadataPod.Size = new Size(61, 21);
+            lblMetadataPod.Size = new Size(73, 25);
             lblMetadataPod.TabIndex = 3;
             lblMetadataPod.Text = "Avsnitt:";
             lblMetadataPod.Click += lblMetadataPod_Click;
             // 
             // rtbDesc
             // 
-            rtbDesc.Location = new Point(29, 268);
+            rtbDesc.Location = new Point(29, 276);
             rtbDesc.Margin = new Padding(2);
             rtbDesc.Name = "rtbDesc";
-            rtbDesc.Size = new Size(355, 143);
+            rtbDesc.Size = new Size(355, 163);
             rtbDesc.TabIndex = 4;
             rtbDesc.Text = "";
             // 
             // picPod
             // 
-            picPod.Location = new Point(87, 47);
+            picPod.Location = new Point(67, 47);
             picPod.Margin = new Padding(2);
             picPod.Name = "picPod";
-            picPod.Size = new Size(243, 170);
+            picPod.Size = new Size(257, 170);
             picPod.TabIndex = 1;
             picPod.TabStop = false;
             picPod.Click += picPod_Click;
@@ -230,12 +230,12 @@
             // 
             lblPodName.AutoSize = true;
             lblPodName.Font = new Font("Segoe UI", 14F);
-            lblPodName.Location = new Point(141, 12);
+            lblPodName.Location = new Point(97, 16);
             lblPodName.Margin = new Padding(2, 0, 2, 0);
             lblPodName.Name = "lblPodName";
-            lblPodName.Size = new Size(126, 25);
+            lblPodName.Size = new Size(103, 25);
             lblPodName.TabIndex = 0;
-            lblPodName.Text = "NamnPåPodd";
+            lblPodName.Text = "Poddnamn";
             lblPodName.Click += lblPodName_Click;
             // 
             // panelChosenEp
@@ -256,28 +256,30 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F);
+            label3.Font = new Font("Segoe UI", 14F);
             label3.Location = new Point(103, 16);
             label3.Name = "label3";
-            label3.Size = new Size(108, 21);
+            label3.Size = new Size(129, 25);
             label3.TabIndex = 6;
             label3.Text = "Avsnittsnamn:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(103, 305);
+            label2.Font = new Font("Segoe UI", 12F);
+            label2.Location = new Point(68, 305);
             label2.Name = "label2";
-            label2.Size = new Size(101, 15);
+            label2.Size = new Size(143, 21);
             label2.TabIndex = 5;
-            label2.Text = "Publicerat datum:";
+            label2.Text = "Publiceringsdatum:";
             // 
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Location = new Point(210, 305);
+            lblDate.Font = new Font("Segoe UI", 12F);
+            lblDate.Location = new Point(211, 305);
             lblDate.Name = "lblDate";
-            lblDate.Size = new Size(0, 15);
+            lblDate.Size = new Size(0, 21);
             lblDate.TabIndex = 4;
             // 
             // lblMetadataPodEp
@@ -316,9 +318,8 @@
             lblPodNameEp.Location = new Point(103, 55);
             lblPodNameEp.Margin = new Padding(2, 0, 2, 0);
             lblPodNameEp.Name = "lblPodNameEp";
-            lblPodNameEp.Size = new Size(118, 15);
+            lblPodNameEp.Size = new Size(0, 15);
             lblPodNameEp.TabIndex = 0;
-            lblPodNameEp.Text = "NamnPåPoddAvsnitt";
             // 
             // UcDashboard
             // 
