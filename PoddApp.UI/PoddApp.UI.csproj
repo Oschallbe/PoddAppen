@@ -30,12 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="PopUpYesNoFormEp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator></Generator>
     </EmbeddedResource>
