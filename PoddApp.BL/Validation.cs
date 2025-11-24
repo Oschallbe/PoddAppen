@@ -37,40 +37,54 @@
                 return null;
             }
 
-            public async Task<string?> ValidateRssAsync(string rssUrl)
+        public async Task<string?> ValidateRssAsync(string rssUrl)
+        {
+            var urlError = await ValidateUrlAsync(rssUrl);
+            if (urlError != null)
+                return urlError;
+
+            try
             {
-                var urlError = await ValidateUrlAsync(rssUrl);
-                if (urlError != null)
-                    return urlError;
+                using var stream = await http.GetStreamAsync(rssUrl);
 
-                try
+                var settings = new XmlReaderSettings
                 {
-                    using var myStream = await http.GetStreamAsync(rssUrl);
+                    DtdProcessing = DtdProcessing.Ignore,
+                    XmlResolver = null
+                };
 
-                    var settings = new XmlReaderSettings
-                    {
-                        DtdProcessing = DtdProcessing.Ignore,
-                        XmlResolver = null
-                    };
+                using var reader = XmlReader.Create(stream, settings);
 
-                    using var reader = XmlReader.Create(rssUrl, settings);
-                    var feed = SyndicationFeed.Load(reader);
+                var feed = SyndicationFeed.Load(reader);
 
-                    if (feed == null)
-                        return "Länk är inte ett RSS-flöde";
+                if (feed == null)
+                    return "Länk är inte ett RSS-flöde.";
 
-                    if (feed.Items == null)
-                        return "Länken är ej ett podcast RSS-flöde";
-                }
-                catch (Exception)
-                {
-                    return "Felaktig RSS-länk";
-                }
+                if (feed.Items == null || !feed.Items.Any())
+                    return "Länken verkar vara ett tomt RSS-flöde.";
 
-                return null;
+                //Podcast validering
+                bool hasAudio = feed.Items.Any(item =>
+                    item.Links.Any(l =>
+                        l.Uri.AbsoluteUri.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase) ||
+                        l.Uri.AbsoluteUri.EndsWith(".m4a", StringComparison.OrdinalIgnoreCase) ||
+                        l.RelationshipType == "enclosure"
+                    )
+                );
+
+                if (!hasAudio)
+                    return "RSS-flödet är inte en podcast.";
+            }
+            catch (Exception)
+            {
+                return "Felaktig RSS-länk.";
             }
 
-            public async Task<string?> ValidateDuplicateAsync(string rssUrl)
+            return null;
+        }
+
+
+        public async Task<string?> ValidateDuplicateAsync(string rssUrl)
             {
                 var existing = await podcastRepo.GetByRssUrlAsync(rssUrl);
 
