@@ -30,6 +30,7 @@ namespace PoddApp.UI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -39,11 +40,6 @@ namespace PoddApp.UI
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbNewName_TextChanged(object sender, EventArgs e)
         {
             string name = tbNewName.Text.Trim();
 
@@ -62,6 +58,10 @@ namespace PoddApp.UI
             NewName = name;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void tbNewName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

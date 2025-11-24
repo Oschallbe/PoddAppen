@@ -96,6 +96,5 @@ namespace PoddApp.DAL
             var update = Builders<Podcast>.Update.Set(p => p.Name, newName);
             return _collection.UpdateOneAsync(filter, update);
         }
-
     }
 }

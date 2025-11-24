@@ -313,25 +313,22 @@ namespace PoddApp.UI
             UpdatePodcastList(filtered);
         }
 
-        private void btnEditNamePod_Click(object sender, EventArgs e)
+        private async void btnEditNamePod_Click(object sender, EventArgs e)
         {
-            int index = lbMyPod.SelectedIndex;
-            if (index < 0) return;
+            var selectedPodcast = lbMyPod.SelectedItem as Podcast;
+            if (selectedPodcast == null) return;
 
-            var selectedPodcast = _podcasts[index];
+            var popup = new PopUpEditName(selectedPodcast.Name);
+            var result = popup.ShowDialog();
 
-            //var popup = new PopUpEditName(_service, selectedPodcast);
-            //var result = popup.ShowDialog();
-
-            //if (result == DialogResult.Yes)
-
-
+            if (result == DialogResult.OK)
             {
                 try
                 {
-                    // await _service.ChangeNamePodcastAsync(selectedPodcast);
+                    await _service.ChangeNamePodcastAsync(selectedPodcast.Id, popup.NewName);
 
-                    lbMyPod.Items[index] = selectedPodcast.Name;
+                    selectedPodcast.Name = popup.NewName;
+                    UpdatePodcastList(_podcasts);
                     lblPodName.Text = selectedPodcast.Name;
                     MessageBox.Show("Poddens namn uppdaterades!");
                 }
