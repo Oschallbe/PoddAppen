@@ -64,8 +64,9 @@
             // 
             // btnFind
             // 
+            btnFind.FlatStyle = FlatStyle.System;
             btnFind.Font = new Font("Segoe UI", 12F);
-            btnFind.Location = new Point(511, 32);
+            btnFind.Location = new Point(515, 32);
             btnFind.Margin = new Padding(3, 2, 3, 2);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(109, 31);
@@ -157,6 +158,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.WhiteSmoke;
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(btnSavePod);
