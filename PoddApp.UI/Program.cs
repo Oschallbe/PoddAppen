@@ -38,7 +38,7 @@ namespace PoddApp.UI
             IValidation validation = new Validation(repo);
 
 
-            // Starta appen och skicka in service 
+            // Starta appen 
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm(service, validation, repo));
         }
