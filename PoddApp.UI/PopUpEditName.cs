@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace PoddApp.UI
 {
-    public partial class Form1 : Form
+    public partial class PopUpEditName : Form
     {
-        public Form1()
+        public PopUpEditName()
         {
             InitializeComponent();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tbCurrentName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
