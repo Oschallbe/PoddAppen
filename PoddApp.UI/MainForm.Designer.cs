@@ -20,7 +20,6 @@
             mainPanel = new Panel();
             menuPanel = new Panel();
             btnLaggTillPod = new Button();
-            cbUser = new ComboBox();
             btnMenu = new Button();
             menuPanel.SuspendLayout();
             SuspendLayout();
@@ -38,7 +37,6 @@
             // 
             menuPanel.BackColor = Color.FromArgb(176, 196, 222);
             menuPanel.Controls.Add(btnLaggTillPod);
-            menuPanel.Controls.Add(cbUser);
             menuPanel.Controls.Add(btnMenu);
             menuPanel.Dock = DockStyle.Top;
             menuPanel.Location = new Point(0, 0);
@@ -49,31 +47,23 @@
             // 
             // btnLaggTillPod
             // 
-            btnLaggTillPod.Location = new Point(402, 11);
+            btnLaggTillPod.Font = new Font("Segoe UI", 14F);
+            btnLaggTillPod.Location = new Point(950, 4);
             btnLaggTillPod.Margin = new Padding(4);
             btnLaggTillPod.Name = "btnLaggTillPod";
-            btnLaggTillPod.Size = new Size(188, 36);
+            btnLaggTillPod.Size = new Size(177, 45);
             btnLaggTillPod.TabIndex = 3;
-            btnLaggTillPod.Text = "LaggTillPod";
+            btnLaggTillPod.Text = "Lägg till Podcast";
             btnLaggTillPod.UseVisualStyleBackColor = true;
             btnLaggTillPod.Click += button1_Click;
             // 
-            // cbUser
-            // 
-            cbUser.FormattingEnabled = true;
-            cbUser.Location = new Point(1002, 15);
-            cbUser.Margin = new Padding(4);
-            cbUser.Name = "cbUser";
-            cbUser.Size = new Size(188, 23);
-            cbUser.TabIndex = 2;
-            cbUser.SelectedIndexChanged += cbUser_SelectedIndexChanged;
-            // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(64, 15);
+            btnMenu.Font = new Font("Segoe UI", 14F);
+            btnMenu.Location = new Point(67, 4);
             btnMenu.Margin = new Padding(4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(188, 36);
+            btnMenu.Size = new Size(184, 43);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Meny";
             btnMenu.UseVisualStyleBackColor = true;
@@ -98,7 +88,6 @@
 
         private Panel mainPanel;
         private Panel menuPanel;
-        private ComboBox cbUser;
         private Button btnMenu;
         private Button button1;
         private Button btnLaggTillPod;
