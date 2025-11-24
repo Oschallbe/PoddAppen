@@ -11,7 +11,6 @@ public class Podcast
     public string Name { get; set; }
     public string RssUrl { get; set; }
 
-    //Flera kategorier → LISTA MED STRINGS (ObjectId)
     public List<Category> Categories { get; set; } = new();
 
     public string ImageUrl { get; set; }

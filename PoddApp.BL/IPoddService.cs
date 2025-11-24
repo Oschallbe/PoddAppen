@@ -13,6 +13,7 @@ public interface IPoddService
     Task DeletePodcastAsync(string id);
     Task ChangeNamePodcastAsync(string podcastId, string newName);
 
+
     //Categories
     Task AddCategoryAsync(string name);
     Task<List<Category>> GetAllCategoriesAsync();

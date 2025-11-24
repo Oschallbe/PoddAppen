@@ -68,8 +68,6 @@ public class PoddService : IPoddService
         await _podcastRepo.AddCategoryAsync(name);
     }
 
-    // 🔥 NYA METODER — dem du saknar
-
     public async Task<List<Category>> GetAllCategoriesAsync()
     {
         return await _podcastRepo.GetAllCategoriesAsync();

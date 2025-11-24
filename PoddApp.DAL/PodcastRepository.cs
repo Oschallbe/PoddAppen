@@ -35,7 +35,7 @@ namespace PoddApp.DAL
 
         public async Task AddAsync(Podcast podcast)
         {
-            await _collection.InsertOneAsync(podcast);  // Mongo generates ObjectId automatically
+            await _collection.InsertOneAsync(podcast);
         }
 
         public async Task<Podcast?> GetByRssUrlAsync(string rssUrl)

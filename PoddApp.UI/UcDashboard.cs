@@ -21,9 +21,7 @@ namespace PoddApp.UI
             InitializeComponent();
             _service = service;
             validate = validation;
-
-
-            _ = LoadPods();  // fire & forget
+            _ = LoadPods();
             _ = LoadCategories();
         }
 
@@ -163,15 +161,15 @@ namespace PoddApp.UI
                 try
                 {
                     picPod.SizeMode = PictureBoxSizeMode.Zoom; // viktigt så den skalar in bilden
-                    picPod.Load(selectedPodcast.ImageUrl);   // WinForms klarar URL automatiskt!
+                    picPod.Load(selectedPodcast.ImageUrl);
                 }
                 catch
                 {
-                    picPod.Image = null; // eller en fallback-bild
+                    picPod.Image = null;
                 }
             }
             allEpisodes = await _service.GetEpisodesAsync(selectedPodcast);
-            selectedPodcast.Episodes = allEpisodes; // valfritt men bra
+            selectedPodcast.Episodes = allEpisodes;
 
             lbEplist.Items.Clear();
             foreach (var ep in allEpisodes)
@@ -219,7 +217,6 @@ namespace PoddApp.UI
             if (selectedEpisode == null)
                 return;
 
-            // Titel
             if (!string.IsNullOrEmpty(selectedEpisode.Title))
             {
                 lblPodNameEp.Text = selectedEpisode.Title;
@@ -229,7 +226,6 @@ namespace PoddApp.UI
                 lblPodNameEp.Text = "Namnlös episode";
             }
 
-            // Beskrivning
             if (!string.IsNullOrEmpty(selectedEpisode.Description))
             {
                 rtbDescEp.Text = StripHtml(selectedEpisode.Description);
@@ -239,7 +235,7 @@ namespace PoddApp.UI
                 rtbDescEp.Text = "Beskrivning saknas";
             }
 
-            // Datum
+
             if (selectedEpisode.PublishedDate != DateTime.MinValue)
             {
                 lblDate.Text = selectedEpisode.PublishedDate.ToString("yyyy-MM-dd");
@@ -249,13 +245,10 @@ namespace PoddApp.UI
                 lblDate.Text = "Datum saknas";
             }
 
-            // 🔥 Bild
+
             var episodeImage = selectedEpisode.ImageUrl;
             var podcastImage = _podcasts[lbMyPod.SelectedIndex].ImageUrl;
 
-            // 🔥 Visa inte episodbild om:
-            // - den är null/empty
-            // - den är samma som podcastens bild
             if (!string.IsNullOrEmpty(episodeImage) &&
                 !string.Equals(episodeImage, podcastImage, StringComparison.OrdinalIgnoreCase))
             {
@@ -297,12 +290,12 @@ namespace PoddApp.UI
             if (selected == null)
                 return;
 
-            // 🟦 UPPDATERA LABEL MED KATEGORIN
+
             lblMyPod.Text = selected.Value == null
                 ? "Alla kategorier"
                 : selected.Text;
 
-            // 🟦 Visa alla poddar när "Alla" är vald
+
             if (selected.Value == null)
             {
                 UpdatePodcastList(_podcasts);
@@ -311,7 +304,7 @@ namespace PoddApp.UI
 
             string selectedCategoryId = selected.Value;
 
-            // 🟩 Filtra poddar som innehåller denna kategori
+
             var filtered = _podcasts
                 .Where(p => p.Categories != null &&
                             p.Categories.Any(c => c.Id == selectedCategoryId))
@@ -327,14 +320,10 @@ namespace PoddApp.UI
 
             var selectedPodcast = _podcasts[index];
 
-            //var popup = new PopUpEditName(_service, selectedPodcast);
-            //var result = popup.ShowDialog();
 
-            //if (result == DialogResult.Yes)
             {
                 try
                 {
-                   // await _service.ChangeNamePodcastAsync(selectedPodcast);
 
                     lbMyPod.Items[index] = selectedPodcast.Name;
                     lblPodName.Text = selectedPodcast.Name;

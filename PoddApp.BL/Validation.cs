@@ -1,41 +1,41 @@
-﻿    using System;
-    using System.Net.Http;
-    using System.ServiceModel.Syndication;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using PoddApp.DAL;
-    using PoddApp.BL;
-    using PoddApp.Models;
+﻿using System;
+using System.Net.Http;
+using System.ServiceModel.Syndication;
+using System.Threading.Tasks;
+using System.Xml;
+using PoddApp.DAL;
+using PoddApp.BL;
+using PoddApp.Models;
 
-    namespace PoddApp.BL
+namespace PoddApp.BL
+{
+    public class Validation : IValidation
     {
-        public class Validation : IValidation
+        private readonly IPodcastRepo podcastRepo;
+        private readonly HttpClient http;
+
+        public Validation(IPodcastRepo podcastRepo)
         {
-            private readonly IPodcastRepo podcastRepo;
-            private readonly HttpClient http;
+            this.podcastRepo = podcastRepo;
+            this.http = new HttpClient();
+            this.http.Timeout = TimeSpan.FromSeconds(5);
+        }
 
-            public Validation(IPodcastRepo podcastRepo)
+        public async Task<string?> ValidateUrlAsync(string url)
+        {
+            try
             {
-                this.podcastRepo = podcastRepo;
-                this.http = new HttpClient();
-                this.http.Timeout = TimeSpan.FromSeconds(5);
+                var response = await http.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                    return $"Server error: {response.StatusCode}";
+            }
+            catch (Exception)
+            {
+                return "Fel adress";
             }
 
-            public async Task<string?> ValidateUrlAsync(string url)
-            {
-                try
-                {
-                    var response = await http.GetAsync(url);
-                    if (!response.IsSuccessStatusCode)
-                        return $"Server error: {response.StatusCode}";
-                }
-                catch (Exception)
-                {
-                    return "Fel adress";
-                }
-
-                return null;
-            }
+            return null;
+        }
 
         public async Task<string?> ValidateRssAsync(string rssUrl)
         {
@@ -85,23 +85,23 @@
 
 
         public async Task<string?> ValidateDuplicateAsync(string rssUrl)
-            {
-                var existing = await podcastRepo.GetByRssUrlAsync(rssUrl);
+        {
+            var existing = await podcastRepo.GetByRssUrlAsync(rssUrl);
 
-                if (existing != null)
-                    return "Podcast är redan sparad";
+            if (existing != null)
+                return "Podcast är redan sparad";
 
-                return null;
-            }
+            return null;
+        }
 
 
-            public string? ValidateEmpty(string value)
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    return "Obligatoriskt fält";
+        public string? ValidateEmpty(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return "Obligatoriskt fält";
 
-                return null;
-            }
+            return null;
         }
     }
+}
 
