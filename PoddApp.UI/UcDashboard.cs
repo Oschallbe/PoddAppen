@@ -320,10 +320,16 @@ namespace PoddApp.UI
 
             var selectedPodcast = _podcasts[index];
 
+            //var popup = new PopUpEditName(_service, selectedPodcast);
+            //var result = popup.ShowDialog();
+
+            //if (result == DialogResult.Yes)
+
 
             {
                 try
                 {
+                    // await _service.ChangeNamePodcastAsync(selectedPodcast);
 
                     lbMyPod.Items[index] = selectedPodcast.Name;
                     lblPodName.Text = selectedPodcast.Name;
@@ -334,6 +340,29 @@ namespace PoddApp.UI
                     MessageBox.Show("Kunde inte uppdatera podden: " + ex.Message);
                 }
             }
+        }
+
+        private void cbPodSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+     
+            if (_podcasts == null || _podcasts.Count == 0)
+                return;
+
+            string choice = cbPodSort.SelectedItem?.ToString();
+
+            if (choice == "Sortera...")
+                return;
+
+            List<Podcast> sortedList = _podcasts;
+
+            if (choice == "A–Ö")
+            {
+                sortedList = _podcasts
+                    .OrderBy(p => p.Name)
+                    .ToList();
+            }
+
+            UpdatePodcastList(sortedList);
         }
     }
 }

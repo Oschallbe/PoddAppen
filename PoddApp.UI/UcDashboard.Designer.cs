@@ -134,12 +134,14 @@
             // cbPodSort
             // 
             cbPodSort.FormattingEnabled = true;
+            cbPodSort.Items.AddRange(new object[] { "Sortera...", "A–Ö" });
             cbPodSort.Location = new Point(280, 9);
             cbPodSort.Margin = new Padding(2);
             cbPodSort.Name = "cbPodSort";
             cbPodSort.Size = new Size(105, 23);
             cbPodSort.TabIndex = 1;
             cbPodSort.Text = "Sortera";
+            cbPodSort.SelectedIndexChanged += cbPodSort_SelectedIndexChanged;
             // 
             // lblMyPod
             // 
