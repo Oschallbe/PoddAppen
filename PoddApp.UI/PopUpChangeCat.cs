@@ -15,14 +15,19 @@ namespace PoddApp.UI
     public partial class PopUpChangeCat : Form
     {
         public List<Category> NewCategories { get; private set; } = new();
-        public PopUpChangeCat(List<Category> currentCategory, List<Category> allCategories)
+        public PopUpChangeCat(Podcast selectedPodcast, List<Category> allCategories)
         {
             InitializeComponent();
 
+            lblChosenPod.Text = selectedPodcast.Name;
+            lblCurrentCat.Text = selectedPodcast.Categories.Count > 0
+                                    ? selectedPodcast.Categories[0].Name
+                                    : "Ingen kategori";
+
             cbAllCat.DataSource = allCategories.Select(c => c.Name).ToList();
 
-            if (currentCategory.Count == 1)
-                cbAllCat.SelectedItem = currentCategory[0].Name;
+            if (selectedPodcast.Categories.Count == 1)
+                cbAllCat.SelectedItem = selectedPodcast.Categories[0].Name;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

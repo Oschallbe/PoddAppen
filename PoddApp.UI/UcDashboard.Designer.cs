@@ -83,6 +83,7 @@
             btnChangeCat.TabIndex = 6;
             btnChangeCat.Text = "Ändra kategori för podd";
             btnChangeCat.UseVisualStyleBackColor = true;
+            btnChangeCat.Click += btnChangeCat_Click_1;
             // 
             // btnAddCat
             // 
