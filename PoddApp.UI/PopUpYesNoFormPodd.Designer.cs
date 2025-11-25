@@ -36,10 +36,10 @@
             // btnYes
             // 
             btnYes.DialogResult = DialogResult.Yes;
-            btnYes.Location = new Point(103, 197);
+            btnYes.Location = new Point(124, 116);
             btnYes.Margin = new Padding(2);
             btnYes.Name = "btnYes";
-            btnYes.Size = new Size(78, 20);
+            btnYes.Size = new Size(87, 26);
             btnYes.TabIndex = 0;
             btnYes.Text = "Ja";
             btnYes.UseVisualStyleBackColor = true;
@@ -48,10 +48,10 @@
             // btnNo
             // 
             btnNo.DialogResult = DialogResult.No;
-            btnNo.Location = new Point(362, 197);
+            btnNo.Location = new Point(275, 116);
             btnNo.Margin = new Padding(2);
             btnNo.Name = "btnNo";
-            btnNo.Size = new Size(78, 20);
+            btnNo.Size = new Size(82, 26);
             btnNo.TabIndex = 1;
             btnNo.Text = "Nej";
             btnNo.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             // lblText
             // 
             lblText.AutoSize = true;
-            lblText.Location = new Point(233, 64);
+            lblText.Location = new Point(212, 66);
             lblText.Margin = new Padding(2, 0, 2, 0);
             lblText.Name = "lblText";
             lblText.Size = new Size(71, 15);
@@ -71,7 +71,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 270);
+            ClientSize = new Size(508, 228);
             Controls.Add(lblText);
             Controls.Add(btnNo);
             Controls.Add(btnYes);

@@ -77,12 +77,12 @@
             // 
             // ComboBoxCat
             // 
+            ComboBoxCat.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxCat.FormattingEnabled = true;
             ComboBoxCat.Location = new Point(194, 72);
             ComboBoxCat.Name = "ComboBoxCat";
             ComboBoxCat.Size = new Size(171, 23);
             ComboBoxCat.TabIndex = 5;
-            ComboBoxCat.Text = "Nuvarande namn på kategori";
             // 
             // PopUpEditCat
             // 

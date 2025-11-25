@@ -192,8 +192,12 @@ namespace PoddApp.UI
             {
                 await _service.AddCategoryAsync(popup.CatName);
                 MessageBox.Show("Kategori sparad!");
-            }
+                await LoadCategories();
+                await LoadPods();
+            } 
         }
+
+         
         private void lblMetadataPod_Click(object sender, EventArgs e) { }
         private void lblMetadataPodEp_Click(object sender, EventArgs e) { }
 
@@ -294,7 +298,7 @@ namespace PoddApp.UI
                 return;
 
             lblMyPod.Text = selected.Value == null
-                ? "Alla kategorier"
+                ? "Mina Poddar"
                 : selected.Text;
 
             List<Podcast> newPodcastList;
@@ -324,12 +328,21 @@ namespace PoddApp.UI
 
         private async void btnEditNamePod_Click(object sender, EventArgs e)
         {
-            var selectedPodcast = lbMyPod.SelectedItem as Podcast;
-            if (selectedPodcast == null) return;
+            int index = lbMyPod.SelectedIndex;
 
+            // Kontrollera att ett giltigt val har gjorts
+            if (index < 0 || index >= _podcasts.Count)
+            {
+                MessageBox.Show("Välj en podd att redigera.", "Varning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 1. Hämta Podcast-objektet korrekt från listan med det valda indexet
+            var selectedPodcast = _podcasts[index];
+
+            // 2. Öppna popup-rutan PopUpEditName med det nuvarande namnet
             var popup = new PopUpEditName(selectedPodcast.Name);
             var result = popup.ShowDialog();
-
             if (result == DialogResult.OK)
             {
                 try
@@ -356,8 +369,9 @@ namespace PoddApp.UI
 
             string choice = cbPodSort.SelectedItem?.ToString();
 
-            if (choice == "Sortera...")
-                return;
+            if (choice == "Sortera")
+                LoadPods();
+           
 
             // Skapa en ny lista att arbeta med
             List<Podcast> sortedList = _podcasts;
@@ -409,15 +423,39 @@ namespace PoddApp.UI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            using (var popup = new PopUpEditCat(_service, validate, _categories))
+            {
+                var result = popup.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // 3. Ladda om alla kategorier och poddar för att uppdatera filtren och listan
+                    await LoadCategories();
+                    await LoadPods();
+                }
+            }
+
+
+
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            using (var popup = new PopUpDeleteCat(_service))
+            {
+                var result = popup.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // 3. Ladda om alla kategorier och poddar för att uppdatera filtren och listan
+                    await LoadCategories();
+                    await LoadPods();
+                }
 
+            }
         }
+    
     }
 }
 
