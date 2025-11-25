@@ -34,41 +34,41 @@ namespace PoddApp.UI
             this.Close();
         }
 
-        //private async Task btnSave_Click(object sender, EventArgs e)
-        //{
-        //    if (ComboBoxCat.SelectedItem is not Category selectedCat)
-        //    {
-        //        MessageBox.Show("Välj kategori först", "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        return;
-        //    }
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            if (ComboBoxCat.SelectedItem is not Category selectedCat)
+            {
+                MessageBox.Show("Välj kategori först", "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-        //    string NewName = tbNewName.Text.Trim();
+            string NewName = tbNewName.Text.Trim();
 
-        //    string error = this.validation.ValidateEmpty(NewName);
-        //    if (error != null)
-        //    {
-        //        MessageBox.Show(error, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        return;
-        //    }
+            string error = this.validation.ValidateEmpty(NewName);
+            if (error != null)
+            {
+                MessageBox.Show(error, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-        //    try
-        //    {
-        //        await this.service.ChangeNameCategoryAsync(selectedCat.Id, NewName);
+            try
+            {
+                await this.service.ChangeNamePodcastAsync(selectedCat.Id, NewName);
 
-        //        selectedCat.Name = NewName;
+                selectedCat.Name = NewName;
 
-        //        ComboBoxCat.DisplayMember = "";
-        //        ComboBoxCat.DisplayMember = "Name";
+                ComboBoxCat.DisplayMember = "";
+                ComboBoxCat.DisplayMember = "Name";
 
-        //        MessageBox.Show("Kategori uppdaterat", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Kategori uppdaterat", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        //        this.DialogResult = DialogResult.OK;
-        //        this.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Gick inte att uppdatera" + ex.Message);
-        //    }
-        //}
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gick inte att uppdatera" + ex.Message);
+            }
+        }
     }
 }
