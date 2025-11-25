@@ -365,6 +365,11 @@ namespace PoddApp.UI
 
         private async void btnChangeCat_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private async void btnChangeCat_Click_1(object sender, EventArgs e)
+        {
             int index = lbMyPod.SelectedIndex;
             if (index < 0) return;
 
@@ -372,7 +377,7 @@ namespace PoddApp.UI
 
             var allCategories = await _service.GetAllCategoriesAsync();
 
-            var popup = new PopUpChangeCat(selectedPodcast.Categories, allCategories);
+            var popup = new PopUpChangeCat(selectedPodcast, allCategories);
             var result = popup.ShowDialog();
 
             if (result == DialogResult.OK)
