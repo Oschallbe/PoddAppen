@@ -52,6 +52,8 @@
             rtbDescEp = new RichTextBox();
             picPodEp = new PictureBox();
             lblPodNameEp = new Label();
+            button1 = new Button();
+            button2 = new Button();
             panelMyPods.SuspendLayout();
             panelChosenPod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPod).BeginInit();
@@ -61,6 +63,8 @@
             // 
             // panelMyPods
             // 
+            panelMyPods.Controls.Add(button2);
+            panelMyPods.Controls.Add(button1);
             panelMyPods.Controls.Add(btnChangeCat);
             panelMyPods.Controls.Add(btnAddCat);
             panelMyPods.Controls.Add(btnEditNamePod);
@@ -77,9 +81,9 @@
             // 
             // btnChangeCat
             // 
-            btnChangeCat.Location = new Point(214, 625);
+            btnChangeCat.Location = new Point(3, 626);
             btnChangeCat.Name = "btnChangeCat";
-            btnChangeCat.Size = new Size(117, 57);
+            btnChangeCat.Size = new Size(180, 30);
             btnChangeCat.TabIndex = 6;
             btnChangeCat.Text = "Ändra kategori för podd";
             btnChangeCat.UseVisualStyleBackColor = true;
@@ -87,11 +91,11 @@
             // 
             // btnAddCat
             // 
-            btnAddCat.Font = new Font("Segoe UI", 12F);
-            btnAddCat.Location = new Point(47, 625);
+            btnAddCat.Font = new Font("Segoe UI", 9F);
+            btnAddCat.Location = new Point(203, 526);
             btnAddCat.Margin = new Padding(2);
             btnAddCat.Name = "btnAddCat";
-            btnAddCat.Size = new Size(117, 57);
+            btnAddCat.Size = new Size(180, 30);
             btnAddCat.TabIndex = 5;
             btnAddCat.Text = "Lägg till kategori";
             btnAddCat.UseVisualStyleBackColor = true;
@@ -99,11 +103,11 @@
             // 
             // btnEditNamePod
             // 
-            btnEditNamePod.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEditNamePod.Location = new Point(47, 533);
+            btnEditNamePod.Font = new Font("Segoe UI", 9F);
+            btnEditNamePod.Location = new Point(3, 526);
             btnEditNamePod.Margin = new Padding(2);
             btnEditNamePod.Name = "btnEditNamePod";
-            btnEditNamePod.Size = new Size(117, 57);
+            btnEditNamePod.Size = new Size(180, 30);
             btnEditNamePod.TabIndex = 5;
             btnEditNamePod.Text = "Redigera namn på podd";
             btnEditNamePod.UseVisualStyleBackColor = true;
@@ -111,11 +115,11 @@
             // 
             // btnDeletePod
             // 
-            btnDeletePod.Font = new Font("Segoe UI", 12F);
-            btnDeletePod.Location = new Point(214, 533);
+            btnDeletePod.Font = new Font("Segoe UI", 9F);
+            btnDeletePod.Location = new Point(3, 575);
             btnDeletePod.Margin = new Padding(2);
             btnDeletePod.Name = "btnDeletePod";
-            btnDeletePod.Size = new Size(117, 57);
+            btnDeletePod.Size = new Size(180, 30);
             btnDeletePod.TabIndex = 4;
             btnDeletePod.Text = "Ta bort podd";
             btnDeletePod.UseVisualStyleBackColor = true;
@@ -326,6 +330,24 @@
             lblPodNameEp.Size = new Size(0, 15);
             lblPodNameEp.TabIndex = 0;
             // 
+            // button1
+            // 
+            button1.Location = new Point(203, 626);
+            button1.Name = "button1";
+            button1.Size = new Size(180, 30);
+            button1.TabIndex = 7;
+            button1.Text = "Redigera namn kategori";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(203, 575);
+            button2.Name = "button2";
+            button2.Size = new Size(180, 30);
+            button2.TabIndex = 8;
+            button2.Text = "Ta bort kategori";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // UcDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -373,5 +395,7 @@
         private Label label2;
         private Label label3;
         private Button btnChangeCat;
+        private Button button2;
+        private Button button1;
     }
 }
