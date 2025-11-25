@@ -101,5 +101,10 @@ public class PoddService : IPoddService
         await _podcastRepo.UpdateAsync(podcast);
     }
 
+    public async Task DeleteCategoryAsync(string categoryId)
+    {
+        await _podcastRepo.DeleteCategoryAsync(categoryId);
+    }
+
 
 }

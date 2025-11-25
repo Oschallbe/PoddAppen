@@ -24,5 +24,7 @@ namespace PoddApp.DAL
 
         // NY METOD (US 6.2)
         Task ChangeCategoryNameAsync(string categoryId, string newName);
+
+        Task DeleteCategoryAsync(string categoryId);
     }
 }
