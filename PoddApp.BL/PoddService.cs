@@ -86,4 +86,10 @@ public class PoddService : IPoddService
     {
         await _podcastRepo.ChangeNamePodcastAsync(podcastId, newName);
     }
+
+    public async Task ChangeCategoryNameAsync(string categoryId, string newName)
+    {
+        // Vi lägger ingen extra affärslogik här, utan bara skickar vidare till DAL
+        await _podcastRepo.ChangeCategoryNameAsync(categoryId, newName);
+    }
 }
