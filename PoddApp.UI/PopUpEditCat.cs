@@ -38,7 +38,7 @@ namespace PoddApp.UI
         {
             if (ComboBoxCat.SelectedItem is not Category selectedCat)
             {
-                MessageBox.Show("Välj kategori först", "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Välj kategori först", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace PoddApp.UI
             string error = this.validation.ValidateEmpty(NewName);
             if (error != null)
             {
-                MessageBox.Show(error, "fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(error, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
