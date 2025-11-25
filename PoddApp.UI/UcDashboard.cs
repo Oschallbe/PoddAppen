@@ -4,6 +4,7 @@ using PoddApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PoddApp.UI
@@ -341,7 +342,7 @@ namespace PoddApp.UI
 
         private void cbPodSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-     
+
             if (_podcasts == null || _podcasts.Count == 0)
                 return;
 
@@ -360,6 +361,34 @@ namespace PoddApp.UI
             }
 
             UpdatePodcastList(sortedList);
+        }
+
+        private async void btnChangeCat_Click(object sender, EventArgs e)
+        {
+            int index = lbMyPod.SelectedIndex;
+            if (index < 0) return;
+
+            var selectedPodcast = _podcasts[index];
+
+            var allCategories = await _service.GetAllCategoriesAsync();
+
+            //var popup = new PopUpChangeCat(selectedPodcast.Categories, allCategories);
+            //var result = popup.ShowDialog();
+
+            //if (result == DialogResult.OK)
+            {
+                try
+                {
+                    //await _service.ChangeCategoryPodcastAsync(selectedPodcast, popup.NewCategories);
+                    //selectedPodcast.Categories = popup.NewCategories;
+
+                    MessageBox.Show("Kategori har ändrats!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kunde inte ändra kategori: " + ex.Message);
+                }
+            }
         }
     }
 }
