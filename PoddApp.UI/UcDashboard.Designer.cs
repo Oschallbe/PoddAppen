@@ -238,9 +238,11 @@
             // 
             // rtbDesc
             // 
+            rtbDesc.BackColor = SystemColors.ButtonHighlight;
             rtbDesc.Location = new Point(29, 276);
             rtbDesc.Margin = new Padding(2);
             rtbDesc.Name = "rtbDesc";
+            rtbDesc.ReadOnly = true;
             rtbDesc.Size = new Size(355, 163);
             rtbDesc.TabIndex = 4;
             rtbDesc.Text = "";
@@ -324,9 +326,11 @@
             // 
             // rtbDescEp
             // 
+            rtbDescEp.BackColor = SystemColors.ButtonHighlight;
             rtbDescEp.Location = new Point(36, 391);
             rtbDescEp.Margin = new Padding(2);
             rtbDescEp.Name = "rtbDescEp";
+            rtbDescEp.ReadOnly = true;
             rtbDescEp.Size = new Size(300, 270);
             rtbDescEp.TabIndex = 2;
             rtbDescEp.Text = "";
