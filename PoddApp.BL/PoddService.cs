@@ -82,4 +82,29 @@ public class PoddService : IPoddService
     {
         await _podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, categoryId);
     }
+
+    public async Task ChangeNamePodcastAsync(string podcastId, string newName)
+    {
+        await _podcastRepo.ChangeNamePodcastAsync(podcastId, newName);
+    }
+
+    public async Task ChangeCategoryNameAsync(string categoryId, string newName)
+    {
+        // Vi lägger ingen extra affärslogik här, utan bara skickar vidare till DAL
+        await _podcastRepo.ChangeCategoryNameAsync(categoryId, newName);
+    }
+
+    // NY IMPLEMENTERING FÖR ATT BYTA KATEGORI
+    public async Task ChangeCategoryPodcastAsync(string podcastId, string oldCategoryId, string newCategoryId)
+    {
+        // Först, ta bort den gamla kategorin (om den finns)
+        if (!string.IsNullOrEmpty(oldCategoryId))
+        {
+            await _podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, oldCategoryId);
+        }
+
+        // Sedan, lägg till den nya kategorin
+        await _podcastRepo.AddCategoryToPodcastAsync(podcastId, newCategoryId);
+    }
+
 }
