@@ -53,7 +53,7 @@ namespace PoddApp.UI
 
             try
             {
-                await this.service.ChangeNamePodcastAsync(selectedCat.Id, NewName);
+                await this.service.ChangeCategoryNameAsync(selectedCat.Id, NewName);
 
                 selectedCat.Name = NewName;
 
