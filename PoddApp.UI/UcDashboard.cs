@@ -54,6 +54,11 @@ namespace PoddApp.UI
                 Value = null
             });
 
+            cbPodSort.Items.Clear();
+            cbPodSort.Items.Add("Sortera");
+            cbPodSort.Items.Add("A–Ö");
+            cbPodSort.SelectedIndex = 0;
+
             // Lägg in varje kategori
             foreach (var cat in _categories)
             {

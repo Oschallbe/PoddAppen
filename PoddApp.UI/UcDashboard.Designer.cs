@@ -168,6 +168,7 @@
             // 
             // cbPodSort
             // 
+            cbPodSort.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPodSort.FormattingEnabled = true;
             cbPodSort.Items.AddRange(new object[] { "Sortera", "A–Ö" });
             cbPodSort.Location = new Point(280, 9);
