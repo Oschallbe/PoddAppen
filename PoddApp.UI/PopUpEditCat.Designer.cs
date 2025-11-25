@@ -54,6 +54,7 @@
             btnSave.TabIndex = 2;
             btnSave.Text = "Spara";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // tbNewName
             // 
