@@ -32,22 +32,22 @@ public class PoddService : IPoddService
 
     public async Task<List<Episode>> GetEpisodesAsync(Podcast podcast)
     {
+        // 1. Hämta från DB
+        var podFromDb = await _podcastRepo.GetByIdAsync(podcast.Id);
+
+        if (podFromDb != null && podFromDb.Episodes.Any())
+            return podFromDb.Episodes;
+
+        // 2. Fallback: hämta från RSS
         var episodes = await _rss.GetRSSPod(podcast.RssUrl);
 
-        foreach (var episode in episodes)
-        {
-            var originalId = episode.Id;
-
-            var episodeImage = await _rss.GetEpisodeImageUrl(podcast.RssUrl, originalId);
-
-            episode.ImageUrl = episodeImage ?? podcast.ImageUrl;
-
-            episode.Id = podcast.Id + "-->" + originalId;
-            episode.Link = podcast.RssUrl;
-        }
+        // 3. Spara i DB
+        podcast.Episodes = episodes;
+        await _podcastRepo.UpdateAsync(podcast);
 
         return episodes;
     }
+
 
     public async Task SavePodcastAsync(Podcast podcast)
     {

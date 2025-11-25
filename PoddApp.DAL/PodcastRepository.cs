@@ -267,5 +267,13 @@ namespace PoddApp.DAL
                 }
             }
         }
+
+        public async Task<Podcast?> GetByIdAsync(string id)
+        {
+            return await _collection
+                .Find(p => p.Id == id)
+                .FirstOrDefaultAsync();
+        }
+
     }
 }
