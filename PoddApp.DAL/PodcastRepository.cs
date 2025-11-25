@@ -7,13 +7,15 @@ namespace PoddApp.DAL
 {
     public class PodcastRepository : IPodcastRepo
     {
+        private readonly IMongoClient _client;
+        private readonly IMongoDatabase database;
         private readonly IMongoCollection<Podcast> _collection;
         private readonly IMongoCollection<Category> _categoriesCollection;
 
-        public PodcastRepository(string connectionString, string databaseName)
+        public PodcastRepository(IMongoClient client, string databaseName)
         {
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase(databaseName);
+            _client = client;
+            database = client.GetDatabase(databaseName);
             _collection = database.GetCollection<Podcast>("Podcasts");
             _categoriesCollection = database.GetCollection<Category>("Category");
         }
@@ -33,9 +35,33 @@ namespace PoddApp.DAL
             await _collection.DeleteOneAsync(p => p.Id == id);
         }
 
-        public async Task AddAsync(Podcast podcast)
+        public async Task AddAsync(Podcast podcast, Category category)
+        //Ändrar denna metod för att ta in en kategori också, om det inte funkar så får vi ändra tillbaka
+        //Lägger också till transaktioner enligt kraven
         {
-            await _collection.InsertOneAsync(podcast);
+            using (var session = await _client.StartSessionAsync())
+            {
+                session.StartTransaction();
+
+                try
+                {
+                    await _collection.InsertOneAsync(session, podcast);
+
+                    var update = Builders<Podcast>.Update.AddToSet(p => p.Categories, category);
+                    await _collection.UpdateOneAsync(session, p => p.Id == podcast.Id, update);
+
+                    await session.CommitTransactionAsync();
+                }
+                catch
+                {
+                    await session.AbortTransactionAsync();
+                    throw;
+                }
+            }
+
+
+
+            
         }
 
         public async Task<Podcast?> GetByRssUrlAsync(string rssUrl)

@@ -49,9 +49,9 @@ public class PoddService : IPoddService
         return episodes;
     }
 
-    public async Task SavePodcastAsync(Podcast podcast)
+    public async Task SavePodcastAsync(Podcast podcast, Category category)
     {
-        await _podcastRepo.AddAsync(podcast);
+        await _podcastRepo.AddAsync(podcast, category);
     }
 
     public async Task<List<Podcast>> GetAllPodcastsAsync()
