@@ -372,15 +372,15 @@ namespace PoddApp.UI
 
             var allCategories = await _service.GetAllCategoriesAsync();
 
-            //var popup = new PopUpChangeCat(selectedPodcast.Categories, allCategories);
-            //var result = popup.ShowDialog();
+            var popup = new PopUpChangeCat(selectedPodcast.Categories, allCategories);
+            var result = popup.ShowDialog();
 
-            //if (result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 try
                 {
-                    //await _service.ChangeCategoryPodcastAsync(selectedPodcast, popup.NewCategories);
-                    //selectedPodcast.Categories = popup.NewCategories;
+                    await _service.ChangeCategoryPodcastAsync(selectedPodcast, popup.NewCategories);
+                    selectedPodcast.Categories = popup.NewCategories;
 
                     MessageBox.Show("Kategori har ändrats!");
                 }

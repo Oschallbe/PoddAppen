@@ -19,7 +19,6 @@ public interface IPoddService
     Task<List<Category>> GetAllCategoriesAsync();
     Task AddCategoryToPodcastAsync(string podcastId, string categoryId);
     Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId);
-    Task ChangeCategoryPodcastAsync(string podcastId, string oldCategoryId, string newCategoryId);
-
+    Task ChangeCategoryPodcastAsync(Podcast podcast, List<Category> newCategories);
     Task ChangeCategoryNameAsync(string categoryId, string newName);
 }
