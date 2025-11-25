@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelMyPods = new Panel();
+            button2 = new Button();
+            button1 = new Button();
             btnChangeCat = new Button();
             btnAddCat = new Button();
             btnEditNamePod = new Button();
@@ -52,8 +54,6 @@
             rtbDescEp = new RichTextBox();
             picPodEp = new PictureBox();
             lblPodNameEp = new Label();
-            button1 = new Button();
-            button2 = new Button();
             panelMyPods.SuspendLayout();
             panelChosenPod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPod).BeginInit();
@@ -78,6 +78,26 @@
             panelMyPods.Name = "panelMyPods";
             panelMyPods.Size = new Size(388, 696);
             panelMyPods.TabIndex = 0;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(203, 575);
+            button2.Name = "button2";
+            button2.Size = new Size(180, 30);
+            button2.TabIndex = 8;
+            button2.Text = "Ta bort kategori";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(203, 626);
+            button1.Name = "button1";
+            button1.Size = new Size(180, 30);
+            button1.TabIndex = 7;
+            button1.Text = "Redigera namn kategori";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnChangeCat
             // 
@@ -329,24 +349,6 @@
             lblPodNameEp.Name = "lblPodNameEp";
             lblPodNameEp.Size = new Size(0, 15);
             lblPodNameEp.TabIndex = 0;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(203, 626);
-            button1.Name = "button1";
-            button1.Size = new Size(180, 30);
-            button1.TabIndex = 7;
-            button1.Text = "Redigera namn kategori";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(203, 575);
-            button2.Name = "button2";
-            button2.Size = new Size(180, 30);
-            button2.TabIndex = 8;
-            button2.Text = "Ta bort kategori";
-            button2.UseVisualStyleBackColor = true;
             // 
             // UcDashboard
             // 
