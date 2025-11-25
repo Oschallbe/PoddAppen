@@ -8,7 +8,7 @@ public interface IPoddService
 
     Task<List<Episode>> GetEpisodesAsync(Podcast podcast);
 
-    Task SavePodcastAsync(Podcast podcast, Category category);
+    Task SavePodcastAsync(Podcast podcast);
     Task<List<Podcast>> GetAllPodcastsAsync();
     Task DeletePodcastAsync(string id);
     Task ChangeNamePodcastAsync(string podcastId, string newName);

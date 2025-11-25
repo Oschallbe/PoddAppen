@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.Extensions.Configuration;
 using PoddApp.BL;
 using PoddApp.DAL;
-using PoddApp.Models;
-using System;
-using System.Windows.Forms;
-
 
 namespace PoddApp.UI
 {
@@ -27,13 +24,10 @@ namespace PoddApp.UI
                 .Build();
 
             // Skapa Repository via interfacet
-            //IPodcastRepo repo = new PodcastRepository(
-            //    config["Mongo:ConnectionString"],
-            //    config["Mongo:Database"]
-            //);
-
-            var client = new MongoClient(config["Mongo:ConnectionString"]);
-            IPodcastRepo repo = new PodcastRepository(client, config["Mongo:Database"]);
+            IPodcastRepo repo = new PodcastRepository(
+                config["Mongo:ConnectionString"],
+                config["Mongo:Database"]
+            );
 
             // WinForms standardinställningar
             Application.SetHighDpiMode(HighDpiMode.SystemAware);

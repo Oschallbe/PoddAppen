@@ -181,7 +181,7 @@ namespace PoddApp.UI
                     Categories = categories
                 };
 
-                await aPodService.SavePodcastAsync(pod, selectedCategory);
+                await aPodService.SavePodcastAsync(pod);
 
                 MessageBox.Show("Podcast Sparad", "klart", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
