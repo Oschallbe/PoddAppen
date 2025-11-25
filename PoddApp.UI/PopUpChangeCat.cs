@@ -20,11 +20,10 @@ namespace PoddApp.UI
             InitializeComponent();
 
             lblChosenPod.Text = selectedPodcast.Name;
-            lblCurrentCat.Text = selectedPodcast.Categories.Count > 0
-                                    ? selectedPodcast.Categories[0].Name
-                                    : "Ingen kategori";
+            lblCurrentCat.Text = selectedPodcast.Categories.FirstOrDefault()?.Name ?? "Ingen kategori";
 
-            cbAllCat.DataSource = allCategories.Select(c => c.Name).ToList();
+            cbAllCat.DataSource = allCategories;
+            cbAllCat.DisplayMember = "Name";
 
             if (selectedPodcast.Categories.Count == 1)
                 cbAllCat.SelectedItem = selectedPodcast.Categories[0].Name;
@@ -38,14 +37,13 @@ namespace PoddApp.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cbAllCat.SelectedItem == null)
+            if (cbAllCat.SelectedItem is not Category selectedCat)
             {
                 MessageBox.Show("Du måste välja en kategori.");
                 return;
             }
 
-            string NewCategory = cbAllCat.SelectedItem.ToString();
-            NewCategories = new List<Category> { new Category { Name = NewCategory } };
+            NewCategories = new List<Category> { selectedCat };
             DialogResult = DialogResult.OK;
             Close();
         }
