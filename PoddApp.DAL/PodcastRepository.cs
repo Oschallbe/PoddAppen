@@ -211,6 +211,36 @@ namespace PoddApp.DAL
                 }
             }
         }
+
+        public async Task DeleteCategoryAsync(string categoryId)
+        {
+            // OBS! _client måste vara satt i konstruktorn för att transaktioner ska fungera.
+            using (var session = await _client.StartSessionAsync())
+            {
+                session.StartTransaction();
+                try
+                {
+                    // 1. Ta bort referensen till kategorin från ALLA Podcasts som använder den
+                    var podcastFilter = Builders<Podcast>.Filter.ElemMatch(p => p.Categories, c => c.Id == categoryId);
+                    // Använder $pullFilter för att ta bort elementet från arrayen
+                    var update = Builders<Podcast>.Update.PullFilter(p => p.Categories, c => c.Id == categoryId);
+
+                    // Använd UpdateManyAsync för att applicera ändringen på alla poddar
+                    await _collection.UpdateManyAsync(session, podcastFilter, update);
+
+                    // 2. Ta bort själva kategorin från kategorisamlingen
+                    await _categoriesCollection.DeleteOneAsync(session, c => c.Id == categoryId);
+
+                    await session.CommitTransactionAsync();
+                }
+                catch
+                {
+                    await session.AbortTransactionAsync();
+                    throw;
+                }
+            }
+        }
+
         public async Task ChangeCategoryNameAsync(string categoryId, string newName)
         {
             // Måste uppdatera interfacet IPodcastRepo med denna signatur först

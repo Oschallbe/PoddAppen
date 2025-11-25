@@ -21,4 +21,5 @@ public interface IPoddService
     Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId);
     Task ChangeCategoryPodcastAsync(Podcast podcast, List<Category> newCategories);
     Task ChangeCategoryNameAsync(string categoryId, string newName);
+    Task DeleteCategoryAsync(string categoryId);
 }
