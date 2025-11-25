@@ -16,6 +16,7 @@ namespace PoddApp.UI
         private List<Episode> allEpisodes;
         private readonly IValidation validate;
         private List<Category> _categories = new();
+        private List<Podcast> _allPodcasts = new();
 
         public UcDashboard(IPoddService service, IValidation validation)
         {
@@ -30,8 +31,8 @@ namespace PoddApp.UI
         {
             try
             {
-                _podcasts = await _service.GetAllPodcastsAsync() ?? new List<Podcast>();
-
+                _allPodcasts = await _service.GetAllPodcastsAsync() ?? new List<Podcast>();
+                _podcasts = _allPodcasts; // Sätt visningslistan till masterlistan
                 UpdatePodcastList(_podcasts);
             }
             catch (Exception ex)
@@ -284,34 +285,41 @@ namespace PoddApp.UI
 
         private void cbPodCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_podcasts == null || _podcasts.Count == 0)
+            // Använd _allPodcasts som källa (Måste vara implementerad enligt ovan)
+            if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
 
             ComboBoxItem? selected = cbPodCat.SelectedItem as ComboBoxItem;
             if (selected == null)
                 return;
 
-
             lblMyPod.Text = selected.Value == null
                 ? "Alla kategorier"
                 : selected.Text;
 
+            List<Podcast> newPodcastList;
 
             if (selected.Value == null)
             {
-                UpdatePodcastList(_podcasts);
-                return;
+                // Återställ till den kompletta masterlistan
+                newPodcastList = _allPodcasts;
+            }
+            else
+            {
+                string selectedCategoryId = selected.Value;
+
+                // Filtrera ALLTID från masterlistan
+                newPodcastList = _allPodcasts
+                    .Where(p => p.Categories != null &&
+                                p.Categories.Any(c => c.Id == selectedCategoryId))
+                    .ToList();
             }
 
-            string selectedCategoryId = selected.Value;
+            // NYCKELSTEG: Uppdatera den globala visningslistan (_podcasts) 
+            // med de nya filtrerade/kompletta poddarna
+            _podcasts = newPodcastList;
 
-
-            var filtered = _podcasts
-                .Where(p => p.Categories != null &&
-                            p.Categories.Any(c => c.Id == selectedCategoryId))
-                .ToList();
-
-            UpdatePodcastList(filtered);
+            UpdatePodcastList(_podcasts);
         }
 
         private async void btnEditNamePod_Click(object sender, EventArgs e)
@@ -351,14 +359,19 @@ namespace PoddApp.UI
             if (choice == "Sortera...")
                 return;
 
+            // Skapa en ny lista att arbeta med
             List<Podcast> sortedList = _podcasts;
 
             if (choice == "A–Ö")
             {
+                // Skapar den sorterade listan
                 sortedList = _podcasts
                     .OrderBy(p => p.Name)
                     .ToList();
             }
+
+            // NYCKELSTEG: Uppdatera den globala listan till den nya ordningen
+            _podcasts = sortedList;
 
             UpdatePodcastList(sortedList);
         }
