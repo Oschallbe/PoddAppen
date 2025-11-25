@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMyPods = new Panel();
+            btnChangeCat = new Button();
             btnAddCat = new Button();
             btnEditNamePod = new Button();
             btnDeletePod = new Button();
@@ -36,7 +37,6 @@
             cbPodCat = new ComboBox();
             cbPodSort = new ComboBox();
             lblMyPod = new Label();
-            panelMyPodEps = new Panel();
             panelChosenPod = new Panel();
             label1 = new Label();
             lbEplist = new ListBox();
@@ -61,6 +61,7 @@
             // 
             // panelMyPods
             // 
+            panelMyPods.Controls.Add(btnChangeCat);
             panelMyPods.Controls.Add(btnAddCat);
             panelMyPods.Controls.Add(btnEditNamePod);
             panelMyPods.Controls.Add(btnDeletePod);
@@ -71,13 +72,22 @@
             panelMyPods.Location = new Point(2, 2);
             panelMyPods.Margin = new Padding(2);
             panelMyPods.Name = "panelMyPods";
-            panelMyPods.Size = new Size(388, 684);
+            panelMyPods.Size = new Size(388, 696);
             panelMyPods.TabIndex = 0;
+            // 
+            // btnChangeCat
+            // 
+            btnChangeCat.Location = new Point(214, 625);
+            btnChangeCat.Name = "btnChangeCat";
+            btnChangeCat.Size = new Size(117, 57);
+            btnChangeCat.TabIndex = 6;
+            btnChangeCat.Text = "Ändra kategori för podd";
+            btnChangeCat.UseVisualStyleBackColor = true;
             // 
             // btnAddCat
             // 
             btnAddCat.Font = new Font("Segoe UI", 12F);
-            btnAddCat.Location = new Point(2, 604);
+            btnAddCat.Location = new Point(47, 625);
             btnAddCat.Margin = new Padding(2);
             btnAddCat.Name = "btnAddCat";
             btnAddCat.Size = new Size(117, 57);
@@ -88,20 +98,20 @@
             // 
             // btnEditNamePod
             // 
-            btnEditNamePod.Font = new Font("Segoe UI", 12F);
-            btnEditNamePod.Location = new Point(138, 604);
+            btnEditNamePod.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEditNamePod.Location = new Point(47, 533);
             btnEditNamePod.Margin = new Padding(2);
             btnEditNamePod.Name = "btnEditNamePod";
             btnEditNamePod.Size = new Size(117, 57);
             btnEditNamePod.TabIndex = 5;
-            btnEditNamePod.Text = "Redigera namn";
+            btnEditNamePod.Text = "Redigera namn på podd";
             btnEditNamePod.UseVisualStyleBackColor = true;
             btnEditNamePod.Click += btnEditNamePod_Click;
             // 
             // btnDeletePod
             // 
             btnDeletePod.Font = new Font("Segoe UI", 12F);
-            btnDeletePod.Location = new Point(268, 604);
+            btnDeletePod.Location = new Point(214, 533);
             btnDeletePod.Margin = new Padding(2);
             btnDeletePod.Name = "btnDeletePod";
             btnDeletePod.Size = new Size(117, 57);
@@ -116,7 +126,7 @@
             lbMyPod.Location = new Point(2, 89);
             lbMyPod.Margin = new Padding(2);
             lbMyPod.Name = "lbMyPod";
-            lbMyPod.Size = new Size(386, 484);
+            lbMyPod.Size = new Size(386, 424);
             lbMyPod.TabIndex = 3;
             lbMyPod.SelectedIndexChanged += lbMyPod_SelectedIndexChanged;
             // 
@@ -154,14 +164,6 @@
             lblMyPod.TabIndex = 0;
             lblMyPod.Text = "Mina poddar";
             lblMyPod.Click += lblMyPod_Click;
-            // 
-            // panelMyPodEps
-            // 
-            panelMyPodEps.Location = new Point(2, 690);
-            panelMyPodEps.Margin = new Padding(2);
-            panelMyPodEps.Name = "panelMyPodEps";
-            panelMyPodEps.Size = new Size(388, 10);
-            panelMyPodEps.TabIndex = 1;
             // 
             // panelChosenPod
             // 
@@ -329,7 +331,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panelChosenEp);
             Controls.Add(panelChosenPod);
-            Controls.Add(panelMyPodEps);
             Controls.Add(panelMyPods);
             Margin = new Padding(2);
             Name = "UcDashboard";
@@ -349,7 +350,6 @@
 
         private Panel panelMyPods;
         private Label lblMyPod;
-        private Panel panelMyPodEps;
         private Panel panelChosenPod;
         private Label lblPodName;
         private ComboBox cbPodCat;
@@ -371,5 +371,6 @@
         private Label lblDate;
         private Label label2;
         private Label label3;
+        private Button btnChangeCat;
     }
 }
