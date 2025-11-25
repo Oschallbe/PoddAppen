@@ -100,18 +100,22 @@
             // 
             // rtbxDesc
             // 
+            rtbxDesc.BackColor = SystemColors.ButtonHighlight;
             rtbxDesc.Location = new Point(495, 93);
             rtbxDesc.Margin = new Padding(3, 2, 3, 2);
             rtbxDesc.Name = "rtbxDesc";
+            rtbxDesc.ReadOnly = true;
             rtbxDesc.Size = new Size(402, 254);
             rtbxDesc.TabIndex = 6;
             rtbxDesc.Text = "";
             // 
             // rtbxEpDesc
             // 
+            rtbxEpDesc.BackColor = SystemColors.ButtonHighlight;
             rtbxEpDesc.Location = new Point(495, 374);
             rtbxEpDesc.Margin = new Padding(3, 2, 3, 2);
             rtbxEpDesc.Name = "rtbxEpDesc";
+            rtbxEpDesc.ReadOnly = true;
             rtbxEpDesc.Size = new Size(402, 244);
             rtbxEpDesc.TabIndex = 7;
             rtbxEpDesc.Text = "";
