@@ -96,31 +96,7 @@ namespace PoddApp.DAL
             var update = Builders<Podcast>.Update.Set(p => p.Name, newName);
             return _collection.UpdateOneAsync(filter, update);
         }
-        public async Task ChangeCategoryNameAsync(string categoryId, string newName)
-        {
-            // Måste uppdatera interfacet IPodcastRepo med denna signatur först
-            using (var session = await _client.StartSessionAsync())
-            {
-                session.StartTransaction();
-                try
-                {
-                    var filter = Builders<Category>.Filter.Eq(c => c.Id, categoryId);
-                    var update = Builders<Category>.Update.Set(c => c.Name, newName);
-
-                    // Uppdatera kategorinamnet i kategorisamlingen
-                    await _categoriesCollection.UpdateOneAsync(session, filter, update);
-
-                    // Notera: Om Podcast-modellen lagrar kategorinamnet (istället för bara ID),
-                    // skulle en andra uppdatering mot Podcast-samlingen behövas här.
-
-                    await session.CommitTransactionAsync();
-                }
-                catch
-                {
-                    await session.AbortTransactionAsync();
-                    throw;
-                }
-            }
-        }
+ 
+        
     }
 }
