@@ -89,7 +89,7 @@ namespace PoddApp.BL
             var existing = await podcastRepo.GetByRssUrlAsync(rssUrl);
 
             if (existing != null)
-                return "Podcast är redan sparad";
+                return "Denna podcast är redan sparad";
 
             return null;
         }
@@ -98,7 +98,7 @@ namespace PoddApp.BL
         public string? ValidateEmpty(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                return "Obligatoriskt fält";
+                return "Fältet får inte vara tomt";
 
             return null;
         }
