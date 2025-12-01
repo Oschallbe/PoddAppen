@@ -164,31 +164,6 @@ namespace PoddApp.DAL
             }
         }
 
-        public async Task DeleteEpisodeAsync(string podcastId, string episodeId)
-        {
-            using (var session = await _client.StartSessionAsync())
-            {
-                session.StartTransaction();
-                try
-                {
-                    var filter = Builders<Podcast>.Filter.Eq(p => p.Id, podcastId);
-
-                    var update = Builders<Podcast>.Update.PullFilter(
-                        p => p.Episodes,
-                        e => e.Id == episodeId
-                        );
-
-                    await _collection.UpdateOneAsync(session, filter, update);
-                    await session.CommitTransactionAsync();
-                }
-                catch
-                {
-                    await session.AbortTransactionAsync();
-                    throw;
-                }
-            }
-        }
-
         public async Task ChangeNamePodcastAsync(string podcastId, string newName)
         {
             using (var session = await _client.StartSessionAsync())
