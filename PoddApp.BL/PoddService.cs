@@ -32,16 +32,13 @@ public class PoddService : IPoddService
 
     public async Task<List<Episode>> GetEpisodesAsync(Podcast podcast)
     {
-        // 1. Hämta från DB
         var podFromDb = await _podcastRepo.GetByIdAsync(podcast.Id);
 
         if (podFromDb != null && podFromDb.Episodes.Any())
             return podFromDb.Episodes;
 
-        // 2. Fallback: hämta från RSS
         var episodes = await _rss.GetRSSPod(podcast.RssUrl);
 
-        // 3. Spara i DB
         podcast.Episodes = episodes;
         await _podcastRepo.UpdateAsync(podcast);
 
@@ -90,11 +87,9 @@ public class PoddService : IPoddService
 
     public async Task ChangeCategoryNameAsync(string categoryId, string newName)
     {
-        // Vi lägger ingen extra affärslogik här, utan bara skickar vidare till DAL
         await _podcastRepo.ChangeCategoryNameAsync(categoryId, newName);
     }
 
-    // NY IMPLEMENTERING FÖR ATT BYTA KATEGORI
     public async Task ChangeCategoryPodcastAsync(Podcast podcast, List<Category> newCategories)
     {
         podcast.Categories = newCategories;
