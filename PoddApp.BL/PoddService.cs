@@ -6,41 +6,41 @@ using System.Threading.Tasks;
 
 public class PoddService : IPoddService
 {
-    private readonly IRssReader rss;
-    private readonly IPodcastRepo podcastRepo;
+    private readonly IRssReader _rss;
+    private readonly IPodcastRepo _podcastRepo;
 
     public PoddService(IRssReader rssReader, IPodcastRepo podcastRepo)
     {
-        rss = rssReader;
-        this.podcastRepo = podcastRepo;
+        _rss = rssReader;
+        _podcastRepo = podcastRepo;
     }
 
     public async Task SetPodcastImageAsync(Podcast podcast)
     {
-        podcast.ImageUrl = await rss.GetPodcastImageUrl(podcast.RssUrl);
+        podcast.ImageUrl = await _rss.GetPodcastImageUrl(podcast.RssUrl);
     }
 
     public async Task SetPodcastTitleAsync(Podcast podcast)
     {
-        podcast.Name = await rss.GetPodcastTitle(podcast.RssUrl);
+        podcast.Name = await _rss.GetPodcastTitle(podcast.RssUrl);
     }
 
     public async Task SetPodcastDescriptionAsync(Podcast podcast)
     {
-        podcast.Description = await rss.GetPodcastDescription(podcast.RssUrl);
+        podcast.Description = await _rss.GetPodcastDescription(podcast.RssUrl);
     }
 
     public async Task<List<Episode>> GetEpisodesAsync(Podcast podcast)
     {
-        var podFromDb = await podcastRepo.GetByIdAsync(podcast.Id);
+        var podFromDb = await _podcastRepo.GetByIdAsync(podcast.Id);
 
         if (podFromDb != null && podFromDb.Episodes.Any())
             return podFromDb.Episodes;
 
-        var episodes = await rss.GetRSSPod(podcast.RssUrl);
+        var episodes = await _rss.GetRSSPod(podcast.RssUrl);
 
         podcast.Episodes = episodes;
-        await podcastRepo.UpdateAsync(podcast);
+        await _podcastRepo.UpdateAsync(podcast);
 
         return episodes;
     }
@@ -48,57 +48,58 @@ public class PoddService : IPoddService
 
     public async Task SavePodcastAsync(Podcast podcast)
     {
-        await podcastRepo.AddAsync(podcast);
+        await _podcastRepo.AddAsync(podcast);
     }
 
     public async Task<List<Podcast>> GetAllPodcastsAsync()
     {
-        return await podcastRepo.GetAllAsync();
+        return await _podcastRepo.GetAllAsync();
     }
 
     public async Task DeletePodcastAsync(string id)
     {
-        await podcastRepo.DeleteAsync(id);
+        await _podcastRepo.DeleteAsync(id);
     }
     public async Task AddCategoryAsync(string name)
     {
-        await podcastRepo.AddCategoryAsync(name);
+        await _podcastRepo.AddCategoryAsync(name);
     }
 
     public async Task<List<Category>> GetAllCategoriesAsync()
     {
-        return await podcastRepo.GetAllCategoriesAsync();
+        return await _podcastRepo.GetAllCategoriesAsync();
     }
 
     public async Task AddCategoryToPodcastAsync(string podcastId, string categoryId)
     {
-        await podcastRepo.AddCategoryToPodcastAsync(podcastId, categoryId);
+        await _podcastRepo.AddCategoryToPodcastAsync(podcastId, categoryId);
     }
 
     public async Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId)
     {
-        await podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, categoryId);
+        await _podcastRepo.RemoveCategoryFromPodcastAsync(podcastId, categoryId);
     }
 
     public async Task ChangeNamePodcastAsync(string podcastId, string newName)
     {
-        await podcastRepo.ChangeNamePodcastAsync(podcastId, newName);
+        await _podcastRepo.ChangeNamePodcastAsync(podcastId, newName);
     }
 
     public async Task ChangeCategoryNameAsync(string categoryId, string newName)
     {
-        await podcastRepo.ChangeCategoryNameAsync(categoryId, newName);
+        await _podcastRepo.ChangeCategoryNameAsync(categoryId, newName);
     }
 
     public async Task ChangeCategoryPodcastAsync(Podcast podcast, List<Category> newCategories)
     {
         podcast.Categories = newCategories;
-        await podcastRepo.UpdateAsync(podcast);
+        await _podcastRepo.UpdateAsync(podcast);
     }
 
     public async Task DeleteCategoryAsync(string categoryId)
     {
-        await podcastRepo.DeleteCategoryAsync(categoryId);
+        await _podcastRepo.DeleteCategoryAsync(categoryId);
     }
+
 
 }
