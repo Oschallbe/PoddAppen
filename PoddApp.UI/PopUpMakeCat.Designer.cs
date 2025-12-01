@@ -85,7 +85,7 @@
             Controls.Add(label1);
             Margin = new Padding(2);
             Name = "PopUpMakeCat";
-            Text = "Form1";
+            Text = "Skapa kategori";
             ResumeLayout(false);
             PerformLayout();
         }

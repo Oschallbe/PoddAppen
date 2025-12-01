@@ -52,5 +52,10 @@ namespace PoddApp.UI
         {
 
         }
+
+        private void lblChosenPod_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

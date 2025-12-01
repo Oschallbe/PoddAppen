@@ -31,7 +31,6 @@
             btnBack = new Button();
             btnSave = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
             tbCurrentName = new TextBox();
             tbNewName = new TextBox();
             SuspendLayout();
@@ -65,14 +64,6 @@
             label1.TabIndex = 2;
             label1.Text = "Redigera namn på podd";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(502, 263);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(134, 23);
-            textBox1.TabIndex = 3;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // tbCurrentName
             // 
             tbCurrentName.Location = new Point(268, 61);
@@ -96,12 +87,11 @@
             ClientSize = new Size(672, 298);
             Controls.Add(tbNewName);
             Controls.Add(tbCurrentName);
-            Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(btnSave);
             Controls.Add(btnBack);
             Name = "PopUpEditName";
-            Text = "Form1";
+            Text = "Redigera namn";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -111,7 +101,6 @@
         private Button btnBack;
         private Button btnSave;
         private Label label1;
-        private TextBox textBox1;
         private TextBox tbCurrentName;
         private TextBox tbNewName;
     }

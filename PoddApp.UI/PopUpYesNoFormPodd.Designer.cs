@@ -77,7 +77,6 @@
             Controls.Add(btnYes);
             Margin = new Padding(2);
             Name = "PopUpYesNoFormPodd";
-            Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
         }

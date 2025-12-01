@@ -82,7 +82,7 @@
             Controls.Add(comboBox1);
             Controls.Add(btnDeleteCat);
             Name = "PopUpDeleteCat";
-            Text = "PopUpDeleteCat";
+            Text = "Ta bort kategori";
             ResumeLayout(false);
             PerformLayout();
         }

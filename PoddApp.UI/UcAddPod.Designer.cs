@@ -54,7 +54,6 @@
             lblRssUrl.Size = new Size(85, 25);
             lblRssUrl.TabIndex = 1;
             lblRssUrl.Text = "RSS URL:";
-            lblRssUrl.Click += label1_Click;
             // 
             // btnFind
             // 
@@ -76,7 +75,6 @@
             lblPodName.Name = "lblPodName";
             lblPodName.Size = new Size(0, 15);
             lblPodName.TabIndex = 3;
-            lblPodName.Click += lblPodName_Click;
             // 
             // picbxPicture
             // 
@@ -172,7 +170,6 @@
             Margin = new Padding(2);
             Name = "UcAddPod";
             Size = new Size(1190, 696);
-            Load += UcAddPod_Load;
             ((System.ComponentModel.ISupportInitialize)picbxPicture).EndInit();
             ResumeLayout(false);
             PerformLayout();

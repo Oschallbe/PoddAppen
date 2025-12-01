@@ -182,7 +182,6 @@
             lblMyPod.Size = new Size(121, 25);
             lblMyPod.TabIndex = 0;
             lblMyPod.Text = "Mina poddar";
-            lblMyPod.Click += lblMyPod_Click;
             // 
             // panelChosenPod
             // 
@@ -228,7 +227,6 @@
             lblMetadataPod.Size = new Size(69, 25);
             lblMetadataPod.TabIndex = 3;
             lblMetadataPod.Text = "Avsnitt";
-            lblMetadataPod.Click += lblMetadataPod_Click;
             // 
             // rtbDesc
             // 
@@ -249,7 +247,6 @@
             picPod.Size = new Size(257, 170);
             picPod.TabIndex = 1;
             picPod.TabStop = false;
-            picPod.Click += picPod_Click;
             // 
             // lblPodName
             // 
@@ -260,7 +257,6 @@
             lblPodName.Name = "lblPodName";
             lblPodName.Size = new Size(0, 25);
             lblPodName.TabIndex = 0;
-            lblPodName.Click += lblPodName_Click;
             // 
             // panelChosenEp
             // 
@@ -316,7 +312,6 @@
             lblMetadataPodEp.Size = new Size(146, 21);
             lblMetadataPodEp.TabIndex = 3;
             lblMetadataPodEp.Text = "Avsnittsbeskrivning";
-            lblMetadataPodEp.Click += lblMetadataPodEp_Click;
             // 
             // rtbDescEp
             // 

@@ -47,7 +47,6 @@ namespace PoddApp.UI
 
             cbPodCat.Items.Clear();
 
-            
             cbPodCat.Items.Add(new ComboBoxItem
             {
                 Text = "Alla",
@@ -59,7 +58,6 @@ namespace PoddApp.UI
             cbPodSort.Items.Add("A–Ö");
             cbPodSort.SelectedIndex = 0;
 
-            
             foreach (var cat in _categories)
             {
                 cbPodCat.Items.Add(new ComboBoxItem
@@ -75,7 +73,7 @@ namespace PoddApp.UI
         public class ComboBoxItem
         {
             public string Text { get; set; }
-            public string Value { get; set; } 
+            public string Value { get; set; }
             public override string ToString() => Text;
         }
 
@@ -100,7 +98,6 @@ namespace PoddApp.UI
 
                     await _service.DeletePodcastAsync(selectedPod.Id);
 
-                    
                     lbMyPod.Items.RemoveAt(index);
                     _podcasts.RemoveAt(index);
 
@@ -120,12 +117,6 @@ namespace PoddApp.UI
             if (string.IsNullOrEmpty(input)) return input;
 
             return System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", string.Empty);
-        }
-
-        public Podcast GetPodcasts(string name)
-        {
-            return _podcasts.FirstOrDefault(podcast => podcast.Name == name);
-
         }
 
         private async void lbMyPod_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,7 +158,7 @@ namespace PoddApp.UI
             {
                 try
                 {
-                    picPod.SizeMode = PictureBoxSizeMode.Zoom; 
+                    picPod.SizeMode = PictureBoxSizeMode.Zoom;
                     picPod.Load(selectedPodcast.ImageUrl);
                 }
                 catch
@@ -185,9 +176,6 @@ namespace PoddApp.UI
             }
         }
 
-        private void lblMyPod_Click(object sender, EventArgs e) { }
-        private void cbPodEpList_SelectedIndexChanged(object sender, EventArgs e) { }
-        private void lblMyPodEps_Click(object sender, EventArgs e) { }
         private async void btnEditNameEp_Click(object sender, EventArgs e)
         {
             var popup = new PopUpMakeCat(validate);
@@ -199,21 +187,7 @@ namespace PoddApp.UI
                 MessageBox.Show("Kategori sparad!");
                 await LoadCategories();
                 await LoadPods();
-            } 
-        }
-
-         
-        private void lblMetadataPod_Click(object sender, EventArgs e) { }
-        private void lblMetadataPodEp_Click(object sender, EventArgs e) { }
-
-        private void lblPodName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void picPod_Click(object sender, EventArgs e)
-        {
-
+            }
         }
 
         private void lbEplist_SelectedIndexChanged(object sender, EventArgs e)
@@ -256,7 +230,6 @@ namespace PoddApp.UI
                 lblDate.Text = "Datum saknas";
             }
 
-
             var episodeImage = selectedEpisode.ImageUrl;
             var podcastImage = _podcasts[lbMyPod.SelectedIndex].ImageUrl;
 
@@ -277,8 +250,6 @@ namespace PoddApp.UI
             {
                 picPodEp.Image = Image.FromFile("Resources/Dummy_Bild.png");
                 picPodEp.SizeMode = PictureBoxSizeMode.Zoom;
-
-
             }
         }
 
@@ -294,7 +265,6 @@ namespace PoddApp.UI
 
         private void cbPodCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
 
@@ -310,21 +280,18 @@ namespace PoddApp.UI
 
             if (selected.Value == null)
             {
-                
                 newPodcastList = _allPodcasts;
             }
             else
             {
                 string selectedCategoryId = selected.Value;
 
-                
                 newPodcastList = _allPodcasts
                     .Where(p => p.Categories != null &&
                                 p.Categories.Any(c => c.Id == selectedCategoryId))
                     .ToList();
             }
 
-           
             _podcasts = newPodcastList;
 
             UpdatePodcastList(_podcasts);
@@ -334,17 +301,14 @@ namespace PoddApp.UI
         {
             int index = lbMyPod.SelectedIndex;
 
-            
             if (index < 0 || index >= _podcasts.Count)
             {
                 MessageBox.Show("Välj en podd att redigera.", "Varning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
             var selectedPodcast = _podcasts[index];
 
-            
             var popup = new PopUpEditName(selectedPodcast.Name);
             var result = popup.ShowDialog();
             if (result == DialogResult.OK)
@@ -367,7 +331,6 @@ namespace PoddApp.UI
 
         private void cbPodSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (_podcasts == null || _podcasts.Count == 0)
                 return;
 
@@ -375,28 +338,19 @@ namespace PoddApp.UI
 
             if (choice == "Sortera")
                 LoadPods();
-           
 
-            
             List<Podcast> sortedList = _podcasts;
 
             if (choice == "A–Ö")
             {
-                
                 sortedList = _podcasts
                     .OrderBy(p => p.Name)
                     .ToList();
             }
 
-            
             _podcasts = sortedList;
 
             UpdatePodcastList(sortedList);
-        }
-
-        private async void btnChangeCat_Click(object sender, EventArgs e)
-        {
-
         }
 
         private async void btnChangeCat_Click_1(object sender, EventArgs e)
@@ -434,15 +388,11 @@ namespace PoddApp.UI
                 var result = popup.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    
+
                     await LoadCategories();
                     await LoadPods();
                 }
             }
-
-
-
-
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -452,14 +402,11 @@ namespace PoddApp.UI
                 var result = popup.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    
                     await LoadCategories();
                     await LoadPods();
                 }
 
             }
         }
-    
     }
 }
-

@@ -52,9 +52,9 @@
             lblChosenPod.AutoSize = true;
             lblChosenPod.Location = new Point(281, 39);
             lblChosenPod.Name = "lblChosenPod";
-            lblChosenPod.Size = new Size(22, 15);
+            lblChosenPod.Size = new Size(0, 15);
             lblChosenPod.TabIndex = 1;
-            lblChosenPod.Text = "XD";
+            lblChosenPod.Click += lblChosenPod_Click;
             // 
             // label2
             // 
@@ -70,9 +70,8 @@
             lblCurrentCat.AutoSize = true;
             lblCurrentCat.Location = new Point(281, 82);
             lblCurrentCat.Name = "lblCurrentCat";
-            lblCurrentCat.Size = new Size(22, 15);
+            lblCurrentCat.Size = new Size(0, 15);
             lblCurrentCat.TabIndex = 3;
-            lblCurrentCat.Text = "XD";
             // 
             // label3
             // 
@@ -126,7 +125,7 @@
             Controls.Add(lblChosenPod);
             Controls.Add(label1);
             Name = "PopUpChangeCat";
-            Text = "Form1";
+            Text = "Ändra kategori";
             ResumeLayout(false);
             PerformLayout();
         }

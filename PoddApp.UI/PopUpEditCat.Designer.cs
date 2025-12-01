@@ -96,7 +96,7 @@
             Controls.Add(label1);
             Margin = new Padding(2);
             Name = "PopUpEditCat";
-            Text = "Form1";
+            Text = "Redigera kategori";
             ResumeLayout(false);
             PerformLayout();
         }

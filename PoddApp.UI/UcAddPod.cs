@@ -98,20 +98,6 @@ namespace PoddApp.UI
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPodName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UcAddPod_Load(object sender, EventArgs e)
-        {
-
-        }
         public static string StripHtml(string input)
         {
             if (string.IsNullOrEmpty(input)) return input;
@@ -193,6 +179,7 @@ namespace PoddApp.UI
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
         private void ShowRssTextBoxError(string message)
         {
             tbRssUrl.Text = message;
@@ -253,11 +240,6 @@ namespace PoddApp.UI
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedCategory = comboBox1.SelectedItem as Category;
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

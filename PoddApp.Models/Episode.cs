@@ -5,7 +5,7 @@ namespace PoddApp.Models
 {
     public class Episode
     {
-        public string Id { get; set; }         // MongoDB ObjectId som string
+        public string Id { get; set; }
 
         [BsonElement("Title")]
         public string Title { get; set; }
