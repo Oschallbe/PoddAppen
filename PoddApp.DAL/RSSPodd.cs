@@ -22,12 +22,10 @@ namespace PoddApp.DAL
             var feed = SyndicationFeed.Load(reader);
             var episodes = new List<Episode>();
 
-            // NYTT: Definiera iTunes Namespace för att hitta bildlänken i avsnitten
             XNamespace itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
             foreach (var item in feed.Items)
             {
-                // NY LOGIK: Försök hitta iTunes image taggen i avsnittet
                 var imgElement = item.ElementExtensions
                                     .ReadElementExtensions<XElement>("image", itunes.NamespaceName)
                                     .FirstOrDefault();
@@ -41,8 +39,6 @@ namespace PoddApp.DAL
                     Description = item.Summary?.Text ?? "",
                     PublishedDate = item.PublishDate.DateTime,
                     Link = item.Links.FirstOrDefault()?.Uri.ToString() ?? "",
-
-                    // NYTT: Tilldela den extraherade URL:en
                     ImageUrl = imageUrl
                 };
 
