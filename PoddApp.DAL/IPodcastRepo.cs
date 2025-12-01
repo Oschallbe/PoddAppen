@@ -15,7 +15,6 @@ namespace PoddApp.DAL
         Task<Podcast?> GetByRssUrlAsync(string rssUrl);
         Task UpdateAsync(Podcast podcast);
         Task DeleteAsync(string id);
-        Task DeleteEpisodeAsync(string podcastId, string episodeId);
         Task ChangeNamePodcastAsync(string podcastId, string newName);
 
         //categories

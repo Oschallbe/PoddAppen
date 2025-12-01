@@ -22,15 +22,28 @@ namespace PoddApp.DAL
             var feed = SyndicationFeed.Load(reader);
             var episodes = new List<Episode>();
 
+            // NYTT: Definiera iTunes Namespace för att hitta bildlänken i avsnitten
+            XNamespace itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+
             foreach (var item in feed.Items)
             {
+                // NY LOGIK: Försök hitta iTunes image taggen i avsnittet
+                var imgElement = item.ElementExtensions
+                                    .ReadElementExtensions<XElement>("image", itunes.NamespaceName)
+                                    .FirstOrDefault();
+
+                string imageUrl = imgElement?.Attribute("href")?.Value ?? "";
+
                 var ep = new Episode
                 {
                     Id = item.Id,
                     Title = item.Title?.Text ?? "",
                     Description = item.Summary?.Text ?? "",
                     PublishedDate = item.PublishDate.DateTime,
-                    Link = item.Links.FirstOrDefault()?.Uri.ToString() ?? ""
+                    Link = item.Links.FirstOrDefault()?.Uri.ToString() ?? "",
+
+                    // NYTT: Tilldela den extraherade URL:en
+                    ImageUrl = imageUrl
                 };
 
                 episodes.Add(ep);
@@ -88,21 +101,5 @@ namespace PoddApp.DAL
             return null;
         }
 
-        public async Task<string?> GetEpisodeImageUrl(string rssUrl, string episodeId)
-        {
-            using var data = await _http.GetStreamAsync(rssUrl);
-            using var reader = XmlReader.Create(data);
-
-            var feed = SyndicationFeed.Load(reader);
-
-            var ep = feed.Items.FirstOrDefault(i => i.Id == episodeId);
-            if (ep == null)
-                return null;
-
-            XNamespace itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-            var img = ep.ElementExtensions.ReadElementExtensions<XElement>("image", itunes.NamespaceName).FirstOrDefault();
-
-            return img?.Attribute("href")?.Value;
-        }
     }
 }

@@ -13,6 +13,5 @@ namespace PoddApp.DAL
         Task<string?> GetPodcastImageUrl(string rssUrl);
         Task<string?> GetPodcastTitle(string rssUrl);
         Task<string?> GetPodcastDescription(string rssUrl);
-        Task<string?> GetEpisodeImageUrl(string rssUrl, string episodeId);
     }
 }
