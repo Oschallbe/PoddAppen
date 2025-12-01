@@ -32,7 +32,7 @@ namespace PoddApp.UI
             try
             {
                 _allPodcasts = await _service.GetAllPodcastsAsync() ?? new List<Podcast>();
-                _podcasts = _allPodcasts; // Sätt visningslistan till masterlistan
+                _podcasts = _allPodcasts;
                 UpdatePodcastList(_podcasts);
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace PoddApp.UI
 
             cbPodCat.Items.Clear();
 
-            // Första valet = Alla kategorier
+            
             cbPodCat.Items.Add(new ComboBoxItem
             {
                 Text = "Alla",
@@ -59,7 +59,7 @@ namespace PoddApp.UI
             cbPodSort.Items.Add("A–Ö");
             cbPodSort.SelectedIndex = 0;
 
-            // Lägg in varje kategori
+            
             foreach (var cat in _categories)
             {
                 cbPodCat.Items.Add(new ComboBoxItem
@@ -75,7 +75,7 @@ namespace PoddApp.UI
         public class ComboBoxItem
         {
             public string Text { get; set; }
-            public string Value { get; set; } // categoryId
+            public string Value { get; set; } 
             public override string ToString() => Text;
         }
 
@@ -100,7 +100,7 @@ namespace PoddApp.UI
 
                     await _service.DeletePodcastAsync(selectedPod.Id);
 
-                    // Ta bort från UI-lista
+                    
                     lbMyPod.Items.RemoveAt(index);
                     _podcasts.RemoveAt(index);
 
@@ -167,7 +167,7 @@ namespace PoddApp.UI
             {
                 try
                 {
-                    picPod.SizeMode = PictureBoxSizeMode.Zoom; // viktigt så den skalar in bilden
+                    picPod.SizeMode = PictureBoxSizeMode.Zoom; 
                     picPod.Load(selectedPodcast.ImageUrl);
                 }
                 catch
@@ -294,7 +294,7 @@ namespace PoddApp.UI
 
         private void cbPodCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Använd _allPodcasts som källa (Måste vara implementerad enligt ovan)
+            
             if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
 
@@ -310,22 +310,21 @@ namespace PoddApp.UI
 
             if (selected.Value == null)
             {
-                // Återställ till den kompletta masterlistan
+                
                 newPodcastList = _allPodcasts;
             }
             else
             {
                 string selectedCategoryId = selected.Value;
 
-                // Filtrera ALLTID från masterlistan
+                
                 newPodcastList = _allPodcasts
                     .Where(p => p.Categories != null &&
                                 p.Categories.Any(c => c.Id == selectedCategoryId))
                     .ToList();
             }
 
-            // NYCKELSTEG: Uppdatera den globala visningslistan (_podcasts) 
-            // med de nya filtrerade/kompletta poddarna
+           
             _podcasts = newPodcastList;
 
             UpdatePodcastList(_podcasts);
@@ -335,17 +334,17 @@ namespace PoddApp.UI
         {
             int index = lbMyPod.SelectedIndex;
 
-            // Kontrollera att ett giltigt val har gjorts
+            
             if (index < 0 || index >= _podcasts.Count)
             {
                 MessageBox.Show("Välj en podd att redigera.", "Varning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 1. Hämta Podcast-objektet korrekt från listan med det valda indexet
+            
             var selectedPodcast = _podcasts[index];
 
-            // 2. Öppna popup-rutan PopUpEditName med det nuvarande namnet
+            
             var popup = new PopUpEditName(selectedPodcast.Name);
             var result = popup.ShowDialog();
             if (result == DialogResult.OK)
@@ -378,18 +377,18 @@ namespace PoddApp.UI
                 LoadPods();
            
 
-            // Skapa en ny lista att arbeta med
+            
             List<Podcast> sortedList = _podcasts;
 
             if (choice == "A–Ö")
             {
-                // Skapar den sorterade listan
+                
                 sortedList = _podcasts
                     .OrderBy(p => p.Name)
                     .ToList();
             }
 
-            // NYCKELSTEG: Uppdatera den globala listan till den nya ordningen
+            
             _podcasts = sortedList;
 
             UpdatePodcastList(sortedList);
@@ -435,7 +434,7 @@ namespace PoddApp.UI
                 var result = popup.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    // 3. Ladda om alla kategorier och poddar för att uppdatera filtren och listan
+                    
                     await LoadCategories();
                     await LoadPods();
                 }
@@ -453,7 +452,7 @@ namespace PoddApp.UI
                 var result = popup.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    // 3. Ladda om alla kategorier och poddar för att uppdatera filtren och listan
+                    
                     await LoadCategories();
                     await LoadPods();
                 }

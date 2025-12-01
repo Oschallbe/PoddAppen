@@ -1,4 +1,4 @@
-﻿// UPPDATERA: PoddApp.DAL/IPodcastRepo.cs
+﻿
 
 using PoddApp.Models;
 using System.Collections.Generic;
@@ -18,13 +18,13 @@ namespace PoddApp.DAL
         Task DeleteEpisodeAsync(string podcastId, string episodeId);
         Task ChangeNamePodcastAsync(string podcastId, string newName);
 
-        // Categories
+        //categories
         Task AddCategoryAsync(string categoryName);
         Task<List<Category>> GetAllCategoriesAsync();
         Task AddCategoryToPodcastAsync(string podcastId, string categoryId);
         Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId);
 
-        // NY METOD (US 6.2)
+       
         Task ChangeCategoryNameAsync(string categoryId, string newName);
 
         Task DeleteCategoryAsync(string categoryId);

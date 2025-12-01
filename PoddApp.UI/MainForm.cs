@@ -40,7 +40,7 @@ namespace PoddApp.UI
 
         private void cbUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Om du vill lägga till användarbyte här senare
+            
         }
     }
 }

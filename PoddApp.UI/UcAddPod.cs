@@ -82,7 +82,7 @@ namespace PoddApp.UI
 
                 if (!string.IsNullOrEmpty(podName.ImageUrl))
                 {
-                    picbxPicture.SizeMode = PictureBoxSizeMode.Zoom; // viktigt så den skalar in bilden
+                    picbxPicture.SizeMode = PictureBoxSizeMode.Zoom; 
                     picbxPicture.LoadAsync(podName.ImageUrl);
 
                 }
@@ -211,8 +211,8 @@ namespace PoddApp.UI
         private async Task LoadCategories()
         {
             comboBox1.DataSource = await aPodService.GetAllCategoriesAsync();
-            comboBox1.DisplayMember = "Name";   // vad som syns
-            comboBox1.ValueMember = "Id";       // det riktiga värdet
+            comboBox1.DisplayMember = "Name";  
+            comboBox1.ValueMember = "Id";       
 
             comboBox1.SelectedIndex = -1;
         }

@@ -1,25 +1,25 @@
-﻿// PoddApp.UI/PopUpDeleteCat.cs
+﻿
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PoddApp.BL; // För IPoddService
-using PoddApp.Models; // För Category
+using PoddApp.BL; 
+using PoddApp.Models;
 
 namespace PoddApp.UI
 {
     public partial class PopUpDeleteCat : Form
     {
         private readonly IPoddService _service;
-        private List<Category> _allCategories = new(); // Lokal cache för ComboBox
+        private List<Category> _allCategories = new();
 
         public PopUpDeleteCat(IPoddService service)
         {
             InitializeComponent();
             _service = service;
-            _ = LoadCategories(); // Ladda kategorier asynkront vid start
+            _ = LoadCategories(); 
         }
 
         private async Task LoadCategories()
@@ -28,19 +28,19 @@ namespace PoddApp.UI
             {
                 _allCategories = await _service.GetAllCategoriesAsync();
 
-                // Binder kategorierna till ComboBox
-                comboBox1.DataSource = _allCategories.ToList(); // Använd ToList() för att binda en kopia
+                
+                comboBox1.DataSource = _allCategories.ToList();
                 comboBox1.DisplayMember = "Name";
                 comboBox1.ValueMember = "Id";
 
-                comboBox1.SelectedIndex = -1; // Ingen kategori vald initialt
+                comboBox1.SelectedIndex = -1; 
                 comboBox1.Text = "Välj kategori att ta bort";
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Kunde inte ladda kategorier: {ex.Message}");
-                // Stänger fönstret om det inte går att ladda
+                
                 this.DialogResult = DialogResult.Abort;
                 this.Close();
             }
@@ -61,7 +61,7 @@ namespace PoddApp.UI
                 return;
             }
 
-            // Steg 1: Visa bekräftelserutan (US 6.3)
+           
             using (var popup = new PopUpYesNoFormPodd())
             {
                 var result = popup.ShowDialog();
@@ -87,7 +87,7 @@ namespace PoddApp.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Avbryt: Stäng fönstret utan att signalera till Dashboard att ladda om
+           
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
