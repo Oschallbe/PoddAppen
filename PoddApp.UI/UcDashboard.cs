@@ -102,7 +102,7 @@ namespace PoddApp.UI
                     lbMyPod.Items.RemoveAt(index);
                     _podcasts.RemoveAt(index);
 
-                    ClearChosenPodcastAndEpisodeView();
+                    ClearPodcastEpisode();
                 }
                 catch (Exception ex)
                 {
