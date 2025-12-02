@@ -17,6 +17,7 @@ namespace PoddApp.UI
         private readonly IValidation validate;
         private List<Category> _categories = new();
         private List<Podcast> _allPodcasts = new();
+        private Podcast? _selectedPodcast;
 
         public UcDashboard(IPoddService service, IValidation validation)
         {
@@ -101,8 +102,7 @@ namespace PoddApp.UI
                     lbMyPod.Items.RemoveAt(index);
                     _podcasts.RemoveAt(index);
 
-                    lblMetadataPod.Text = "";
-                    lblMetadataPodEp.Text = "";
+                    ClearChosenPodcastAndEpisodeView();
                 }
                 catch (Exception ex)
                 {
@@ -124,9 +124,13 @@ namespace PoddApp.UI
             int index = lbMyPod.SelectedIndex;
 
             if (index < 0 || index >= _podcasts.Count)
+            {
+                _selectedPodcast = null;
                 return;
+            }
 
             var selectedPodcast = _podcasts[index];
+            _selectedPodcast = selectedPodcast;
 
             if (selectedPodcast == null)
                 return;
@@ -202,6 +206,9 @@ namespace PoddApp.UI
             if (selectedEpisode == null)
                 return;
 
+            if (_selectedPodcast == null)
+                return;
+
             if (!string.IsNullOrEmpty(selectedEpisode.Title))
             {
                 lblPodNameEp.Text = selectedEpisode.Title;
@@ -231,7 +238,7 @@ namespace PoddApp.UI
             }
 
             var episodeImage = selectedEpisode.ImageUrl;
-            var podcastImage = _podcasts[lbMyPod.SelectedIndex].ImageUrl;
+            var podcastImage = _selectedPodcast.ImageUrl;
 
             if (!string.IsNullOrEmpty(episodeImage) &&
                 !string.Equals(episodeImage, podcastImage, StringComparison.OrdinalIgnoreCase))
@@ -267,6 +274,8 @@ namespace PoddApp.UI
         {
             if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
+
+            ClearPodcastEpisode();
 
             ComboBoxItem? selected = cbPodCat.SelectedItem as ComboBoxItem;
             if (selected == null)
@@ -407,6 +416,22 @@ namespace PoddApp.UI
                 }
 
             }
+        }
+
+        private void ClearPodcastEpisode()
+        {
+            _selectedPodcast = null;
+            allEpisodes = new List<Episode>();
+
+            lblPodName.Text = string.Empty;
+            rtbDesc.Text = string.Empty;
+            picPod.Image = null;
+            lbEplist.Items.Clear();
+
+            lblPodNameEp.Text = string.Empty;
+            picPodEp.Image = null;
+            lblDate.Text = string.Empty;
+            rtbDescEp.Text = string.Empty;
         }
     }
 }
