@@ -28,6 +28,32 @@ namespace PoddApp.UI
             _ = LoadCategories();
         }
 
+        private void FilterAndSort()
+        {
+            if (_allPodcasts == null) return;
+            List<Podcast> tempList = _allPodcasts.ToList();
+
+            if (cbPodCat.SelectedItem is ComboBoxItem selectedCat && selectedCat.Value != null)
+            {
+                string selectedCategoryId = selectedCat.Value;
+                tempList = tempList
+                    .Where(p => p.Categories != null &&
+                                p.Categories.Any(c => c.Id == selectedCategoryId))
+                    .ToList();
+            }
+
+            string sortChoice = cbPodSort.SelectedItem?.ToString();
+            if (sortChoice == "A–Ö")
+            {
+                tempList = tempList.OrderBy(p => p.Name).ToList();
+            }
+
+            _podcasts = tempList;
+            UpdatePodcastList(_podcasts);
+
+            ClearPodcastEpisode();
+        }
+
         private async Task LoadPods()
         {
             try
@@ -98,6 +124,9 @@ namespace PoddApp.UI
                     var selectedPod = _podcasts[index];
 
                     await _service.DeletePodcastAsync(selectedPod.Id);
+
+                    var podInMaster = _allPodcasts.FirstOrDefault(p => p.Id == selectedPod.Id);
+                    if (podInMaster != null) _allPodcasts.Remove(podInMaster);
 
                     lbMyPod.Items.RemoveAt(index);
                     _podcasts.RemoveAt(index);
@@ -275,8 +304,6 @@ namespace PoddApp.UI
             if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
 
-            ClearPodcastEpisode();
-
             ComboBoxItem? selected = cbPodCat.SelectedItem as ComboBoxItem;
             if (selected == null)
                 return;
@@ -285,25 +312,7 @@ namespace PoddApp.UI
                 ? "Mina Poddar"
                 : selected.Text;
 
-            List<Podcast> newPodcastList;
-
-            if (selected.Value == null)
-            {
-                newPodcastList = _allPodcasts;
-            }
-            else
-            {
-                string selectedCategoryId = selected.Value;
-
-                newPodcastList = _allPodcasts
-                    .Where(p => p.Categories != null &&
-                                p.Categories.Any(c => c.Id == selectedCategoryId))
-                    .ToList();
-            }
-
-            _podcasts = newPodcastList;
-
-            UpdatePodcastList(_podcasts);
+            FilterAndSort();
         }
 
         private async void btnEditNamePod_Click(object sender, EventArgs e)
@@ -327,6 +336,9 @@ namespace PoddApp.UI
                     await _service.ChangeNamePodcastAsync(selectedPodcast.Id, popup.NewName);
 
                     selectedPodcast.Name = popup.NewName;
+                    var masterPod = _allPodcasts.FirstOrDefault(p => p.Id == selectedPodcast.Id);
+                    if (masterPod != null) masterPod.Name = popup.NewName;
+
                     UpdatePodcastList(_podcasts);
                     lblPodName.Text = selectedPodcast.Name;
                     ClearPodcastEpisode();
@@ -341,26 +353,10 @@ namespace PoddApp.UI
 
         private void cbPodSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_podcasts == null || _podcasts.Count == 0)
+            if (_allPodcasts == null || _allPodcasts.Count == 0)
                 return;
 
-            string choice = cbPodSort.SelectedItem?.ToString();
-
-            if (choice == "Sortera")
-                LoadPods();
-
-            List<Podcast> sortedList = _podcasts;
-
-            if (choice == "A–Ö")
-            {
-                sortedList = _podcasts
-                    .OrderBy(p => p.Name)
-                    .ToList();
-            }
-
-            _podcasts = sortedList;
-
-            UpdatePodcastList(sortedList);
+            FilterAndSort();
         }
 
         private async void btnChangeCat_Click_1(object sender, EventArgs e)
@@ -381,6 +377,7 @@ namespace PoddApp.UI
                 {
                     await _service.ChangeCategoryPodcastAsync(selectedPodcast, popup.NewCategories);
                     selectedPodcast.Categories = popup.NewCategories;
+                    FilterAndSort();
 
                     MessageBox.Show("Kategori har ändrats!");
                 }
