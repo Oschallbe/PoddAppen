@@ -9,15 +9,13 @@ namespace PoddApp.UI
     {
         private readonly IPoddService _service;
         private readonly IValidation validation;
-        private readonly IPodcastRepo repo;
 
-        public MainForm(IPoddService service, IValidation validation, IPodcastRepo repo)
+        public MainForm(IPoddService service, IValidation validation)
         {
             InitializeComponent();
             _service = service;
             LoadPage(new UcDashboard(_service, validation));
             this.validation = validation;
-            this.repo = repo;
         }
 
         private void LoadPage(UserControl uc)

@@ -40,7 +40,7 @@ namespace PoddApp.UI
 
             
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm(service, validation, repo));
+            Application.Run(new MainForm(service, validation));
         }
     }
 }
