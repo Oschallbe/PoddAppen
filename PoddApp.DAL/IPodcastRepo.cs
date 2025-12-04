@@ -17,15 +17,12 @@ namespace PoddApp.DAL
         Task DeleteAsync(string id);
         Task ChangeNamePodcastAsync(string podcastId, string newName);
 
-        //categories
+        //Categories
         Task AddCategoryAsync(string categoryName);
         Task<List<Category>> GetAllCategoriesAsync();
         Task AddCategoryToPodcastAsync(string podcastId, string categoryId);
         Task RemoveCategoryFromPodcastAsync(string podcastId, string categoryId);
-
-       
         Task ChangeCategoryNameAsync(string categoryId, string newName);
-
         Task DeleteCategoryAsync(string categoryId);
     }
 }

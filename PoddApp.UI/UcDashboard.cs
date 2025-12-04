@@ -329,6 +329,7 @@ namespace PoddApp.UI
                     selectedPodcast.Name = popup.NewName;
                     UpdatePodcastList(_podcasts);
                     lblPodName.Text = selectedPodcast.Name;
+                    ClearPodcastEpisode();
                     MessageBox.Show("Poddens namn uppdaterades!");
                 }
                 catch (Exception ex)
